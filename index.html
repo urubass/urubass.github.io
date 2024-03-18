@@ -5,23 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Štěpán Uruba</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body>
     <header>
         <nav>
+            <div class="language-switch">
+                <img src="czech-flag.png" alt="Česká vlajka" class="flag active" data-lang="cs">
+                <img src="english-flag.png" alt="Anglická vlajka" class="flag hidden" data-lang="en">
+            </div>
             <div class="theme-switch">
-                <input type="checkbox" id="theme-toggle" class="theme-toggle">
-                <label for="theme-toggle" class="theme-toggle-label">
-                    <img src="sun.png" alt="Světlý motiv" class="theme-icon sun-icon">
-                    <img src="moon.png" alt="Tmavý motiv" class="theme-icon moon-icon">
-                </label>
+                <img src="sun.png" alt="Světlý motiv" class="theme-icon active" data-theme="light">
+                <img src="moon.png" alt="Tmavý motiv" class="theme-icon hidden" data-theme="dark">
             </div>
             <ul>
-                <li><a href="#home">Domů</a></li>
-                <li><a href="#about">O mně</a></li>
-                <li><a href="#education">Vzdělání</a></li>
-                <li><a href="#hobbies">Zájmy</a></li>
-                <li><a href="#contact">Kontakt</a></li>
+                <li><a href="#home" data-text="Domů|Home">Domů</a></li>
+                <li><a href="#about" data-text="O mně|About Me">O mně</a></li>
+                <li><a href="#education" data-text="Vzdělání|Education">Vzdělání</a></li>
+                <li><a href="#hobbies" data-text="Zájmy|Hobbies">Zájmy</a></li>
+                <li><a href="#contact" data-text="Kontakt|Contact">Kontakt</a></li>
             </ul>
         </nav>
     </header>
@@ -30,35 +32,35 @@
         <section id="home">
             <div class="hero-image">
                 <div class="hero-text">
-                    <h1>Štěpán Uruba</h1>
-                    <p>Student | Vývojář | Nadšenec do technologií</p>
+                    <h1 data-text="Štěpán Uruba|Štěpán Uruba">Štěpán Uruba</h1>
+                    <p data-text="Student · Vývojář · Nadšenec do technologií|Student · Developer · Technology Enthusiast">Student · Vývojář · Nadšenec do technologií</p>
                 </div>
             </div>
         </section>
 
         <section id="about">
             <div class="container">
-                <h2>O mně</h2>
+                <h2 data-text="O mně|About Me">O mně</h2>
                 <div class="profile">
                     <img src="fotka.jpg" alt="Štěpán Uruba">
-                    <p>Jmenuji se Štěpán Uruba a jsem studentem informatiky se zájmem o webové technologie a vývoj softwaru. Rád se učím novým věcem a neustále zdokonaluji své dovednosti. Mým cílem je stát se úspěšným vývojářem a vytvářet inovativní řešení, která budou mít pozitivní dopad na životy lidí.</p>
+                    <p data-text="Jmenuji se Štěpán Uruba a jsem studentem informatiky se zájmem o webové technologie a vývoj softwaru. Rád se učím novým věcem a neustále zdokonaluji své dovednosti. Mým cílem je stát se úspěšným vývojářem a vytvářet inovativní řešení, která budou mít pozitivní dopad na životy lidí.|My name is Štěpán Uruba and I am a computer science student with an interest in web technologies and software development. I enjoy learning new things and continuously improving my skills. My goal is to become a successful developer and create innovative solutions that will have a positive impact on people's lives.">Jmenuji se Štěpán Uruba a jsem studentem informatiky se zájmem o webové technologie a vývoj softwaru. Rád se učím novým věcem a neustále zdokonaluji své dovednosti. Mým cílem je stát se úspěšným vývojářem a vytvářet inovativní řešení, která budou mít pozitivní dopad na životy lidí.</p>
                 </div>
             </div>
         </section>
 
         <section id="education">
             <div class="container">
-                <h2>Vzdělání</h2>
+                <h2 data-text="Vzdělání|Education">Vzdělání</h2>
                 <div class="timeline">
                     <div class="timeline-item">
-                        <h3>VŠB - Technická univerzita Ostrava</h3>
-                        <p>2023 - současnost</p>
-                        <p>Bakalářský obor Informatika</p>
+                        <h3 data-text="VŠB - Technická univerzita Ostrava|VSB - Technical University of Ostrava">VŠB - Technická univerzita Ostrava</h3>
+                        <p data-text="2023 - součastnost|2023 - present">2023 - současnost</p>
+                        <p data-text="Bakalářský obor Informatika|Bachelor's degree in Computer Science">Bakalářský obor Informatika</p>
                     </div>
                     <div class="timeline-item">
-                        <h3>Střední škola průmyslová, Krnov</h3>
+                        <h3 data-text="Střední škola průmyslová, Krnov|Secondary Industrial School, Krnov">Střední škola průmyslová, Krnov</h3>
                         <p>2019 - 2023</p>
-                        <p>Obor Informační technologie</p>
+                        <p data-text="Obor Informační technologie|Field of Information Technology">Obor Informační technologie</p>
                     </div>
                 </div>
             </div>
@@ -66,22 +68,22 @@
 
         <section id="hobbies">
             <div class="container">
-                <h2>Zájmy</h2>
+                <h2 data-text="Zájmy|Hobbies">Zájmy</h2>
                 <div class="hobbies-grid">
                     <div class="hobby-item">
                         <img src="programming.jpg" alt="Programování">
-                        <h3>Programování</h3>
-                        <p>Ve volném čase rád pracuji na osobních projektech a zdokonaluji své programovací dovednosti.</p>
+                        <h3 data-text="Programování|Programming">Programování</h3>
+                        <p data-text="Ve volném čase rád pracuji na osobních projektech a zdokonaluji své programovací dovednosti.|In my free time, I enjoy working on personal projects and improving my programming skills.">Ve volném čase rád pracuji na osobních projektech a zdokonaluji své programovací dovednosti.</p>
                     </div>
                     <div class="hobby-item">
                         <img src="gaming.jpg" alt="Hraní her">
-                        <h3>Hraní her</h3>
-                        <p>Rád se odreaguji při hraní videoher a poznávám nové herní světy.</p>
+                        <h3 data-text="Hraní her|Gaming">Hraní her</h3>
+                        <p data-text="Rád se odreaguji při hraní videoher a poznávám nové herní světy.|I enjoy unwinding by playing video games and exploring new gaming worlds.">Rád se odreaguji při hraní videoher a poznávám nové herní světy.</p>
                     </div>
                     <div class="hobby-item">
                         <img src="travel.jpg" alt="Cestování">
-                        <h3>Cestování</h3>
-                        <p>Baví mě poznávat nová místa, kultury a lidi. Cestování mi přináší inspiraci a nové zážitky.</p>
+                        <h3 data-text="Cestování|Traveling">Cestování</h3>
+                        <p data-text="Baví mě poznávat nová místa, kultury a lidi. Cestování mi přináší inspiraci a nové zážitky.|I love exploring new places, cultures, and meeting new people. Traveling brings me inspiration and new experiences.">Baví mě poznávat nová místa, kultury a lidi. Cestování mi přináší inspiraci a nové zážitky.</p>
                     </div>
                 </div>
             </div>
@@ -89,10 +91,10 @@
 
         <section id="contact">
             <div class="container">
-                <h2>Kontakt</h2>
+                <h2 data-text="Kontakt|Contact">Kontakt</h2>
                 <div class="contact-info">
-                    <p><strong>Email:</strong> stepanuruba03@gmail.com</p>
-                    <p><strong>Telefon:</strong> +420 702 285 890</p>
+                    <p><strong data-text="Email:|Email:">Email:</strong> stepanuruba03@gmail.com</p>
+                    <p><strong data-text="Telefon:|Phone:">Telefon:</strong> +420 702 285 890</p>
                     <div class="social-links">
                         <a href="https://www.facebook.com/ankapstepan/" target="_blank"><img src="facebook.png" alt="Facebook"></a>
                         <a href="https://twitter.com/urubas_" target="_blank"><img src="x.png" alt="Twitter"></a>
@@ -103,9 +105,11 @@
             </div>
         </section>
     </main>
+
     <footer>
-        <p>&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.</p>
-    </footer>    
+        <p data-text="&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.|&copy; 2024 Štěpán Uruba. All rights reserved.">&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.</p>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>

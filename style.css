@@ -234,35 +234,34 @@ footer {
     position: absolute;
     top: 20px;
     right: 20px;
-}
-
-.theme-toggle {
-    display: none;
-}
-
-.theme-toggle-label {
     cursor: pointer;
+    width: 32px;
+    height: 32px;
 }
 
 .theme-icon {
-    width: 24px;
-    height: 24px;
-    transition: opacity 0.3s;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.2s;
 }
 
-.sun-icon {
+.theme-icon.hidden {
+    opacity: 0;
+}
+
+.theme-icon.active {
     opacity: 1;
 }
 
-.moon-icon {
+.theme-icon.fade-out {
     opacity: 0;
 }
 
-.theme-toggle:checked + .theme-toggle-label .sun-icon {
-    opacity: 0;
-}
-
-.theme-toggle:checked + .theme-toggle-label .moon-icon {
+.theme-icon.fade-in {
     opacity: 1;
 }
 
@@ -290,4 +289,42 @@ body.dark-theme {
 
 .dark-theme footer {
     background-color: #222;
+}
+
+/*Přepinání jazyků*/
+.language-switch {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+}
+
+.flag {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s;
+}
+
+.flag.hidden {
+    opacity: 0;
+}
+
+.flag.active {
+    opacity: 1;
+}
+
+.flag.fade-out {
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.flag.fade-in {
+    opacity: 1;
+    transition: opacity 0.2s;
 }
