@@ -59,3 +59,12 @@ if (savedTheme === 'dark') {
     themeIcons[1].classList.remove('hidden');
     themeIcons[1].classList.add('active');
 }
+
+//
+const dropdownToggle = document.querySelector('.dropdown-toggle');
+const navLinks = document.querySelector('.nav-links');
+
+dropdownToggle.addEventListener('click', function (event) {
+    event.preventDefault();
+    navLinks.classList.toggle('active');
+});
