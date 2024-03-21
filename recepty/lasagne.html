@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Štěpán Uruba - Lasagne alla Bolognese</title>
+   <link rel="stylesheet" href="../style.css">
+   <link rel="icon" type="image/png" href="../obrazky/favicon.png">
+
+   <script>
+       // Uložení vybraného jazyka do localStorage
+       function saveLanguage(lang) {
+           localStorage.setItem('selectedLanguage', lang);
+       }
+
+       // Načtení vybraného jazyka z localStorage
+       function loadLanguage() {
+           const selectedLanguage = localStorage.getItem('selectedLanguage');
+           if (selectedLanguage) {
+               const flags = document.querySelectorAll('.flag');
+               flags.forEach(flag => {
+                   if (flag.dataset.lang === selectedLanguage) {
+                       flag.classList.add('active');
+                       flag.classList.remove('hidden');
+                   } else {
+                       flag.classList.add('hidden');
+                       flag.classList.remove('active');
+                   }
+               });
+
+               const translatableElements = document.querySelectorAll('[data-text]');
+               translatableElements.forEach(element => {
+                   const [czechText, englishText] = element.dataset.text.split('|');
+                   element.textContent = selectedLanguage === 'cs' ? czechText : englishText;
+               });
+           }
+       }
+
+       // Načtení vybraného jazyka při načtení stránky
+       document.addEventListener('DOMContentLoaded', loadLanguage);
+   </script>
+</head>
+
+<body>
+   <header>
+       <nav>
+           <div class="language-switch">
+               <img src="../obrazky/czech-flag.png" alt="Česká vlajka" class="flag active" data-lang="cs">
+               <img src="../obrazky/english-flag.png" alt="Anglická vlajka" class="flag hidden" data-lang="en">
+           </div>
+           <div class="theme-switch">
+               <img src="../obrazky/sun.png" alt="Světlý motiv" class="theme-icon active" data-theme="light">
+               <img src="../obrazky/moon.png" alt="Tmavý motiv" class="theme-icon hidden" data-theme="dark">
+           </div>
+           <ul>
+               <li><a href="../index.html" data-text="Hlavní menu|Main Menu">Hlavní menu</a></li>
+               <li><a href="../recipes.html" class="active" data-text="Recepty|Recipes">Recepty</a></li>
+           </ul>
+       </nav>
+   </header>
+
+   <main>
+       <section class="recipe-detail">
+           <div class="recipe-hero" style="background-image: url('../obrazky/lasagne.jpg');">
+               <div class="recipe-hero-text">
+                   <h1 data-text="Lasagne alla Bolognese|Lasagna alla Bolognese">Lasagne alla Bolognese</h1>
+                   <p class="recipe-description" data-text="Tradiční italské lasagne s boloňskou masovou omáčkou a sýrovou bešamelovou omáčkou.|Traditional Italian lasagna with a rich Bolognese meat sauce and cheesy béchamel sauce.">Tradiční italské lasagne s boloňskou masovou omáčkou a sýrovou bešamelovou omáčkou.</p>
+               </div>
+           </div>
+
+           <div class="container">
+               <div class="recipe-info-box">
+                   <h2 data-text="Informace|Information">Informace</h2>
+                   <p><strong data-text="Porce:|Servings:">Porce:</strong> 8</p>
+                   <p><strong data-text="Příprava:|Prep Time:">Příprava:</strong> 30 minut</p>
+                   <p><strong data-text="Vaření:|Cook Time:">Vaření:</strong> 2 hodiny</p>
+                   <p><strong data-text="Obtížnost:|Difficulty:">Obtížnost:</strong> <span data-text="Střední|Medium">Střední</span></p>
+               </div>
+
+               <div class="ingredients-box">
+                   <h2 data-text="Ingredience|Ingredients">Ingredience</h2>
+                   <h3 data-text="Masová omáčka:|Meat Sauce:">Masová omáčka:</h3>
+                   <ul>
+                     <li><span data-text="500g mletého hovězího masa|500g ground beef">500g mletého hovězího masa</span></li>
+                     <li><span data-text="1 velká cibule, nahrubo nasekaná|1 large onion, roughly chopped">1 velká cibule, nahrubo nasekaná</span></li>
+                     <li><span data-text="2 mrkve, nastrouhané|2 carrots, grated">2 mrkve, nastrouhané</span></li>
+                     <li><span data-text="4 stroužky česneku, prolisované|4 garlic cloves, minced">4 stroužky česneku, prolisované</span></li>
+                     <li><span data-text="1 šálek suchého bílého vína|1 cup dry white wine">1 šálek suchého bílého vína</span></li>
+                     <li><span data-text="2 plechovky (800g) drcených rajčat|2 cans (800g) crushed tomatoes">2 plechovky (800g) drcených rajčat</span></li>
+                     <li><span data-text="2 lžíce třtinového cukru|2 tablespoons brown sugar">2 lžíce třtinového cukru</span></li>
+                     <li><span data-text="1 lžíce sušené bazalky|1 tablespoon dried basil">1 lžíce sušené bazalky</span></li>
+                     <li><span data-text="Sůl a čerstvě mletý pepř dle chuti|Salt and freshly ground black pepper to taste">Sůl a čerstvě mletý pepř dle chuti</span></li>
+                   </ul>
+
+                   <h3 data-text="Bešamelová omáčka:|Béchamel Sauce:">Bešamelová omáčka:</h3>
+                   <ul>
+                     <li><span data-text="6 lžic másla|6 tablespoons butter">6 lžic másla</span></li>
+                     <li><span data-text="6 lžic hladké mouky|6 tablespoons all-purpose flour">6 lžic hladké mouky</span></li>
+                     <li><span data-text="4 šálky mléka|4 cups milk">4 šálky mléka</span></li>
+                     <li><span data-text="1 lžička soli|1 teaspoon salt">1 lžička soli</span></li>
+                     <li><span data-text="1/4 lžičky muškátového oříšku|1/4 teaspoon nutmeg">1/4 lžičky muškátového oříšku</span></li>
+                     <li><span data-text="1 šálek nastrouhaného parmezánu|1 cup grated Parmesan cheese">1 šálek nastrouhaného parmezánu</span></li>
+                   </ul>
+
+                   <h3 data-text="Ostatní:|Other:">Ostatní:</h3>
+                   <ul>
+                     <li><span data-text="12 plátků lasagní|12 lasagna noodles">12 plátků lasagní</span></li>
+                     <li><span data-text="2 šálky nastrouhaného mozzarella sýru|2 cups shredded mozzarella cheese">2 šálky nastrouhaného mozzarella sýru</span></li>
+                   </ul>
+               </div>
+
+               <div class="instructions-box">
+                   <h2 data-text="Postup|Instructions">Postup</h2>
+                   <h3 data-text="Masová omáčka:|Meat Sauce:">Masová omáčka:</h3>
+                   <ol>
+                     <li data-text="V hrnci na středně vysoké teplotě osmahněte mleté hovězí maso, cibuli, mrkev a česnek asi 10 minut, dokud maso nezačne ztrácet červenou barvu a zelenina nezměkne.|In a large pot over medium-high heat, cook the ground beef, onion, carrots, and garlic for about 10 minutes until the beef is no longer pink and the vegetables are softened.">V hrnci na středně vysoké teplotě osmahněte mleté hovězí maso, cibuli, mrkev a česnek asi 10 minut, dokud maso nezačne ztrácet červenou barvu a zelenina nezměkne.</li>
+                     <li data-text="Přilijte víno a nechte vařit, až tekutina téměř vypaří.|Add the wine and cook until the liquid is mostly evaporated.">Přilijte víno a nechte vařit, až tekutina téměř vypaří.</li>
+                     <li data-text="Přidejte drcená rajčata, třtinový cukr, bazalku, sůl a pepř. Přiveďte k varu a poté snižte teplotu a nechte pomalu vařit 30-40 minut, aby se omáčka zhustila.|Add the crushed tomatoes, brown sugar, basil, salt, and pepper. Bring to a boil, then reduce heat and let simmer for 30-40 minutes until the sauce thickens.">Přidejte drcená rajčata, třtinový cukr, bazalku, sůl a pepř. Přiveďte k varu a poté snižte teplotu a nechte pomalu vařit 30-40 minut, aby se omáčka zhustila.</li>
+                   </ol>
+
+                   <h3 data-text="Bešamelová omáčka:|Béchamel Sauce:">Bešamelová omáčka:</h3>
+                   <ol start="4">
+                     <li data-text="V jiném hrnci rozpusťte máslo na střední teplotě. Vmíchejte mouku a vařte 2 minuty za stálého míchání.|In a separate pot, melt the butter over medium heat. Whisk in the flour and cook for 2 minutes, stirring constantly.">V jiném hrnci rozpusťte máslo na střední teplotě. Vmíchejte mouku a vařte 2 minuty za stálého míchání.</li>
+                     <li data-text="Pomalu zašlehejte mléko a vařte za občasného míchání, dokud omáčka nezhoustne, asi 5-7 minut. Dochuťte solí a muškátovým oříškem. Nakonec vmíchejte parmezán.|Slowly whisk in the milk and cook, stirring occasionally, until the sauce thickens, about 5-7 minutes. Season with salt and nutmeg. Finally, stir in the Parmesan cheese.">Pomalu zašlehejte mléko a vařte za občasného míchání, dokud omáčka nezhoustne, asi 5-7 minut. Dochuťte solí a muškátovým oříškem. Nakonec vmíchejte parmezán.</li>
+                   </ol>
+
+                   <h3 data-text="Sestavení lasagní:|Assembling the Lasagna:">Sestavení lasagní:</h3>
+                   <ol start="6">
+                     <li data-text="Předehřejte troubu na 180°C. Vymažte pekáč na lasagne olejem nebo máslem.|Preheat oven to 180°C (350°F). Grease a lasagna baking dish with oil or butter.">Předehřejte troubu na 180°C. Vymažte pekáč na lasagne olejem nebo máslem.</li>
+                     <li data-text="Vyložte dno pekáče vrstvou lasagních plátků. Přelijte vrstvou masové omáčky a poté bešamelovou omáčkou. Posypte mozzarellou. Opakujte vrstvení, dokud nedosáhnete požadované výšky.|Layer the bottom of the baking dish with lasagna noodles. Top with a layer of the meat sauce, then the béchamel sauce. Sprinkle with mozzarella cheese. Repeat the layering until you reach the desired height.">Vyložte dno pekáče vrstvou lasagních plátků. Přelijte vrstvou masové omáčky a poté bešamelovou omáčkou. Posypte mozzarellou. Opakujte vrstvení, dokud nedosáhnete požadované výšky.</li>
+                     <li data-text="Zakryjte pekáč a dejte do trouby na 30 minut. Poté sundejte fólii a pečte dalších 15 minut, dokud nebude horní vrstva křupavá.|Cover the baking dish and bake for 30 minutes. Then, remove the cover and bake for an additional 15 minutes until the top is golden and crispy.">Zakryjte pekáč a dejte do trouby na 30 minut. Poté sundejte fólii a pečte dalších 15 minut, dokud nebude horní vrstva křupavá.</li>
+                     <li data-text="Před servírováním nechte lasagne 10-15 minut odpočinout.|Let the lasagna rest for 10-15 minutes before serving.">Před servírováním nechte lasagne 10-15 minut odpočinout.</li>
+                   </ol>
+               </div>
+           </div>
+       </section>
+   </main>
+
+   <footer>
+       <p data-text="&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.|&copy; 2024 Štěpán Uruba. All rights reserved.">&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.</p>
+   </footer>
+
+   <script src="../script.js"></script>
+</body>
+
+</html>

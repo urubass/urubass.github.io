@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Štěpán Uruba - Špagety aglio e olio</title>
+   <link rel="stylesheet" href="../style.css">
+   <link rel="icon" type="image/png" href="../obrazky/favicon.png">
+
+   <script>
+       // Uložení vybraného jazyka do localStorage
+       function saveLanguage(lang) {
+           localStorage.setItem('selectedLanguage', lang);
+       }
+
+       // Načtení vybraného jazyka z localStorage
+       function loadLanguage() {
+           const selectedLanguage = localStorage.getItem('selectedLanguage');
+           if (selectedLanguage) {
+               const flags = document.querySelectorAll('.flag');
+               flags.forEach(flag => {
+                   if (flag.dataset.lang === selectedLanguage) {
+                       flag.classList.add('active');
+                       flag.classList.remove('hidden');
+                   } else {
+                       flag.classList.add('hidden');
+                       flag.classList.remove('active');
+                   }
+               });
+
+               const translatableElements = document.querySelectorAll('[data-text]');
+               translatableElements.forEach(element => {
+                   const [czechText, englishText] = element.dataset.text.split('|');
+                   element.textContent = selectedLanguage === 'cs' ? czechText : englishText;
+               });
+           }
+       }
+
+       // Načtení vybraného jazyka při načtení stránky
+       document.addEventListener('DOMContentLoaded', loadLanguage);
+   </script>
+</head>
+
+<body>
+   <header>
+       <nav>
+           <div class="language-switch">
+               <img src="../obrazky/czech-flag.png" alt="Česká vlajka" class="flag active" data-lang="cs">
+               <img src="../obrazky/english-flag.png" alt="Anglická vlajka" class="flag hidden" data-lang="en">
+           </div>
+           <div class="theme-switch">
+               <img src="../obrazky/sun.png" alt="Světlý motiv" class="theme-icon active" data-theme="light">
+               <img src="../obrazky/moon.png" alt="Tmavý motiv" class="theme-icon hidden" data-theme="dark">
+           </div>
+           <ul>
+               <li><a href="../index.html" data-text="Hlavní menu|Main Menu">Hlavní menu</a></li>
+               <li><a href="../recipes.html" class="active" data-text="Recepty|Recipes">Recepty</a></li>
+           </ul>
+       </nav>
+   </header>
+
+   <main>
+       <section class="recipe-detail">
+           <div class="recipe-hero" style="background-image: url('../obrazky/spagety.jpg');">
+               <div class="recipe-hero-text">
+                   <h1 data-text="Špagety aglio e olio|Spaghetti Aglio e Olio">Špagety aglio e olio</h1>
+                   <p class="recipe-description" data-text="Jednoduchá a lahodná italská klasika - čerstvé špagety v olivovém oleji s česnekem a petrželkou.|A simple and delicious Italian classic - fresh spaghetti in olive oil with garlic and parsley.">Jednoduchá a lahodná italská klasika - čerstvé špagety v olivovém oleji s česnekem a petrželkou.</p>
+               </div>
+           </div>
+
+           <div class="container">
+               <div class="recipe-info-box">
+                   <h2 data-text="Informace|Information">Informace</h2>
+                   <p><strong data-text="Porce:|Servings:">Porce:</strong> 4</p>
+                   <p><strong data-text="Příprava:|Prep Time:">Příprava:</strong> 10 minut</p>
+                   <p><strong data-text="Vaření:|Cook Time:">Vaření:</strong> 15 minut</p>
+                   <p><strong data-text="Obtížnost:|Difficulty:">Obtížnost:</strong> <span data-text="Snadné|Easy">Snadné</span></p>
+               </div>
+
+               <div class="ingredients-box">
+                   <h2 data-text="Ingredience|Ingredients">Ingredience</h2>
+                   <ul>
+                    <li>
+                       <span data-text="500g čerstvých špaget|500g fresh spaghetti">500g čerstvých špaget</span>
+                    </li>
+                    <li>
+                       <span data-text="1/2 šálku olivového oleje|1/2 cup olive oil">1/2 šálku olivového oleje</span>
+                    </li>
+                    <li>
+                       <span data-text="6 stroužků česneku, nasekaných najemno|6 cloves garlic, minced">6 stroužků česneku, nasekaných najemno</span>
+                    </li>
+                    <li>
+                       <span data-text="1/2 šálku nastrouhaného parmezánu|1/2 cup grated Parmesan">1/2 šálku nastrouhaného parmezánu</span>
+                    </li>
+                    <li>
+                       <span data-text="1/4 šálku nasekaných čerstvých petrželových lístků|1/4 cup chopped fresh parsley leaves">1/4 šálku nasekaných čerstvých petrželových lístků</span>
+                    </li>
+                    <li>
+                       <span data-text="Sůl a čerstvě mletý pepř dle chuti|Salt and freshly ground black pepper to taste">Sůl a čerstvě mletý pepř dle chuti</span>
+                    </li>
+                   </ul>
+               </div>
+
+               <div class="instructions-box">
+                   <h2 data-text="Postup|Instructions">Postup</h2>
+                   <ol>
+                       <li data-text="Uvařte špagety v osolené vodě dle návodu na obalu. Sceďte je, ale ponechte půl šálku vývaru.|Bring a large pot of salted water to a boil and cook spaghetti according to package instructions. Drain, reserving 1/2 cup of the cooking water.">Uvařte špagety v osolené vodě dle návodu na obalu. Sceďte je, ale ponechte půl šálku vývaru.</li>
+                       <li data-text="Rozpalte olivový olej v pánvi na střední teplotu. Přidejte česnek a opékejte ho asi 2 minuty, dokud nezačne vonět.|Heat the olive oil in a large skillet over medium heat. Add the garlic and cook for about 2 minutes until fragrant, stirring frequently.">Rozpalte olivový olej v pánvi na střední teplotu. Přidejte česnek a opékejte ho asi 2 minuty, dokud nezačne vonět.</li>
+                       <li data-text="Přidejte uvařené špagety a petrželový vývar. Dobře promíchejte a nechte 2-3 minuty dusit na nízké teplotě.|Add the cooked spaghetti and the reserved cooking water to the skillet. Toss to coat the spaghetti with the olive oil and garlic and let it simmer for 2-3 minutes on low heat.">Přidejte uvařené špagety a petrželový vývar. Dobře promíchejte a nechte 2-3 minuty dusit na nízké teplotě.</li>
+                       <li data-text="Odstavte z tepla a přidejte nastrouhaný parmezán a nasekanou petrželku. Důkladně promíchejte a dochuťte solí a pepřem.|Remove from heat and add the grated Parmesan and chopped parsley. Toss well to combine and season with salt and pepper to taste.">Odstavte z tepla a přidejte nastrouhaný parmezán a nasekanou petrželku. Důkladně promíchejte a dochuťte solí a pepřem.</li>
+                       <li data-text="Ihned podávejte se šálkem bílého vína, pokud máte chuť.|Serve immediately with a glass of white wine if desired.">Ihned podávejte se šálkem bílého vína, pokud máte chuť.</li>
+                   </ol>
+               </div>
+           </div>
+       </section>
+   </main>
+
+   <footer>
+       <p data-text="&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.|&copy; 2024 Štěpán Uruba. All rights reserved.">&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.</p>
+   </footer>
+
+   <script src="../script.js"></script>
+</body>
+
+</html>

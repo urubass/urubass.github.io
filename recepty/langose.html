@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Štěpán Uruba - Langoše</title>
+   <link rel="stylesheet" href="../style.css">
+   <link rel="icon" type="image/png" href="../obrazky/favicon.png">
+
+   <script>
+       // Uložení vybraného jazyka do localStorage
+       function saveLanguage(lang) {
+           localStorage.setItem('selectedLanguage', lang);
+       }
+
+       // Načtení vybraného jazyka z localStorage
+       function loadLanguage() {
+           const selectedLanguage = localStorage.getItem('selectedLanguage');
+           if (selectedLanguage) {
+               const flags = document.querySelectorAll('.flag');
+               flags.forEach(flag => {
+                   if (flag.dataset.lang === selectedLanguage) {
+                       flag.classList.add('active');
+                       flag.classList.remove('hidden');
+                   } else {
+                       flag.classList.add('hidden');
+                       flag.classList.remove('active');
+                   }
+               });
+
+               const translatableElements = document.querySelectorAll('[data-text]');
+               translatableElements.forEach(element => {
+                   const [czechText, englishText] = element.dataset.text.split('|');
+                   element.textContent = selectedLanguage === 'cs' ? czechText : englishText;
+               });
+           }
+       }
+
+       // Načtení vybraného jazyka při načtení stránky
+       document.addEventListener('DOMContentLoaded', loadLanguage);
+   </script>
+</head>
+
+<body>
+   <header>
+       <nav>
+           <div class="language-switch">
+               <img src="../obrazky/czech-flag.png" alt="Česká vlajka" class="flag active" data-lang="cs">
+               <img src="../obrazky/english-flag.png" alt="Anglická vlajka" class="flag hidden" data-lang="en">
+           </div>
+           <div class="theme-switch">
+               <img src="../obrazky/sun.png" alt="Světlý motiv" class="theme-icon active" data-theme="light">
+               <img src="../obrazky/moon.png" alt="Tmavý motiv" class="theme-icon hidden" data-theme="dark">
+           </div>
+           <ul>
+               <li><a href="../index.html" data-text="Hlavní menu|Main Menu">Hlavní menu</a></li>
+               <li><a href="../recipes.html" class="active" data-text="Recepty|Recipes">Recepty</a></li>
+           </ul>
+       </nav>
+   </header>
+
+   <main>
+       <section class="recipe-detail">
+           <div class="recipe-hero" style="background-image: url('../obrazky/langose.jpg');">
+               <div class="recipe-hero-text">
+                   <h1 data-text="Langoše|Langos">Langoše</h1>
+                   <p class="recipe-description" data-text="Tradiční maďarské smažené chlebové placky podávané s různými pochutinami.|Traditional Hungarian fried bread served with various toppings.">Tradiční maďarské smažené chlebové placky podávané s různými pochutinami.</p>
+               </div>
+           </div>
+
+           <div class="container">
+               <div class="recipe-info-box">
+                   <h2 data-text="Informace|Information">Informace</h2>
+                   <p><strong data-text="Porce:|Servings:">Porce:</strong> 8</p>
+                   <p><strong data-text="Příprava:|Prep Time:">Příprava:</strong> 2 hodiny (včetně kynutí těsta)</p>
+                   <p><strong data-text="Vaření:|Cook Time:">Vaření:</strong> 30 minut</p>
+                   <p><strong data-text="Obtížnost:|Difficulty:">Obtížnost:</strong> <span data-text="Střední|Medium">Střední</span></p>
+               </div>
+
+               <div class="ingredients-box">
+                   <h2 data-text="Ingredience|Ingredients">Ingredience</h2>
+                   <h3 data-text="Těsto:|Dough:">Těsto:</h3>
+                   <ul>
+                     <li><span data-text="500g hladké mouky|500g all-purpose flour">500g hladké mouky</span></li>
+                     <li><span data-text="1 lžička soli|1 teaspoon salt">1 lžička soli</span></li>
+                     <li><span data-text="1 lžička sušeného droždí|1 teaspoon dry yeast">1 lžička sušeného droždí</span></li>
+                     <li><span data-text="300ml vlažné vody|300ml warm water">300ml vlažné vody</span></li>
+                   </ul>
+
+                   <h3 data-text="Doplňky:|Toppings:">Doplňky:</h3>
+                   <ul>
+                     <li><span data-text="Smetana nebo zakysaná smetana|Sour cream or crème fraîche">Smetana nebo zakysaná smetana</span></li>
+                     <li><span data-text="Strouhaný sýr (například čedar)|Grated cheese (e.g. cheddar)">Strouhaný sýr (například čedar)</span></li>
+                     <li><span data-text="Nakrájená šunka nebo slanina|Diced ham or bacon">Nakrájená šunka nebo slanina</span></li>
+                     <li><span data-text="Nakrájená cibule nebo jarní cibulka|Diced onion or spring onion">Nakrájená cibule nebo jarní cibulka</span></li>
+                     <li><span data-text="Čerstvá petrželka nebo pažitka|Fresh parsley or chives">Čerstvá petrželka nebo pažitka</span></li>
+                   </ul>
+               </div>
+
+               <div class="instructions-box">
+                   <h2 data-text="Postup|Instructions">Postup</h2>
+                   <ol>
+                     <li data-text="V míse smíchejte mouku, sůl a droždí. Přilijte vlažnou vodu a vypracujte hladké těsto. Přikryjte ho utěrkou a nechte 1-2 hodiny kynout.|In a bowl, mix together the flour, salt, and yeast. Add the warm water and knead into a smooth dough. Cover with a towel and let rise for 1-2 hours.">V míse smíchejte mouku, sůl a droždí. Přilijte vlažnou vodu a vypracujte hladké těsto. Přikryjte ho utěrkou a nechte 1-2 hodiny kynout.</li>
+                     <li data-text="Těsto rozválejte na lehce pomoučeném povrchu na placku o tloušťce asi 1 cm. Nakrájejte na obdélníky nebo čtverce o straně 10-15 cm.|On a lightly floured surface, roll out the dough into a 1 cm (0.4 inch) thick sheet. Cut into rectangles or squares about 10-15 cm (4-6 inches) in size.">Těsto rozválejte na lehce pomoučeném povrchu na placku o tloušťce asi 1 cm. Nakrájejte na obdélníky nebo čtverce o straně 10-15 cm.</li>
+                     <li data-text="V hluboké pánvi rozpalte dostatek oleje na smažení (2-3 cm výšky). Langoše smažte z obou stran dozlatova, přibližně 2-3 minuty na každé straně.|In a deep pan, heat enough oil for frying (2-3 cm/0.8-1.2 inches deep). Fry the langos on both sides until golden brown, about 2-3 minutes per side.">V hluboké pánvi rozpalte dostatek oleje na smažení (2-3 cm výšky). Langoše smažte z obou stran dozlatova, přibližně 2-3 minuty na každé straně.</li>
+                     <li data-text="Hotové langoše vytáhněte z oleje a nechte okapat na papírových ubrouscích.|Remove the fried langos from the oil and drain on paper towels."></li>
+                     <li data-text="Ihned po smažení posypte langoše solí. Podávejte je teplé s různými doplňky, jako je smetana, sýr, šunka, cibule a bylinky.|Immediately after frying, sprinkle the langos with salt. Serve warm with various toppings such as sour cream, cheese, ham, onions, and herbs.">Ihned po smažení posypte langoše solí. Podávejte je teplé s různými doplňky, jako je smetana, sýr, šunka, cibule a bylinky.</li>
+                   </ol>
+               </div>
+           </div>
+       </section>
+   </main>
+
+   <footer>
+       <p data-text="&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.|&copy; 2024 Štěpán Uruba. All rights reserved.">&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.</p>
+   </footer>
+
+   <script src="../script.js"></script>
+</body>
+
+</html>
