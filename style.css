@@ -507,3 +507,77 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+/* Stránka s detailem receptu */
+.recipe-hero {
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    position: relative;
+}
+
+.recipe-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.recipe-hero-text {
+    position: relative;
+    z-index: 1;
+}
+
+.recipe-hero-text h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.recipe-description {
+    font-size: 24px;
+}
+
+.recipe-info-box,
+.ingredients-box,
+.instructions-box {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+    font-size: 18px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dark-theme .recipe-info-box,
+.dark-theme .ingredients-box,
+.dark-theme .instructions-box {
+    background-color: #444;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+}
+
+.recipe-info-box {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.recipe-info-box h2,
+.ingredients-box h2,
+.instructions-box h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.recipe-info-box p {
+    margin-bottom: 10px;
+}

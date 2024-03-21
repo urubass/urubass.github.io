@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Štěpán Uruba - Penne all'Arrabbiata</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <script>
+        // Uložení vybraného jazyka do localStorage
+        function saveLanguage(lang) {
+            localStorage.setItem('selectedLanguage', lang);
+        }
+
+        // Načtení vybraného jazyka z localStorage
+        function loadLanguage() {
+            const selectedLanguage = localStorage.getItem('selectedLanguage');
+            if (selectedLanguage) {
+                const flags = document.querySelectorAll('.flag');
+                flags.forEach(flag => {
+                    if (flag.dataset.lang === selectedLanguage) {
+                        flag.classList.add('active');
+                        flag.classList.remove('hidden');
+                    } else {
+                        flag.classList.add('hidden');
+                        flag.classList.remove('active');
+                    }
+                });
+
+                const translatableElements = document.querySelectorAll('[data-text]');
+                translatableElements.forEach(element => {
+                    const [czechText, englishText] = element.dataset.text.split('|');
+                    element.textContent = selectedLanguage === 'cs' ? czechText : englishText;
+                });
+            }
+        }
+
+        // Načtení vybraného jazyka při načtení stránky
+        document.addEventListener('DOMContentLoaded', loadLanguage);
+    </script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="language-switch">
+                <img src="czech-flag.png" alt="Česká vlajka" class="flag active" data-lang="cs">
+                <img src="english-flag.png" alt="Anglická vlajka" class="flag hidden" data-lang="en">
+            </div>
+            <div class="theme-switch">
+                <img src="sun.png" alt="Světlý motiv" class="theme-icon active" data-theme="light">
+                <img src="moon.png" alt="Tmavý motiv" class="theme-icon hidden" data-theme="dark">
+            </div>
+            <ul>
+                <li><a href="index.html" data-text="Hlavní menu|Main Menu">Hlavní menu</a></li>
+                <li><a href="recipes.html" class="active" data-text="Recepty|Recipes">Recepty</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="recipe-detail">
+            <div class="recipe-hero" style="background-image: url('penne.jpg');">
+                <div class="recipe-hero-text">
+                    <h1 data-text="Penne all'Arrabbiata|Penne all'Arrabbiata">Penne all'Arrabbiata</h1>
+                    <p class="recipe-description" data-text="Pikantní italské těstoviny s rajčaty a chilli papričkami.|Spicy Italian pasta with tomatoes and chili peppers.">Pikantní italské těstoviny s rajčaty a chilli papričkami.</p>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="recipe-info-box">
+                    <h2 data-text="Informace o receptu|Recipe Information">Informace o receptu</h2>
+                    <p><strong data-text="Porce:|Servings:">Porce:</strong> 4</p>
+                    <p><strong data-text="Příprava:|Prep Time:">Příprava:</strong> 10 minut</p>
+                    <p><strong data-text="Vaření:|Cook Time:">Vaření:</strong> 20 minut</p>
+                    <p><strong data-text="Obtížnost:|Difficulty:">Obtížnost:</strong> <span data-text="Snadné|Easy">Snadné</span></p>
+                </div>
+
+                <div class="ingredients-box">
+                    <h2 data-text="Ingredience|Ingredients">Ingredience</h2>
+                    <ul>
+                        <li>400g penne</li>
+                        <li>2 lžíce olivového oleje</li>
+                        <li>4 stroužky česneku, nakrájené</li>
+                        <li>1/2 lžičky sušených chilli vloček</li>
+                        <li>400g rajčat</li>
+                        <li>1/2 lžičky cukru</li>
+                        <li>Sůl a pepř</li>
+                        <li>Bazalka na ozdobu</li>
+                    </ul>
+                </div>
+
+                <div class="instructions-box">
+                    <h2 data-text="Postup|Instructions">Postup</h2>
+                    <ol>
+                        <li data-text="Uvařte těstoviny podle návodu na obalu, sceďte a uchovejte trochu vody z vaření.|Cook the pasta according to the package instructions, drain, and reserve some cooking water.">Uvařte těstoviny podle návodu na obalu, sceďte a uchovejte trochu vody z vaření.</li>
+                        <li data-text="V pánvi rozehřejte olivový olej, přidejte česnek a chilli vločky. Smažte 1-2 minuty.|In a pan, heat the olive oil, add garlic and chili flakes. Sauté for 1-2 minutes.">V pánvi rozehřejte olivový olej, přidejte česnek a chilli vločky. Smažte 1-2 minuty.</li>
+                        <li data-text="Přidejte rajčata, cukr, sůl a pepř. Vařte 10 minut.|Add tomatoes, sugar, salt, and pepper. Cook for 10 minutes.">Přidejte rajčata, cukr, sůl a pepř. Vařte 10 minut.</li>
+                        <li data-text="Smíchejte těstoviny s omáčkou, přidejte trochu vody z vaření pro požadovanou konzistenci.|Mix the pasta with the sauce, adding some cooking water for desired consistency.">Smíchejte těstoviny s omáčkou, přidejte trochu vody z vaření pro požadovanou konzistenci.</li>
+                        <li data-text="Ozdobte bazalkou a podávejte.|Garnish with basil and serve.">Ozdobte bazalkou a podávejte.</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p data-text="&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.|&copy; 2024 Štěpán Uruba. All rights reserved.">&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
