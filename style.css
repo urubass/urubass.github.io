@@ -354,6 +354,21 @@ a:hover {
     z-index: 10;
 }
 
+@media screen and (max-width: 768px) {
+    .search-filter-bar {
+        flex-wrap: wrap;
+    }
+
+    .search-bar {
+        flex-basis: 100%;
+        margin-bottom: 10px;
+    }
+
+    .filter-bar {
+        flex-basis: 100%;
+    }
+}
+
 .dark-theme .search-filter-bar {
     background-color: #444;
     box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
@@ -435,6 +450,12 @@ a:hover {
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 30px;
     margin-top: 40px;
+}
+
+@media screen and (max-width: 768px) {
+    .recipe-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .recipe-item {
