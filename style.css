@@ -367,6 +367,15 @@ a:hover {
     .filter-bar {
         flex-basis: 100%;
     }
+
+    .search-bar input[type="text"] {
+        border-radius: 5px;
+    }
+
+    .search-bar button {
+        border-radius: 5px;
+        width: 100%;
+    }
 }
 
 .dark-theme .search-filter-bar {
@@ -379,8 +388,8 @@ a:hover {
 }
 
 .search-bar input[type="text"] {
+    flex-grow: 1;
     padding: 10px;
-    width: 300px;
     border: 1px solid #ccc;
     border-radius: 5px 0 0 5px;
     outline: none;
@@ -401,6 +410,8 @@ a:hover {
     cursor: pointer;
     transition: background-color 0.3s;
 }
+
+
 
 .dark-theme .search-bar button {
     background-color: #555;
