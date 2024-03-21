@@ -73,7 +73,7 @@ nav ul li a.active::after {
 
 /* Úvodní sekce */
 .hero-image {
-    background-image: url('hero-background.jpg');
+    background-image: url('obrazky/hero-background.jpg');
     background-size: cover;
     background-position: center;
     height: 500px;
@@ -345,7 +345,7 @@ a:hover {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-    background-color: #f8f9fa;
+    background-color: #e9ecef;
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -580,7 +580,7 @@ footer {
 .recipe-info-box,
 .ingredients-box,
 .instructions-box {
-    background-color: #f8f9fa;
+    background-color: #e9ecef;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);

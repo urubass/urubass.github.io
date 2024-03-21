@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Štěpán Uruba - Jarní závitky s kuřecím masem</title>
+   <link rel="stylesheet" href="../style.css">
+   <link rel="icon" type="image/png" href="../obrazky/favicon.png">
+
+   <script>
+       // Uložení vybraného jazyka do localStorage
+       function saveLanguage(lang) {
+           localStorage.setItem('selectedLanguage', lang);
+       }
+
+       // Načtení vybraného jazyka z localStorage
+       function loadLanguage() {
+           const selectedLanguage = localStorage.getItem('selectedLanguage');
+           if (selectedLanguage) {
+               const flags = document.querySelectorAll('.flag');
+               flags.forEach(flag => {
+                   if (flag.dataset.lang === selectedLanguage) {
+                       flag.classList.add('active');
+                       flag.classList.remove('hidden');
+                   } else {
+                       flag.classList.add('hidden');
+                       flag.classList.remove('active');
+                   }
+               });
+
+               const translatableElements = document.querySelectorAll('[data-text]');
+               translatableElements.forEach(element => {
+                   const [czechText, englishText] = element.dataset.text.split('|');
+                   element.textContent = selectedLanguage === 'cs' ? czechText : englishText;
+               });
+           }
+       }
+
+       // Načtení vybraného jazyka při načtení stránky
+       document.addEventListener('DOMContentLoaded', loadLanguage);
+   </script>
+</head>
+
+<body>
+   <header>
+       <nav>
+           <div class="language-switch">
+               <img src="../obrazky/czech-flag.png" alt="Česká vlajka" class="flag active" data-lang="cs">
+               <img src="../obrazky/english-flag.png" alt="Anglická vlajka" class="flag hidden" data-lang="en">
+           </div>
+           <div class="theme-switch">
+               <img src="../obrazky/sun.png" alt="Světlý motiv" class="theme-icon active" data-theme="light">
+               <img src="../obrazky/moon.png" alt="Tmavý motiv" class="theme-icon hidden" data-theme="dark">
+           </div>
+           <ul>
+               <li><a href="../index.html" data-text="Hlavní menu|Main Menu">Hlavní menu</a></li>
+               <li><a href="../recipes.html" class="active" data-text="Recepty|Recipes">Recepty</a></li>
+           </ul>
+       </nav>
+   </header>
+
+   <main>
+       <section class="recipe-detail">
+           <div class="recipe-hero" style="background-image: url('../obrazky/zavitky.jpg');">
+               <div class="recipe-hero-text">
+                   <h1 data-text="Jarní závitky s kuřecím masem|Spring Rolls with Chicken">Jarní závitky s kuřecím masem</h1>
+                   <p class="recipe-description" data-text="Křupavé jarní závitky plněné čerstvou zeleninou a kuřecím masem.|Crispy spring rolls filled with fresh vegetables and chicken.">Křupavé jarní závitky plněné čerstvou zeleninou a kuřecím masem.</p>
+               </div>
+           </div>
+
+           <div class="container">
+               <div class="recipe-info-box">
+                   <h2 data-text="Informace|Information">Informace</h2>
+                   <p><strong data-text="Porce:|Servings:">Porce:</strong> 6</p>
+                   <p><strong data-text="Příprava:|Prep Time:">Příprava:</strong> 30 minut</p>
+                   <p><strong data-text="Vaření:|Cook Time:">Vaření:</strong> 15 minut</p>
+                   <p><strong data-text="Obtížnost:|Difficulty:">Obtížnost:</strong> <span data-text="Střední|Medium">Střední</span></p>
+               </div>
+
+               <div class="ingredients-box">
+                   <h2 data-text="Ingredience|Ingredients">Ingredience</h2>
+                   <ul>
+                       <li>
+                           <span data-text="300g kuřecího masa, nakrájeného na proužky|300g chicken, sliced into strips">300g kuřecího masa, nakrájeného na proužky</span>
+                       </li>
+                       <li>
+                           <span data-text="1 mrkev, nastrouhaná|1 carrot, grated">1 mrkev, nastrouhaná</span>
+                       </li>
+                       <li>
+                           <span data-text="1 malý hlávkový salát, nakrájený na tenké proužky|1 small head of lettuce, sliced into thin strips">1 malý hlávkový salát, nakrájený na tenké proužky</span>
+                       </li>
+                       <li>
+                           <span data-text="1 svazek zelených fazolových lusků, nakrájených na tenké proužky|1 bundle of green bean pods, sliced into thin strips">1 svazek zelených fazolových lusků, nakrájených na tenké proužky</span>
+                       </li>
+                       <li>
+                           <span data-text="1 cibule, najemno nakrájená|1 onion, finely chopped">1 cibule, najemno nakrájená</span>
+                       </li>
+                       <li>
+                           <span data-text="2 stroužky česneku, prolisované|2 garlic cloves, minced">2 stroužky česneku, prolisované</span>
+                       </li>
+                       <li>
+                           <span data-text="2 lžíce sójové omáčky|2 tablespoons soy sauce">2 lžíce sójové omáčky</span>
+                       </li>
+                       <li>
+                           <span data-text="1 lžička mletého zázvoru|1 teaspoon ground ginger">1 lžička mletého zázvoru</span>
+                       </li>
+                       <li>
+                           <span data-text="16 rýžových papírků na jarní závitky|16 spring roll wrappers">16 rýžových papírků na jarní závitky</span>
+                       </li>
+                       <li>
+                           <span data-text="Olej na smažení|Oil for frying">Olej na smažení</span>
+                       </li>
+                       <li>
+                           <span data-text="Sladká chilli omáčka na podávání|Sweet chili sauce for serving">Sladká chilli omáčka na podávání</span>
+                       </li>
+                   </ul>
+               </div>
+
+               <div class="instructions-box">
+                   <h2 data-text="Postup|Instructions">Postup</h2>
+                   <ol>
+                       <li data-text="V pánvi osmažte kuřecí maso na trochuolejenakrátkoudobu. Odložte stranou.|In a pan, stir-fry the chicken for a short time. Set aside.">V pánvi osmažte kuřecí maso na trochuolejenakrátkoudobu. Odložte stranou.</li>
+                       <li data-text="Na stejné pánvi osmaž cibuli a česnek.|On the same pan, sauté the onion and garlic.">Na stejné pánvi osmaž cibuli a česnek.</li>
+                       <li data-text="Přidej mrkev, salát, fazolky a opražené kuřecí maso. Přidej sójovou omáčku a zázvor, promíchej.|Add the carrot, lettuce, green beans, and stir-fried chicken. Add soy sauce and ginger, mix well.">Přidej mrkev, salát, fazolky a opražené kuřecí maso. Přidej sójovou omáčku a zázvor, promíchej.</li>
+                       <li data-text="Namočte rýžové papírky do vody a nechte je změknout.|Soak the spring roll wrappers in water and let them soften.">Namočte rýžové papírky do vody a nechte je změknout.</li>
+                       <li data-text="Na každý papírek dejte trochu směsi se zeleninou a kuřecím masem, zarolujte a utěsněte.|Place some of the chicken and vegetable mixture on each wrapper, roll up and seal.">Na každý papírek dejte trochu směsi se zeleninou a kuřecím masem, zarolujte a utěsněte.</li>
+                       <li data-text="Smažte jarní závitky v horkém oleji, dokud nezískají zlatavou barvu.|Fry the spring rolls in hot oil until golden brown.">Smažte jarní závitky v horkém oleji, dokud nezískají zlatavou barvu.</li>
+                       <li data-text="Podávejte se sladkou chilli omáčkou.|Serve with sweet chili sauce.">Podávejte se sladkou chilli omáčkou.</li>
+                   </ol>
+               </div>
+           </div>
+       </section>
+   </main>
+
+   <footer>
+       <p data-text="&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.|&copy; 2024 Štěpán Uruba. All rights reserved.">&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.</p>
+   </footer>
+
+   <script src="../script.js"></script>
+</body>
+
+</html>
