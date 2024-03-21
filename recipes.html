@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Štěpán Uruba - Recepty</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <script>
+        // Uložení vybraného jazyka do localStorage
+        function saveLanguage(lang) {
+            localStorage.setItem('selectedLanguage', lang);
+        }
+
+        // Načtení vybraného jazyka z localStorage
+        function loadLanguage() {
+            const selectedLanguage = localStorage.getItem('selectedLanguage');
+            if (selectedLanguage) {
+                const flags = document.querySelectorAll('.flag');
+                flags.forEach(flag => {
+                    if (flag.dataset.lang === selectedLanguage) {
+                        flag.classList.add('active');
+                        flag.classList.remove('hidden');
+                    } else {
+                        flag.classList.add('hidden');
+                        flag.classList.remove('active');
+                    }
+                });
+
+                const translatableElements = document.querySelectorAll('[data-text]');
+                translatableElements.forEach(element => {
+                    const [czechText, englishText] = element.dataset.text.split('|');
+                    element.textContent = selectedLanguage === 'cs' ? czechText : englishText;
+                });
+            }
+        }
+
+        // Načtení vybraného jazyka při načtení stránky
+        document.addEventListener('DOMContentLoaded', loadLanguage);
+    </script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="language-switch">
+                <img src="czech-flag.png" alt="Česká vlajka" class="flag active" data-lang="cs">
+                <img src="english-flag.png" alt="Anglická vlajka" class="flag hidden" data-lang="en">
+            </div>
+            <div class="theme-switch">
+                <img src="sun.png" alt="Světlý motiv" class="theme-icon active" data-theme="light">
+                <img src="moon.png" alt="Tmavý motiv" class="theme-icon hidden" data-theme="dark">
+            </div>
+            <ul>
+                <li><a href="index.html" data-text="Hlavní menu|Main Menu">Hlavní menu</a></li>
+                <li><a href="recipes.html" class="active" data-text="Recepty|Recipes">Recepty</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="recipes">
+            <div class="container">
+                <div class="search-filter-bar">
+                    <div class="filter-bar">
+                        <select>
+                            <option value="" data-text="Kategorie|Categories">Kategorie</option>
+                            <option value="ceske" data-text="České|Czech">České</option>
+                            <option value="cinske" data-text="Čínské|Chinese">Čínské</option>
+                            <option value="indicke" data-text="Indické|Indian">Indické</option>
+                            <option value="italske" data-text="Italské|Italian">Italské</option>
+                            <option value="francouzske" data-text="Francouzské|French">Francouzské</option>
+                            <option value="americke" data-text="Americké|American">Americké</option>
+                            <option value="mexicke" data-text="Mexické|Mexican">Mexické</option>
+                            <option value="japonske" data-text="Japonské|Japanese">Japonské</option>
+                            <option value="thajske" data-text="Thajské|Thai">Thajské</option>
+                            <option value="grecke" data-text="Řecké|Greek">Řecké</option>
+                        </select>
+                    </div>
+                    <div class="search-bar">
+                        <input type="text" id="search-input" placeholder="Vyhledat recept..." data-text="Vyhledat recept...|Search recipe...">
+                        <button id="search-button" data-text="Vyhledat|Search">Vyhledat</button>
+                    </div>
+                </div>
+                <div class="recipe-grid">
+                    <div class="recipe-item" data-category="italske">
+                        <a href="penne.html">
+                            <img src="penne.jpg" alt="Penne all'arrabbiata">
+                            <div class="recipe-overlay">
+                                <h3 data-text="Penne all'arrabbiata|Penne all'arrabbiata">Penne all'arrabbiata</h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="recipe-item" data-category="indicke">
+                        <a href="butterchicken.html">
+                            <img src="butterchicken.jpg" alt="Butter chicken">
+                            <div class="recipe-overlay">
+                                <h3 data-text="Máslové kuře|Butter chicken">Máslové kuře</h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="recipe-item" data-category="cinske">
+                        <a href="smazenenudle.html">
+                            <img src="smazenenudle.jpg" alt="Smažené nudle">
+                            <div class="recipe-overlay">
+                                <h3 data-text="Smažené nudle|Fried noodles">Smažené nudle</h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="recipe-item" data-category="cinske">
+                        <a href="kungpao.html">
+                            <img src="kungpao.jpg" alt="Kung Pao">
+                            <div class="recipe-overlay">
+                                <h3 data-text="Kung Pao|Kung Pao">Kung Pao</h3>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p data-text="&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.|&copy; 2024 Štěpán Uruba. All rights reserved.">&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

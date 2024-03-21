@@ -1,12 +1,47 @@
 <!DOCTYPE html>
 <html lang="cs">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Štěpán Uruba</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="favicon.png">
+
+    <script>
+        // Uložení vybraného jazyka do localStorage
+        function saveLanguage(lang) {
+            localStorage.setItem('selectedLanguage', lang);
+        }
+
+        // Načtení vybraného jazyka z localStorage
+        function loadLanguage() {
+            const selectedLanguage = localStorage.getItem('selectedLanguage');
+            if (selectedLanguage) {
+                const flags = document.querySelectorAll('.flag');
+                flags.forEach(flag => {
+                    if (flag.dataset.lang === selectedLanguage) {
+                        flag.classList.add('active');
+                        flag.classList.remove('hidden');
+                    } else {
+                        flag.classList.add('hidden');
+                        flag.classList.remove('active');
+                    }
+                });
+
+                const translatableElements = document.querySelectorAll('[data-text]');
+                translatableElements.forEach(element => {
+                    const [czechText, englishText] = element.dataset.text.split('|');
+                    element.textContent = selectedLanguage === 'cs' ? czechText : englishText;
+                });
+            }
+        }
+
+        // Načtení vybraného jazyka při načtení stránky
+        document.addEventListener('DOMContentLoaded', loadLanguage);
+    </script>
 </head>
+
 <body>
     <header>
         <nav>
@@ -19,11 +54,8 @@
                 <img src="moon.png" alt="Tmavý motiv" class="theme-icon hidden" data-theme="dark">
             </div>
             <ul>
-                <li><a href="#home" data-text="Domů|Home">Domů</a></li>
-                <li><a href="#about" data-text="O mně|About Me">O mně</a></li>
-                <li><a href="#education" data-text="Vzdělání|Education">Vzdělání</a></li>
-                <li><a href="#hobbies" data-text="Zájmy|Hobbies">Zájmy</a></li>
-                <li><a href="#contact" data-text="Kontakt|Contact">Kontakt</a></li>
+                <li><a href="index.html" class="active" data-text="Hlavní menu|Main Menu">Hlavní menu</a></li>
+                <li><a href="recipes.html" data-text="Recepty|Recipes">Recepty</a></li>
             </ul>
         </nav>
     </header>
