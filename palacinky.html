@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Štěpán Uruba - Palačinky</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <script>
+        // Uložení vybraného jazyka do localStorage
+        function saveLanguage(lang) {
+            localStorage.setItem('selectedLanguage', lang);
+        }
+
+        // Načtení vybraného jazyka z localStorage
+        function loadLanguage() {
+            const selectedLanguage = localStorage.getItem('selectedLanguage');
+            if (selectedLanguage) {
+                const flags = document.querySelectorAll('.flag');
+                flags.forEach(flag => {
+                    if (flag.dataset.lang === selectedLanguage) {
+                        flag.classList.add('active');
+                        flag.classList.remove('hidden');
+                    } else {
+                        flag.classList.add('hidden');
+                        flag.classList.remove('active');
+                    }
+                });
+
+                const translatableElements = document.querySelectorAll('[data-text]');
+                translatableElements.forEach(element => {
+                    const [czechText, englishText] = element.dataset.text.split('|');
+                    element.textContent = selectedLanguage === 'cs' ? czechText : englishText;
+                });
+            }
+        }
+
+        // Načtení vybraného jazyka při načtení stránky
+        document.addEventListener('DOMContentLoaded', loadLanguage);
+    </script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="language-switch">
+                <img src="czech-flag.png" alt="Česká vlajka" class="flag active" data-lang="cs">
+                <img src="english-flag.png" alt="Anglická vlajka" class="flag hidden" data-lang="en">
+            </div>
+            <div class="theme-switch">
+                <img src="sun.png" alt="Světlý motiv" class="theme-icon active" data-theme="light">
+                <img src="moon.png" alt="Tmavý motiv" class="theme-icon hidden" data-theme="dark">
+            </div>
+            <ul>
+                <li><a href="index.html" data-text="Hlavní menu|Main Menu">Hlavní menu</a></li>
+                <li><a href="recipes.html" class="active" data-text="Recepty|Recipes">Recepty</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="recipe-detail">
+            <div class="recipe-hero" style="background-image: url('palacinky.jpg');">
+                <div class="recipe-hero-text">
+                    <h1 data-text="Palačinky|Pancakes">Palačinky</h1>
+                    <p class="recipe-description" data-text="Lahodné a nadýchané palačinky, perfektní ke snídani nebo jako dezert.|Delicious and fluffy pancakes, perfect for breakfast or as a dessert.">Lahodné a nadýchané palačinky, perfektní ke snídani nebo jako dezert.</p>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="recipe-info-box">
+                    <h2 data-text="Informace|Information">Informace</h2>
+                    <p><strong data-text="Porce:|Servings:">Porce:</strong> 4</p>
+                    <p><strong data-text="Příprava:|Prep Time:">Příprava:</strong> 10 minut</p>
+                    <p><strong data-text="Vaření:|Cook Time:">Vaření:</strong> 20 minut</p>
+                    <p><strong data-text="Obtížnost:|Difficulty:">Obtížnost:</strong> <span data-text="Snadné|Easy">Snadné</span></p>
+                </div>
+
+                <div class="ingredients-box">
+                    <h2 data-text="Ingredience|Ingredients">Ingredience</h2>
+                    <ul>
+                        <li>
+                            <span data-text="200g hladké mouky|200g all-purpose flour">200g hladké mouky</span>
+                        </li>
+                        <li>
+                            <span data-text="2 vejce|2 eggs">2 vejce</span>
+                        </li>
+                        <li>
+                            <span data-text="300ml mléka|300ml milk">300ml mléka</span>
+                        </li>
+                        <li>
+                            <span data-text="1 lžíce cukru|1 tablespoon sugar">1 lžíce cukru</span>
+                        </li>
+                        <li>
+                            <span data-text="1/2 lžičky soli|1/2 teaspoon salt">1/2 lžičky soli</span>
+                        </li>
+                        <li>
+                            <span data-text="1 lžíce rozpuštěného másla|1 tablespoon melted butter">1 lžíce rozpuštěného másla</span>
+                        </li>
+                        <li>
+                            <span data-text="Máslo nebo olej na smažení|Butter or oil for frying">Máslo nebo olej na smažení</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="instructions-box">
+                    <h2 data-text="Postup|Instructions">Postup</h2>
+                    <ol>
+                        <li data-text="V míse smíchejte mouku, cukr a sůl.|In a bowl, mix the flour, sugar, and salt.">V míse smíchejte mouku, cukr a sůl.</li>
+                        <li data-text="V jiné míse prošlehejte vejce s mlékem a rozpuštěným máslem.|In another bowl, whisk the eggs with milk and melted butter.">V jiné míse prošlehejte vejce s mlékem a rozpuštěným máslem.</li>
+                        <li data-text="Postupně přilévejte mléčnou směs do mouky a míchejte, dokud nevznikne hladké těsto bez hrudek.|Gradually pour the milk mixture into the flour and stir until you get a smooth batter without lumps.">Postupně přilévejte mléčnou směs do mouky a míchejte, dokud nevznikne hladké těsto bez hrudek.</li>
+                        <li data-text="Na pánvi rozehřejte trochu másla nebo oleje.|Heat a bit of butter or oil in a pan.">Na pánvi rozehřejte trochu másla nebo oleje.</li>
+                        <li data-text="Naběračkou nalijte těsto na pánev a smažte z obou stran do zlatova.|Using a ladle, pour the batter onto the pan and fry on both sides until golden brown.">Naběračkou nalijte těsto na pánev a smažte z obou stran do zlatova.</li>
+                        <li data-text="Podávejte teplé s oblíbenou přílohou (javorový sirup, ovoce, čokoláda atd.).|Serve warm with your favorite toppings (maple syrup, fruit, chocolate, etc.).">Podávejte teplé s oblíbenou přílohou (javorový sirup, ovoce, čokoláda atd.).</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p data-text="&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.|&copy; 2024 Štěpán Uruba. All rights reserved.">&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Štěpán Uruba - Smažené nudle</title>
+   <link rel="stylesheet" href="style.css">
+   <link rel="icon" type="image/png" href="favicon.png">
+
+   <script>
+       // Uložení vybraného jazyka do localStorage
+       function saveLanguage(lang) {
+           localStorage.setItem('selectedLanguage', lang);
+       }
+
+       // Načtení vybraného jazyka z localStorage
+       function loadLanguage() {
+           const selectedLanguage = localStorage.getItem('selectedLanguage');
+           if (selectedLanguage) {
+               const flags = document.querySelectorAll('.flag');
+               flags.forEach(flag => {
+                   if (flag.dataset.lang === selectedLanguage) {
+                       flag.classList.add('active');
+                       flag.classList.remove('hidden');
+                   } else {
+                       flag.classList.add('hidden');
+                       flag.classList.remove('active');
+                   }
+               });
+
+               const translatableElements = document.querySelectorAll('[data-text]');
+               translatableElements.forEach(element => {
+                   const [czechText, englishText] = element.dataset.text.split('|');
+                   element.textContent = selectedLanguage === 'cs' ? czechText : englishText;
+               });
+           }
+       }
+
+       // Načtení vybraného jazyka při načtení stránky
+       document.addEventListener('DOMContentLoaded', loadLanguage);
+   </script>
+</head>
+
+<body>
+   <header>
+       <nav>
+           <div class="language-switch">
+               <img src="czech-flag.png" alt="Česká vlajka" class="flag active" data-lang="cs">
+               <img src="english-flag.png" alt="Anglická vlajka" class="flag hidden" data-lang="en">
+           </div>
+           <div class="theme-switch">
+               <img src="sun.png" alt="Světlý motiv" class="theme-icon active" data-theme="light">
+               <img src="moon.png" alt="Tmavý motiv" class="theme-icon hidden" data-theme="dark">
+           </div>
+           <ul>
+               <li><a href="index.html" data-text="Hlavní menu|Main Menu">Hlavní menu</a></li>
+               <li><a href="recipes.html" class="active" data-text="Recepty|Recipes">Recepty</a></li>
+           </ul>
+       </nav>
+   </header>
+
+   <main>
+       <section class="recipe-detail">
+           <div class="recipe-hero" style="background-image: url('smazenenudle.jpg');">
+               <div class="recipe-hero-text">
+                   <h1 data-text="Smažené nudle|Fried Noodles">Smažené nudle</h1>
+                   <p class="recipe-description" data-text="Chutné a rychlé smažené nudle s zeleninou a tofu.|Tasty and quick fried noodles with vegetables and tofu.">Chutné a rychlé smažené nudle s zeleninou a tofu.</p>
+               </div>
+           </div>
+
+           <div class="container">
+               <div class="recipe-info-box">
+                   <h2 data-text="Informace|Information">Informace</h2>
+                   <p><strong data-text="Porce:|Servings:">Porce:</strong> 4</p>
+                   <p><strong data-text="Příprava:|Prep Time:">Příprava:</strong> 10 minut</p>
+                   <p><strong data-text="Vaření:|Cook Time:">Vaření:</strong> 15 minut</p>
+                   <p><strong data-text="Obtížnost:|Difficulty:">Obtížnost:</strong> <span data-text="Snadné|Easy">Snadné</span></p>
+               </div>
+
+               <div class="ingredients-box">
+                   <h2 data-text="Ingredience|Ingredients">Ingredience</h2>
+                   <ul>
+                       <li>
+                           <span data-text="400g vaječných nudlí|400g egg noodles">400g vaječných nudlí</span>
+                       </li>
+                       <li>
+                           <span data-text="2 lžíce oleje|2 tablespoons oil">2 lžíce oleje</span>
+                       </li>
+                       <li>
+                           <span data-text="1 cibule, nakrájená|1 onion, chopped">1 cibule, nakrájená</span>
+                       </li>
+                       <li>
+                           <span data-text="2 stroužky česneku, prolisované|2 garlic cloves, minced">2 stroužky česneku, prolisované</span>
+                       </li>
+                       <li>
+                           <span data-text="1 mrkev, nakrájená na tenké proužky|1 carrot, cut into thin strips">1 mrkev, nakrájená na tenké proužky</span>
+                       </li>
+                       <li>
+                           <span data-text="1 červená paprika, nakrájená na proužky|1 red bell pepper, sliced">1 červená paprika, nakrájená na proužky</span>
+                       </li>
+                       <li>
+                           <span data-text="200g tofu, nakrájeného na kostičky|200g tofu, cut into cubes">200g tofu, nakrájeného na kostičky</span>
+                       </li>
+                       <li>
+                           <span data-text="2 lžíce sójové omáčky|2 tablespoons soy sauce">2 lžíce sójové omáčky</span>
+                       </li>
+                       <li>
+                           <span data-text="1 lžíce oyster omáčky|1 tablespoon oyster sauce">1 lžíce oyster omáčky</span>
+                       </li>
+                       <li>
+                           <span data-text="1 lžička sezamového oleje|1 teaspoon sesame oil">1 lžička sezamového oleje</span>
+                       </li>
+                       <li>
+                           <span data-text="1/4 šálku vody|1/4 cup water">1/4 šálku vody</span>
+                       </li>
+                   </ul>
+               </div>
+
+               <div class="instructions-box">
+                   <h2 data-text="Postup|Instructions">Postup</h2>
+                   <ol>
+                       <li data-text="Uvařte nudle podle návodu na obalu, sceďte a promíchejte s trochou oleje, aby se neslepily.|Cook the noodles according to the package instructions, drain, and toss with a bit of oil to prevent sticking.">Uvařte nudle podle návodu na obalu, sceďte a promíchejte s trochou oleje, aby se neslepily.</li>
+                       <li data-text="V pánvi rozehřejte olej a osmažte cibuli a česnek do změknutí.|In a pan, heat the oil and sauté the onion and garlic until softened.">V pánvi rozehřejte olej a osmažte cibuli a česnek do změknutí.</li>
+                       <li data-text="Přidejte mrkev, papriku a tofu. Restujte 2-3 minuty.|Add the carrot, bell pepper, and tofu. Stir-fry for 2-3 minutes.">Přidejte mrkev, papriku a tofu. Restujte 2-3 minuty.</li>
+                       <li data-text="Přidejte uvařené nudle, sójovou omáčku, oyster omáčku, sezamový olej a vodu. Promíchejte a vařte dalších 5 minut.|Add the cooked noodles, soy sauce, oyster sauce, sesame oil, and water. Toss and cook for another 5 minutes.">Přidejte uvařené nudle, sójovou omáčku, oyster omáčku, sezamový olej a vodu. Promíchejte a vařte dalších 5 minut.</li>
+                       <li data-text="Podávejte horké.|Serve hot.">Podávejte horké.</li>
+                   </ol>
+               </div>
+           </div>
+       </section>
+   </main>
+
+   <footer>
+       <p data-text="&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.|&copy; 2024 Štěpán Uruba. All rights reserved.">&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.</p>
+   </footer>
+
+   <script src="script.js"></script>
+</body>
+
+</html>

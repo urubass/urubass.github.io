@@ -68,28 +68,22 @@ const searchButton = document.getElementById('search-button');
 const recipeGrid = document.querySelector('.recipe-grid');
 
 function searchRecipes() {
-    const searchTerm = searchInput.value.toLowerCase();
-    const selectedCategory = categoryFilter.value;
+    const searchTerm = searchInput.value.trim().toLowerCase();
     const recipes = recipeGrid.getElementsByClassName('recipe-item');
 
     if (searchTerm === '') {
-        // Pokud je vyhledávací pole prázdné, zobrazit recepty podle vybrané kategorie
+        // Pokud je vyhledávací pole prázdné, nevyhledávat a zobrazit všechny recepty
         for (let i = 0; i < recipes.length; i++) {
-            const recipeCategory = recipes[i].dataset.category;
-            if (selectedCategory === '' || recipeCategory === selectedCategory) {
-                recipes[i].style.display = 'block';
-            } else {
-                recipes[i].style.display = 'none';
-            }
+            recipes[i].style.display = 'block';
         }
         return;
     }
 
     for (let i = 0; i < recipes.length; i++) {
         const recipeName = recipes[i].querySelector('h3').textContent.toLowerCase();
-        const recipeCategory = recipes[i].dataset.category;
+        const recipeNameTranslated = recipes[i].querySelector('h3').dataset.text.toLowerCase();
 
-        if (recipeName.includes(searchTerm) && (selectedCategory === '' || recipeCategory === selectedCategory)) {
+        if (recipeName.includes(searchTerm) || recipeNameTranslated.includes(searchTerm)) {
             recipes[i].style.display = 'block';
         } else {
             recipes[i].style.display = 'none';
@@ -97,9 +91,15 @@ function searchRecipes() {
     }
 }
 
-searchButton.addEventListener('click', searchRecipes);
+searchButton.addEventListener('click', function() {
+    const searchTerm = searchInput.value.trim();
+    if (searchTerm !== '') {
+        searchRecipes();
+    }
+});
 searchInput.addEventListener('keyup', function(event) {
-    if (event.key === 'Enter') {
+    const searchTerm = searchInput.value.trim();
+    if (event.key === 'Enter' && searchTerm !== '') {
         searchRecipes();
     }
 });

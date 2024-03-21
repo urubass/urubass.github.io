@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Štěpán Uruba - Svíčková na smetaně</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <script>
+        // Uložení vybraného jazyka do localStorage
+        function saveLanguage(lang) {
+            localStorage.setItem('selectedLanguage', lang);
+        }
+
+        // Načtení vybraného jazyka z localStorage
+        function loadLanguage() {
+            const selectedLanguage = localStorage.getItem('selectedLanguage');
+            if (selectedLanguage) {
+                const flags = document.querySelectorAll('.flag');
+                flags.forEach(flag => {
+                    if (flag.dataset.lang === selectedLanguage) {
+                        flag.classList.add('active');
+                        flag.classList.remove('hidden');
+                    } else {
+                        flag.classList.add('hidden');
+                        flag.classList.remove('active');
+                    }
+                });
+
+                const translatableElements = document.querySelectorAll('[data-text]');
+                translatableElements.forEach(element => {
+                    const [czechText, englishText] = element.dataset.text.split('|');
+                    element.textContent = selectedLanguage === 'cs' ? czechText : englishText;
+                });
+            }
+        }
+
+        // Načtení vybraného jazyka při načtení stránky
+        document.addEventListener('DOMContentLoaded', loadLanguage);
+    </script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="language-switch">
+                <img src="czech-flag.png" alt="Česká vlajka" class="flag active" data-lang="cs">
+                <img src="english-flag.png" alt="Anglická vlajka" class="flag hidden" data-lang="en">
+            </div>
+            <div class="theme-switch">
+                <img src="sun.png" alt="Světlý motiv" class="theme-icon active" data-theme="light">
+                <img src="moon.png" alt="Tmavý motiv" class="theme-icon hidden" data-theme="dark">
+            </div>
+            <ul>
+                <li><a href="index.html" data-text="Hlavní menu|Main Menu">Hlavní menu</a></li>
+                <li><a href="recipes.html" class="active" data-text="Recepty|Recipes">Recepty</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="recipe-detail">
+            <div class="recipe-hero" style="background-image: url('svickova.jpg');">
+                <div class="recipe-hero-text">
+                    <h1 data-text="Svíčková na smetaně|Beef Sirloin in Cream Sauce">Svíčková na smetaně</h1>
+                    <p class="recipe-description" data-text="Tradiční český pokrm z hovězí svíčkové pečeně s omáčkou a karlovarským knedlíkem.|Traditional Czech dish of beef sirloin with cream sauce and bread dumplings.">Tradiční český pokrm z hovězí svíčkové pečeně s omáčkou a karlovarským knedlíkem.</p>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="recipe-info-box">
+                    <h2 data-text="Informace|Information">Informace</h2>
+                    <p><strong data-text="Porce:|Servings:">Porce:</strong> 4</p>
+                    <p><strong data-text="Příprava:|Prep Time:">Příprava:</strong> 30 minut</p>
+                    <p><strong data-text="Vaření:|Cook Time:">Vaření:</strong> 2 hodiny</p>
+                    <p><strong data-text="Obtížnost:|Difficulty:">Obtížnost:</strong> <span data-text="Střední|Medium">Střední</span></p>
+                </div>
+
+                <div class="ingredients-box">
+                    <h2 data-text="Ingredience|Ingredients">Ingredience</h2>
+                    <ul>
+                        <li>
+                            <span data-text="800g hovězí svíčkové|800g beef sirloin">800g hovězí svíčkové</span>
+                        </li>
+                        <li>
+                            <span data-text="2 velké mrkve, nakrájené|2 large carrots, chopped">2 velké mrkve, nakrájené</span>
+                        </li>
+                        <li>
+                            <span data-text="2 velké cibule, nakrájené|2 large onions, chopped">2 velké cibule, nakrájené</span>
+                        </li>
+                        <li>
+                            <span data-text="2 plátky slaniny|2 slices of bacon">2 plátky slaniny</span>
+                        </li>
+                        <li>
+                            <span data-text="2 lžíce hořčice|2 tablespoons mustard">2 lžíce hořčice</span>
+                        </li>
+                        <li>
+                            <span data-text="2 lžíce octa|2 tablespoons vinegar">2 lžíce octa</span>
+                        </li>
+                        <li>
+                            <span data-text="2 lžíce másla|2 tablespoons butter">2 lžíce másla</span>
+                        </li>
+                        <li>
+                            <span data-text="2 lžíce hladké mouky|2 tablespoons all-purpose flour">2 lžíce hladké mouky</span>
+                        </li>
+                        <li>
+                            <span data-text="500ml smetany|500ml heavy cream">500ml smetany</span>
+                        </li>
+                        <li>
+                            <span data-text="500ml hovězího vývaru|500ml beef broth">500ml hovězího vývaru</span>
+                        </li>
+                        <li>
+                            <span data-text="Sůl a pepř|Salt and pepper">Sůl a pepř</span>
+                        </li>
+                        <li>
+                            <span data-text="Karlovarské knedlíky k podávání|Bread dumplings for serving">Karlovarské knedlíky k podávání</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="instructions-box">
+                    <h2 data-text="Postup|Instructions">Postup</h2>
+                    <ol>
+                        <li data-text="Maso osolte, opepřete a potřete hořčicí.|Season the meat with salt, pepper, and coat with mustard.">Maso osolte, opepřete a potřete hořčicí.</li>
+                        <li data-text="V hrnci rozehřejte máslo a zpěňte na něm slaninu, cibuli a mrkev.|In a pot, melt the butter and sauté the bacon, onion, and carrot.">V hrnci rozehřejte máslo a zpěňte na něm slaninu, cibuli a mrkev.</li>
+                        <li data-text="Přidejte maso a ze všech stran opečte.|Add the meat and brown it on all sides.">Přidejte maso a ze všech stran opečte.</li>
+                        <li data-text="Zalijte vývarem a vařte doměkka (cca 2 hodiny).|Pour in the broth and cook until tender (about 2 hours).">Zalijte vývarem a vařte doměkka (cca 2 hodiny).</li>
+                        <li data-text="Vyjměte maso a rozmixujte zeleninu.|Remove the meat and puree the vegetables.">Vyjměte maso a rozmixujte zeleninu.</li>
+                        <li data-text="V jiném hrnci udělejte jíšku z másla a mouky, přidejte smetanu a povařte.|In another pot, make a roux with butter and flour, add cream, and simmer.">V jiném hrnci udělejte jíšku z másla a mouky, přidejte smetanu a povařte.</li>
+                        <li data-text="Vmíchejte rozmixovanou zeleninu, ocet a dochuťte solí a pepřem.|Mix in the pureed vegetables, vinegar, and season with salt and pepper.">Vmíchejte rozmixovanou zeleninu, ocet a dochuťte solí a pepřem.</li>
+                        <li data-text="Podávejte s plátky masa a karlovarskými knedlíky.|Serve with slices of meat and bread dumplings.">Podávejte s plátky masa a karlovarskými knedlíky.</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p data-text="&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.|&copy; 2024 Štěpán Uruba. All rights reserved.">&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

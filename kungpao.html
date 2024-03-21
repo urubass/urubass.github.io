@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Štěpán Uruba - Kung Pao</title>
+   <link rel="stylesheet" href="style.css">
+   <link rel="icon" type="image/png" href="favicon.png">
+
+   <script>
+       // Uložení vybraného jazyka do localStorage
+       function saveLanguage(lang) {
+           localStorage.setItem('selectedLanguage', lang);
+       }
+
+       // Načtení vybraného jazyka z localStorage
+       function loadLanguage() {
+           const selectedLanguage = localStorage.getItem('selectedLanguage');
+           if (selectedLanguage) {
+               const flags = document.querySelectorAll('.flag');
+               flags.forEach(flag => {
+                   if (flag.dataset.lang === selectedLanguage) {
+                       flag.classList.add('active');
+                       flag.classList.remove('hidden');
+                   } else {
+                       flag.classList.add('hidden');
+                       flag.classList.remove('active');
+                   }
+               });
+
+               const translatableElements = document.querySelectorAll('[data-text]');
+               translatableElements.forEach(element => {
+                   const [czechText, englishText] = element.dataset.text.split('|');
+                   element.textContent = selectedLanguage === 'cs' ? czechText : englishText;
+               });
+           }
+       }
+
+       // Načtení vybraného jazyka při načtení stránky
+       document.addEventListener('DOMContentLoaded', loadLanguage);
+   </script>
+</head>
+
+<body>
+   <header>
+       <nav>
+           <div class="language-switch">
+               <img src="czech-flag.png" alt="Česká vlajka" class="flag active" data-lang="cs">
+               <img src="english-flag.png" alt="Anglická vlajka" class="flag hidden" data-lang="en">
+           </div>
+           <div class="theme-switch">
+               <img src="sun.png" alt="Světlý motiv" class="theme-icon active" data-theme="light">
+               <img src="moon.png" alt="Tmavý motiv" class="theme-icon hidden" data-theme="dark">
+           </div>
+           <ul>
+               <li><a href="index.html" data-text="Hlavní menu|Main Menu">Hlavní menu</a></li>
+               <li><a href="recipes.html" class="active" data-text="Recepty|Recipes">Recepty</a></li>
+           </ul>
+       </nav>
+   </header>
+
+   <main>
+       <section class="recipe-detail">
+           <div class="recipe-hero" style="background-image: url('kungpao.jpg');">
+               <div class="recipe-hero-text">
+                   <h1 data-text="Kung Pao|Kung Pao">Kung Pao</h1>
+                   <p class="recipe-description" data-text="Pikantní čínské jídlo s kuřecím masem, arašídy a zeleninou.|Spicy Chinese dish with chicken, peanuts, and vegetables.">Pikantní čínské jídlo s kuřecím masem, arašídy a zeleninou.</p>
+               </div>
+           </div>
+
+           <div class="container">
+               <div class="recipe-info-box">
+                   <h2 data-text="Informace|Information">Informace</h2>
+                   <p><strong data-text="Porce:|Servings:">Porce:</strong> 4</p>
+                   <p><strong data-text="Příprava:|Prep Time:">Příprava:</strong> 15 minut</p>
+                   <p><strong data-text="Vaření:|Cook Time:">Vaření:</strong> 20 minut</p>
+                   <p><strong data-text="Obtížnost:|Difficulty:">Obtížnost:</strong> <span data-text="Snadné|Easy">Snadné</span></p>
+               </div>
+
+               <div class="ingredients-box">
+                   <h2 data-text="Ingredience|Ingredients">Ingredience</h2>
+                   <ul>
+                       <li>
+                           <span data-text="500g kuřecích prsou, nakrájených na kousky|500g chicken breasts, cut into pieces">500g kuřecích prsou, nakrájených na kousky</span>
+                       </li>
+                       <li>
+                           <span data-text="2 lžíce oleje|2 tablespoons oil">2 lžíce oleje</span>
+                       </li>
+                       <li>
+                           <span data-text="1 červená paprika, nakrájená|1 red bell pepper, chopped">1 červená paprika, nakrájená</span>
+                       </li>
+                       <li>
+                           <span data-text="1 zelená paprika, nakrájená|1 green bell pepper, chopped">1 zelená paprika, nakrájená</span>
+                       </li>
+                       <li>
+                           <span data-text="1 cibule, nakrájená|1 onion, chopped">1 cibule, nakrájená</span>
+                       </li>
+                       <li>
+                           <span data-text="1/2 šálku nesolených arašídů|1/2 cup unsalted peanuts">1/2 šálku nesolených arašídů</span>
+                       </li>
+                       <li>
+                           <span data-text="4 stroužky česneku, prolisované|4 garlic cloves, minced">4 stroužky česneku, prolisované</span>
+                       </li>
+                       <li>
+                           <span data-text="2 lžíce sójové omáčky|2 tablespoons soy sauce">2 lžíce sójové omáčky</span>
+                       </li>
+                       <li>
+                           <span data-text="1 lžíce rýžového octa|1 tablespoon rice vinegar">1 lžíce rýžového octa</span>
+                       </li>
+                       <li>
+                           <span data-text="1 lžička cukru|1 teaspoon sugar">1 lžička cukru</span>
+                       </li>
+                       <li>
+                           <span data-text="1/2 lžičky mletého zázvoru|1/2 teaspoon ground ginger">1/2 lžičky mletého zázvoru</span>
+                       </li>
+                       <li>
+                           <span data-text="1/4 lžičky sušených chilli vloček|1/4 teaspoon dried chili flakes">1/4 lžičky sušených chilli vloček</span>
+                       </li>
+                   </ul>
+               </div>
+
+               <div class="instructions-box">
+                   <h2 data-text="Postup|Instructions">Postup</h2>
+                   <ol>
+                       <li data-text="V misce smíchejte sójovou omáčku, ocet, cukr, zázvor a chilli vločky.|In a bowl, mix soy sauce, vinegar, sugar, ginger, and chili flakes.">V misce smíchejte sójovou omáčku, ocet, cukr, zázvor a chilli vločky.</li>
+                       <li data-text="V pánvi rozehřejte olej a osmažte kuřecí kousky do zlatova.|In a pan, heat the oil and fry the chicken pieces until golden brown.">V pánvi rozehřejte olej a osmažte kuřecí kousky do zlatova.</li>
+                       <li data-text="Přidejte papriky, cibuli a česnek. Restujte 2-3 minuty.|Add bell peppers, onion, and garlic. Stir-fry for 2-3 minutes.">Přidejte papriky, cibuli a česnek. Restujte 2-3 minuty.</li>
+                       <li data-text="Přidejte připravenou omáčku a vařte dalších 5 minut.|Pour in the prepared sauce and cook for another 5 minutes.">Přidejte připravenou omáčku a vařte dalších 5 minut.</li>
+                       <li data-text="Vmíchejte arašídy a podávejte s rýží.|Stir in the peanuts and serve with rice.">Vmíchejte arašídy a podávejte s rýží.</li>
+                   </ol>
+               </div>
+           </div>
+       </section>
+   </main>
+
+   <footer>
+       <p data-text="&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.|&copy; 2024 Štěpán Uruba. All rights reserved.">&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.</p>
+   </footer>
+
+   <script src="script.js"></script>
+</body>
+
+</html>

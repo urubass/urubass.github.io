@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Štěpán Uruba - Máslové kuře</title>
+   <link rel="stylesheet" href="style.css">
+   <link rel="icon" type="image/png" href="favicon.png">
+
+   <script>
+       // Uložení vybraného jazyka do localStorage
+       function saveLanguage(lang) {
+           localStorage.setItem('selectedLanguage', lang);
+       }
+
+       // Načtení vybraného jazyka z localStorage
+       function loadLanguage() {
+           const selectedLanguage = localStorage.getItem('selectedLanguage');
+           if (selectedLanguage) {
+               const flags = document.querySelectorAll('.flag');
+               flags.forEach(flag => {
+                   if (flag.dataset.lang === selectedLanguage) {
+                       flag.classList.add('active');
+                       flag.classList.remove('hidden');
+                   } else {
+                       flag.classList.add('hidden');
+                       flag.classList.remove('active');
+                   }
+               });
+
+               const translatableElements = document.querySelectorAll('[data-text]');
+               translatableElements.forEach(element => {
+                   const [czechText, englishText] = element.dataset.text.split('|');
+                   element.textContent = selectedLanguage === 'cs' ? czechText : englishText;
+               });
+           }
+       }
+
+       // Načtení vybraného jazyka při načtení stránky
+       document.addEventListener('DOMContentLoaded', loadLanguage);
+   </script>
+</head>
+
+<body>
+   <header>
+       <nav>
+           <div class="language-switch">
+               <img src="czech-flag.png" alt="Česká vlajka" class="flag active" data-lang="cs">
+               <img src="english-flag.png" alt="Anglická vlajka" class="flag hidden" data-lang="en">
+           </div>
+           <div class="theme-switch">
+               <img src="sun.png" alt="Světlý motiv" class="theme-icon active" data-theme="light">
+               <img src="moon.png" alt="Tmavý motiv" class="theme-icon hidden" data-theme="dark">
+           </div>
+           <ul>
+               <li><a href="index.html" data-text="Hlavní menu|Main Menu">Hlavní menu</a></li>
+               <li><a href="recipes.html" class="active" data-text="Recepty|Recipes">Recepty</a></li>
+           </ul>
+       </nav>
+   </header>
+
+   <main>
+       <section class="recipe-detail">
+           <div class="recipe-hero" style="background-image: url('butterchicken.jpg');">
+               <div class="recipe-hero-text">
+                   <h1 data-text="Máslové kuře|Butter Chicken">Máslové kuře</h1>
+                   <p class="recipe-description" data-text="Lahodné indické kuře v krémové rajčatovo-máslové omáčce.|Delicious Indian chicken in a creamy tomato-butter sauce.">Lahodné indické kuře v krémové rajčatovo-máslové omáčce.</p>
+               </div>
+           </div>
+
+           <div class="container">
+               <div class="recipe-info-box">
+                   <h2 data-text="Informace|Information">Informace</h2>
+                   <p><strong data-text="Porce:|Servings:">Porce:</strong> 4</p>
+                   <p><strong data-text="Příprava:|Prep Time:">Příprava:</strong> 20 minut</p>
+                   <p><strong data-text="Vaření:|Cook Time:">Vaření:</strong> 30 minut</p>
+                   <p><strong data-text="Obtížnost:|Difficulty:">Obtížnost:</strong> <span data-text="Střední|Medium">Střední</span></p>
+               </div>
+
+               <div class="ingredients-box">
+                   <h2 data-text="Ingredience|Ingredients">Ingredience</h2>
+                   <ul>
+                       <li>
+                           <span data-text="500g kuřecích prsou, nakrájených na kousky|500g chicken breasts, cut into pieces">500g kuřecích prsou, nakrájených na kousky</span>
+                       </li>
+                       <li>
+                           <span data-text="2 lžíce másla|2 tablespoons butter">2 lžíce másla</span>
+                       </li>
+                       <li>
+                           <span data-text="1 velká cibule, najemno nakrájená|1 large onion, finely chopped">1 velká cibule, najemno nakrájená</span>
+                       </li>
+                       <li>
+                           <span data-text="3 stroužky česneku, prolisované|3 garlic cloves, minced">3 stroužky česneku, prolisované</span>
+                       </li>
+                       <li>
+                           <span data-text="2 lžičky mleté kurkumy|2 teaspoons ground turmeric">2 lžičky mleté kurkumy</span>
+                       </li>
+                       <li>
+                           <span data-text="2 lžičky garam masala|2 teaspoons garam masala">2 lžičky garam masala</span>
+                       </li>
+                       <li>
+                           <span data-text="1 lžička mletého zázvoru|1 teaspoon ground ginger">1 lžička mletého zázvoru</span>
+                       </li>
+                       <li>
+                           <span data-text="1 plechovka (400g) rajčat|1 can (400g) tomatoes">1 plechovka (400g) rajčat</span>
+                       </li>
+                       <li>
+                           <span data-text="1 šálek smetany|1 cup heavy cream">1 šálek smetany</span>
+                       </li>
+                       <li>
+                           <span data-text="Sůl|Salt">Sůl</span>
+                       </li>
+                       <li>
+                           <span data-text="Čerstvý koriandr na ozdobu|Fresh cilantro for garnish">Čerstvý koriandr na ozdobu</span>
+                       </li>
+                   </ul>
+               </div>
+
+               <div class="instructions-box">
+                   <h2 data-text="Postup|Instructions">Postup</h2>
+                   <ol>
+                       <li data-text="Ve velké pánvi rozehřejte máslo a osmažte cibuli do zlatova.|In a large pan, melt the butter and sauté the onion until golden brown.">Ve velké pánvi rozehřejte máslo a osmažte cibuli do zlatova.</li>
+                       <li data-text="Přidejte česnek, kurkumu, garam masala a zázvor. Restujte 1-2 minuty.|Add garlic, turmeric, garam masala, and ginger. Sauté for 1-2 minutes.">Přidejte česnek, kurkumu, garam masala a zázvor. Restujte 1-2 minuty.</li>
+                       <li data-text="Přidejte kuřecí kousky a opečte je ze všech stran.|Add chicken pieces and brown them on all sides.">Přidejte kuřecí kousky a opečte je ze všech stran.</li>
+                       <li data-text="Přidejte rajčata a vařte 15 minut.|Add tomatoes and cook for 15 minutes.">Přidejte rajčata a vařte 15 minut.</li>
+                       <li data-text="Vmíchejte smetanu a vařte dalších 5 minut.|Stir in the cream and cook for another 5 minutes.">Vmíchejte smetanu a vařte dalších 5 minut.</li>
+                       <li data-text="Dochuťte solí.|Season with salt.">Dochuťte solí.</li>
+                       <li data-text="Ozdobte koriandrem a podávejte s rýží nebo chlebem naan.|Garnish with cilantro and serve with rice or naan bread.">Ozdobte koriandrem a podávejte s rýží nebo chlebem naan.</li>
+                   </ol>
+               </div>
+           </div>
+       </section>
+   </main>
+
+   <footer>
+       <p data-text="&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.|&copy; 2024 Štěpán Uruba. All rights reserved.">&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.</p>
+   </footer>
+
+   <script src="script.js"></script>
+</body>
+
+</html>
