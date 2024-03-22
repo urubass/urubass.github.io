@@ -52,6 +52,10 @@ nav ul li a:hover {
     background-color: #f1f1f1;
 }
 
+.dark-theme nav ul li a:hover {
+    background-color: #555;
+}
+
 nav ul li a.active::after {
     content: '';
     position: absolute;
@@ -61,6 +65,10 @@ nav ul li a.active::after {
     height: 3px;
     background-color: #007bff;
     border-radius: 5px 5px 0 0;
+}
+
+.dark-theme nav ul li a.active::after {
+    background-color: #fff;
 }
 
 /* Úvodní sekce */
@@ -567,4 +575,32 @@ footer {
 
 .recipe-info-box p {
     margin-bottom: 10px;
+}
+
+/*Tlačítko další*/
+.load-more {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.load-more button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.load-more button:hover {
+    background-color: #0056b3;
+}
+
+.dark-theme .load-more button {
+    background-color: #555;
+}
+
+.dark-theme .load-more button:hover {
+    background-color: #777;
 }

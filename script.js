@@ -134,4 +134,28 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
+
+    // Další tlačítko
+    const loadMoreBtn = document.getElementById('load-more-btn');
+    const recipesPerLoad = 10;
+    let visibleRecipes = recipesPerLoad;
+
+    function loadMoreRecipes() {
+        const recipes = Array.from(recipeGrid.getElementsByClassName('recipe-item'));
+        const totalRecipes = recipes.length;
+    
+        for (let i = visibleRecipes; i < visibleRecipes + recipesPerLoad; i++) {
+            if (i < totalRecipes) {
+                recipes[i].style.display = 'block';
+            }
+        }
+    
+        visibleRecipes += recipesPerLoad;
+    
+        if (visibleRecipes >= totalRecipes) {
+            loadMoreBtn.style.display = 'none';
+        }
+    }
+    
+    loadMoreBtn.addEventListener('click', loadMoreRecipes);
 });
