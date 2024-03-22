@@ -46,8 +46,8 @@
     <header>
         <nav>
             <div class="language-switch">
-                <img src="obrazky/czech-flag.png" alt="Česká vlajka" class="flag active" data-lang="cs">
-                <img src="obrazky/english-flag.png" alt="Anglická vlajka" class="flag hidden" data-lang="en">
+                <img src="vlajky/czech-flag.png" alt="Česká vlajka" class="flag active" data-lang="cs">
+                <img src="vlajky/english-flag.png" alt="Anglická vlajka" class="flag hidden" data-lang="en">
             </div>
             <div class="theme-switch">
                 <img src="obrazky/sun.png" alt="Světlý motiv" class="theme-icon active" data-theme="light">
@@ -64,21 +64,18 @@
         <section id="recipes">
             <div class="container">
                 <div class="search-filter-bar">
-                    <div class="filter-bar">
-                        <select>
-                            <option value="" data-text="Kategorie|Categories">Kategorie</option>
-                            <option value="ceske" data-text="České|Czech">České</option>
-                            <option value="cinske" data-text="Čínské|Chinese">Čínské</option>
-                            <option value="indicke" data-text="Indické|Indian">Indické</option>
-                            <option value="italske" data-text="Italské|Italian">Italské</option>
-                            <option value="francouzske" data-text="Francouzské|French">Francouzské</option>
-                            <option value="americke" data-text="Americké|American">Americké</option>
-                            <option value="mexicke" data-text="Mexické|Mexican">Mexické</option>
-                            <option value="madarske" data-text="Maďarské|Hungarian">Maďarské</option>
-                            <option value="japonske" data-text="Japonské|Japanese">Japonské</option>
-                            <option value="thajske" data-text="Thajské|Thai">Thajské</option>
-                            <option value="recke" data-text="Řecké|Greek">Řecké</option>
-                        </select>
+                    <div class="flag-filter">
+                        <img src="vlajky/czech-flag.png" alt="Česká vlajka" class="filter-flag" data-category="ceske">
+                        <img src="vlajky/chinese-flag.png" alt="Čínská vlajka" class="filter-flag" data-category="cinske">
+                        <img src="vlajky/french-flag.png" alt="Francouzská vlajka" class="filter-flag" data-category="francouzske">
+                        <img src="vlajky/greek-flag.png" alt="Řecká vlajka" class="filter-flag" data-category="recke">
+                        <img src="vlajky/hungarian-flag.png" alt="Maďarská vlajka" class="filter-flag" data-category="madarske">
+                        <img src="vlajky/indian-flag.png" alt="Indická vlajka" class="filter-flag" data-category="indicke">
+                        <img src="vlajky/italian-flag.png" alt="Italská vlajka" class="filter-flag" data-category="italske">
+                        <img src="vlajky/japanese-flag.png" alt="Japonská vlajka" class="filter-flag" data-category="japonske">
+                        <img src="vlajky/mexican-flag.png" alt="Mexická vlajka" class="filter-flag" data-category="mexicke">
+                        <img src="vlajky/thai-flag.png" alt="Thajská vlajka" class="filter-flag" data-category="thajske">
+                        <img src="vlajky/usa-flag.png" alt="Americká vlajka" class="filter-flag" data-category="americke">
                     </div>
                     <div class="search-bar">
                         <input type="text" id="search-input" placeholder="Vyhledat recept..." data-text="Vyhledat recept...|Search recipe...">

@@ -52,10 +52,6 @@ nav ul li a:hover {
     background-color: #f1f1f1;
 }
 
-.dark-theme nav ul li a:hover {
-    background-color: #444;
-}
-
 nav ul li a.active::after {
     content: '';
     position: absolute;
@@ -65,10 +61,6 @@ nav ul li a.active::after {
     height: 3px;
     background-color: #007bff;
     border-radius: 5px 5px 0 0;
-}
-
-.dark-theme nav ul li a.active::after {
-    background-color: #fff;
 }
 
 /* Úvodní sekce */
@@ -208,24 +200,6 @@ nav ul li a.active::after {
     height: 40px;
 }
 
-/* Scrollbar */
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background-color: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: #888;
-    border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background-color: #555;
-}
-
 /* Přepínač motivů */
 .theme-switch {
     position: absolute;
@@ -254,14 +228,6 @@ nav ul li a.active::after {
     opacity: 1;
 }
 
-.theme-icon.fade-out {
-    opacity: 0;
-}
-
-.theme-icon.fade-in {
-    opacity: 1;
-}
-
 /* Tmavý motiv */
 body.dark-theme {
     background-color: #333;
@@ -276,10 +242,7 @@ body.dark-theme {
     color: #fff;
 }
 
-.dark-theme .timeline-item {
-    background-color: #444;
-}
-
+.dark-theme .timeline-item,
 .dark-theme .hobby-item {
     background-color: #444;
 }
@@ -288,7 +251,7 @@ body.dark-theme {
     background-color: #222;
 }
 
-/*Přepinání jazyků*/
+/* Přepínání jazyků */
 .language-switch {
     position: absolute;
     top: 20px;
@@ -305,7 +268,7 @@ body.dark-theme {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: opacity 0.5s;
+    transition: opacity 0.2s;
 }
 
 .flag.hidden {
@@ -316,17 +279,50 @@ body.dark-theme {
     opacity: 1;
 }
 
-.flag.fade-out {
-    opacity: 0;
-    transition: opacity 0.2s;
+/* Vlajky v liště */
+.flag-filter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 32px;
 }
 
-.flag.fade-in {
-    opacity: 1;
-    transition: opacity 0.2s;
+.filter-flag {
+    width: 32px;
+    height: 32px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: filter 0.3s, transform 0.3s;
+    filter: grayscale(0%);
+    object-fit: cover;
 }
 
-/* Přidej animace a přechody */
+.filter-flag:not(.active) {
+    filter: grayscale(0%);
+}
+
+.filter-flag:hover {
+    filter: grayscale(0%);
+}
+
+.filter-flag.active {
+    transform: scale(1.1);
+    filter: grayscale(0%);
+}
+
+.filter-flag.inactive {
+    filter: grayscale(100%);
+}
+
+.filter-flag.inactive:hover {
+    filter: grayscale(0%);
+}
+
+.filter-flag.inactive.active {
+    filter: grayscale(0%);
+}
+
+/* Animace a přechody */
 a, .recipe-overlay {
     transition: all 0.3s ease;
 }
@@ -346,7 +342,7 @@ a:hover {
     align-items: center;
     margin-bottom: 20px;
     background-color: #e9ecef;
-    padding: 10px;
+    padding: 5px 10px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     position: sticky;
@@ -366,15 +362,6 @@ a:hover {
 
     .filter-bar {
         flex-basis: 100%;
-    }
-
-    .search-bar input[type="text"] {
-        border-radius: 5px;
-    }
-
-    .search-bar button {
-        border-radius: 5px;
-        width: 100%;
     }
 }
 
@@ -411,8 +398,6 @@ a:hover {
     transition: background-color 0.3s;
 }
 
-
-
 .dark-theme .search-bar button {
     background-color: #555;
 }
@@ -423,26 +408,6 @@ a:hover {
 
 .dark-theme .search-bar button:hover {
     background-color: #777;
-}
-
-.filter-bar select {
-    padding: 10px;
-    width: 200px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    outline: none;
-    appearance: none;
-    background-image: url('arrow-down.svg');
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 12px;
-    padding-right: 30px;
-}
-
-.dark-theme .filter-bar select {
-    background-color: #333;
-    border-color: #555;
-    color: #fff;
 }
 
 /* Recepty */
@@ -517,16 +482,6 @@ a:hover {
     margin: 0;
     font-size: 24px;
     font-weight: bold;
-}
-
-/* Nejnovější recepty */
-.featured-recipes {
-    margin-top: 40px;
-}
-
-.featured-recipes h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
 }
 
 /* Patička */
