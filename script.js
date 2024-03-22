@@ -70,14 +70,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function searchRecipes() {
         const searchTerm = searchInput.value.trim().toLowerCase();
-        const recipes = recipeGrid.getElementsByClassName('recipe-item');
-
-        for (let i = 0; i < recipes.length; i++) {
-            const recipeName = recipes[i].querySelector('h3').textContent.toLowerCase();
-            if (recipeName.includes(searchTerm)) {
-                recipes[i].style.display = 'block';
+        const selectedCategories = Array.from(filterFlags)
+            .filter(flag => flag.classList.contains('active'))
+            .map(flag => flag.dataset.category);
+    
+        for (let i = 0; i < recipeItems.length; i++) {
+            const recipeItem = recipeItems[i];
+            const recipeName = recipeItem.querySelector('h3').textContent.toLowerCase();
+            const recipeNameTranslated = recipeItem.querySelector('h3').dataset.text.toLowerCase();
+            const recipeCategory = recipeItem.dataset.category;
+    
+            if (
+                (recipeName.includes(searchTerm) || recipeNameTranslated.includes(searchTerm)) &&
+                (selectedCategories.length === 0 || selectedCategories.includes(recipeCategory))
+            ) {
+                recipeItem.style.display = 'block';
             } else {
-                recipes[i].style.display = 'none';
+                recipeItem.style.display = 'none';
             }
         }
     }
