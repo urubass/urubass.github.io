@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Štěpán Uruba - Řecký gyros s tzatziky</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" type="image/png" href="../obrazky/favicon.png">
+
+  <script>
+      // Uložení vybraného jazyka do localStorage
+      function saveLanguage(lang) {
+          localStorage.setItem('selectedLanguage', lang);
+      }
+
+      // Načtení vybraného jazyka z localStorage
+      function loadLanguage() {
+          const selectedLanguage = localStorage.getItem('selectedLanguage');
+          if (selectedLanguage) {
+              const flags = document.querySelectorAll('.flag');
+              flags.forEach(flag => {
+                  if (flag.dataset.lang === selectedLanguage) {
+                      flag.classList.add('active');
+                      flag.classList.remove('hidden');
+                  } else {
+                      flag.classList.add('hidden');
+                      flag.classList.remove('active');
+                  }
+              });
+
+              const translatableElements = document.querySelectorAll('[data-text]');
+              translatableElements.forEach(element => {
+                  const [czechText, englishText] = element.dataset.text.split('|');
+                  element.textContent = selectedLanguage === 'cs' ? czechText : englishText;
+              });
+          }
+      }
+
+      // Načtení vybraného jazyka při načtení stránky
+      document.addEventListener('DOMContentLoaded', loadLanguage);
+  </script>
+</head>
+
+<body>
+  <header>
+      <nav>
+          <div class="language-switch">
+              <img src="../vlajky/czech-flag.png" alt="Česká vlajka" class="flag active" data-lang="cs">
+              <img src="../vlajky/english-flag.png" alt="Anglická vlajka" class="flag hidden" data-lang="en">
+          </div>
+          <div class="theme-switch">
+              <img src="../obrazky/sun.png" alt="Světlý motiv" class="theme-icon active" data-theme="light">
+              <img src="../obrazky/moon.png" alt="Tmavý motiv" class="theme-icon hidden" data-theme="dark">
+          </div>
+          <ul>
+              <li><a href="../index.html" data-text="Hlavní menu|Main Menu">Hlavní menu</a></li>
+              <li><a href="../recipes.html" class="active" data-text="Recepty|Recipes">Recepty</a></li>
+          </ul>
+      </nav>
+  </header>
+
+  <main>
+      <section class="recipe-detail">
+          <div class="recipe-hero" style="background-image: url('../obrazky/gyros.jpg');">
+              <div class="recipe-hero-text">
+                  <h1 data-text="Řecký gyros s tzatziky|Greek Gyros with Tzatziki">Řecký gyros s tzatziky</h1>
+                  <p class="recipe-description" data-text="Autentické řecké jídlo s grilovaným masem, čerstvou zeleninou a lahodnou tzatziky omáčkou.|Authentic Greek dish with grilled meat, fresh vegetables, and delicious tzatziki sauce.">Autentické řecké jídlo s grilovaným masem, čerstvou zeleninou a lahodnou tzatziky omáčkou.</p>
+              </div>
+          </div>
+
+          <div class="container">
+              <div class="recipe-info-box">
+                  <h2 data-text="Informace|Information">Informace</h2>
+                  <p><strong data-text="Porce:|Servings:">Porce:</strong> 4</p>
+                  <p><strong data-text="Příprava:|Prep Time:">Příprava:</strong> 20 minut</p>
+                  <p><strong data-text="Vaření:|Cook Time:">Vaření:</strong> 10 minut</p>
+                  <p><strong data-text="Obtížnost:|Difficulty:">Obtížnost:</strong> <span data-text="Snadná|Easy">Snadná</span></p>
+              </div>
+
+              <div class="ingredients-box">
+                  <h2 data-text="Ingredience|Ingredients">Ingredience</h2>
+                  <h3 data-text="Pro gyros:|For Gyros:">Pro gyros:</h3>
+                  <ul>
+                      <li><span data-text="500g vepřového nebo kuřecího masa, nakrájeného na nudličky|500g pork or chicken, sliced into strips">500g vepřového nebo kuřecího masa, nakrájeného na nudličky</span></li>
+                      <li><span data-text="4 velké pita chlebíčky|4 large pita breads">4 velké pita chlebíčky</span></li>
+                      <li><span data-text="1 rajče, nakrájené na plátky|1 tomato, sliced">1 rajče, nakrájené na plátky</span></li>
+                      <li><span data-text="1 červená cibule, nakrájená na půlkolečka|1 red onion, sliced into half-moons">1 červená cibule, nakrájená na půlkolečka</span></li>
+                      <li><span data-text="1 hlávka ledového salátu, nakrájená na proužky|1 head of iceberg lettuce, shredded">1 hlávka ledového salátu, nakrájená na proužky</span></li>
+                  </ul>
+                  <h3 data-text="Pro tzatziky:|For Tzatziki:">Pro tzatziky:</h3>
+                  <ul>
+                      <li><span data-text="1 velká okurka, nastrouhaná a vymačkaná|1 large cucumber, grated and squeezed">1 velká okurka, nastrouhaná a vymačkaná</span></li>
+                      <li><span data-text="200g řeckého jogurtu|200g Greek yogurt">200g řeckého jogurtu</span></li>
+                      <li><span data-text="2 stroužky česneku, prolisované|2 garlic cloves, minced">2 stroužky česneku, prolisované</span></li>
+                      <li><span data-text="2 lžíce čerstvé nasekaná pažitka|2 tablespoons fresh chopped dill">2 lžíce čerstvé nasekaná pažitka</span></li>
+                      <li><span data-text="2 lžíce olivového oleje|2 tablespoons olive oil">2 lžíce olivového oleje</span></li>
+                      <li><span data-text="Sůl a pepř podle chuti|Salt and pepper to taste">Sůl a pepř podle chuti</span></li>
+                  </ul>
+              </div>
+
+              <div class="instructions-box">
+                  <h2 data-text="Postup|Instructions">Postup</h2>
+                  <h3 data-text="Pro gyros:|For Gyros:">Pro gyros:</h3>
+                  <ol>
+                      <li data-text="Ogrilujte nebo opečte maso, až bude propečené a lehce opečené.|Grill or pan-fry the meat until cooked through and lightly charred.">Ogrilujte nebo opečte maso, až bude propečené a lehce opečené.</li>
+                      <li data-text="Zahřejte pita chlebíčky podle návodu na obalu.|Warm the pita breads according to package instructions.">Zahřejte pita chlebíčky podle návodu na obalu.</li>
+                      <li data-text="Na každý pita chlebíček dejte porci masa, rajče, cibuli a salát.|On each pita bread, place a portion of meat, tomato, onion, and lettuce.">Na každý pita chlebíček dejte porci masa, rajče, cibuli a salát.</li>
+                  </ol>
+                  <h3 data-text="Pro tzatziky:|For Tzatziki:">Pro tzatziky:</h3>
+                  <ol>
+                      <li data-text="Smíchejte nastrouhanou okurku, jogurt, česnek, pažitku, olivový olej, sůl a pepř.|Mix together the grated cucumber, yogurt, garlic, dill, olive oil, salt, and pepper.">Smíchejte nastrouhanou okurku, jogurt, česnek, pažitku, olivový olej, sůl a pepř.</li>
+                      <li data-text="Nechte tzatziky odpočinout alespoň 30 minut před podáváním, aby se chutě propojily.|Let the tzatziki rest for at least 30 minutes before serving to allow the flavors to blend.">Nechte tzatziky odpočinout alespoň 30 minut před podáváním, aby se chutě propropojily.</li>
+                  </ol>
+                  <p data-text="Podávejte gyros s tzatziky.|Serve gyros with tzatziki.">Podávejte gyros s tzatziky.</p>
+              </div>
+          </div>
+      </section>
+  </main>
+
+  <footer>
+      <p data-text="&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.|&copy; 2024 Štěpán Uruba. All rights reserved.">&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.</p>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+
+</html>

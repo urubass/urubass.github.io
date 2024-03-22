@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Štěpán Uruba - Udon</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" type="image/png" href="../obrazky/favicon.png">
+
+  <script>
+      // Uložení vybraného jazyka do localStorage
+      function saveLanguage(lang) {
+          localStorage.setItem('selectedLanguage', lang);
+      }
+
+      // Načtení vybraného jazyka z localStorage
+      function loadLanguage() {
+          const selectedLanguage = localStorage.getItem('selectedLanguage');
+          if (selectedLanguage) {
+              const flags = document.querySelectorAll('.flag');
+              flags.forEach(flag => {
+                  if (flag.dataset.lang === selectedLanguage) {
+                      flag.classList.add('active');
+                      flag.classList.remove('hidden');
+                  } else {
+                      flag.classList.add('hidden');
+                      flag.classList.remove('active');
+                  }
+              });
+
+              const translatableElements = document.querySelectorAll('[data-text]');
+              translatableElements.forEach(element => {
+                  const [czechText, englishText] = element.dataset.text.split('|');
+                  element.textContent = selectedLanguage === 'cs' ? czechText : englishText;
+              });
+          }
+      }
+
+      // Načtení vybraného jazyka při načtení stránky
+      document.addEventListener('DOMContentLoaded', loadLanguage);
+  </script>
+</head>
+
+<body>
+  <header>
+      <nav>
+          <div class="language-switch">
+              <img src="../vlajky/czech-flag.png" alt="Česká vlajka" class="flag active" data-lang="cs">
+              <img src="../vlajky/english-flag.png" alt="Anglická vlajka" class="flag hidden" data-lang="en">
+          </div>
+          <div class="theme-switch">
+              <img src="../obrazky/sun.png" alt="Světlý motiv" class="theme-icon active" data-theme="light">
+              <img src="../obrazky/moon.png" alt="Tmavý motiv" class="theme-icon hidden" data-theme="dark">
+          </div>
+          <ul>
+              <li><a href="../index.html" data-text="Hlavní menu|Main Menu">Hlavní menu</a></li>
+              <li><a href="../recipes.html" class="active" data-text="Recepty|Recipes">Recepty</a></li>
+          </ul>
+      </nav>
+  </header>
+
+  <main>
+      <section class="recipe-detail">
+          <div class="recipe-hero" style="background-image: url('../obrazky/udon.jpg');">
+              <div class="recipe-hero-text">
+                  <h1 data-text="Udon|Udon">Udon</h1>
+                  <p class="recipe-description" data-text="Tradiční japonské nudle v sytém vývaru se zeleninou a vařeným vajíčkem.|Traditional Japanese noodles in a hearty broth with vegetables and a soft-boiled egg.">Tradiční japonské nudle v sytém vývaru se zeleninou a vařeným vajíčkem.</p>
+              </div>
+          </div>
+
+          <div class="container">
+              <div class="recipe-info-box">
+                  <h2 data-text="Informace|Information">Informace</h2>
+                  <p><strong data-text="Porce:|Servings:">Porce:</strong> 4</p>
+                  <p><strong data-text="Příprava:|Prep Time:">Příprava:</strong> 20 minut</p>
+                  <p><strong data-text="Vaření:|Cook Time:">Vaření:</strong> 25 minut</p>
+                  <p><strong data-text="Obtížnost:|Difficulty:">Obtížnost:</strong> <span data-text="Snadná|Easy">Snadná</span></p>
+              </div>
+
+              <div class="ingredients-box">
+                  <h2 data-text="Ingredience|Ingredients">Ingredience</h2>
+                  <h3 data-text="Pro vývar:|For the Broth:">Pro vývar:</h3>
+                  <ul>
+                      <li><span data-text="6 šálků zeleninového nebo drůbežího vývaru|6 cups vegetable or chicken stock">6 šálků zeleninového nebo drůbežího vývaru</span></li>
+                      <li><span data-text="2 lžíce sójové omáčky|2 tablespoons soy sauce">2 lžíce sójové omáčky</span></li>
+                      <li><span data-text="1 lžíce mirin (sladké rýžové víno)|1 tablespoon mirin (sweet rice wine)">1 lžíce mirin (sladké rýžové víno)</span></li>
+                      <li><span data-text="2 stroužky česneku, prolisované|2 garlic cloves, minced">2 stroužky česneku, prolisované</span></li>
+                  </ul>
+                  <h3 data-text="Další ingredience:|Additional Ingredients:">Další ingredience:</h3>
+                  <ul>
+                      <li><span data-text="400g čerstvých udon nudlí|400g fresh udon noodles">400g čerstvých udon nudlí</span></li>
+                      <li><span data-text="1 cibule, nakrájená na čtvrtiny|1 onion, cut into quarters">1 cibule, nakrájená na čtvrtiny</span></li>
+                      <li><span data-text="1 mrkev, nakrájená na tenké plátky|1 carrot, sliced into thin rounds">1 mrkev, nakrájená na tenké plátky</span></li>
+                      <li><span data-text="100g čerstvých žampionů, nakrájených na plátky|100g fresh mushrooms, sliced">100g čerstvých žampionů, nakrájených na plátky</span></li>
+                      <li><span data-text="4 natvrdo uvařená vejce, napůl|4 hard-boiled eggs, halved">4 natvrdo uvařená vejce, napůl</span></li>
+                      <li><span data-text="Čerstvá jarní cibulka nebo nasekaná petržel na ozdobení|Fresh spring onions or chopped parsley for garnish">Čerstvá jarní cibulka nebo nasekaná petržel na ozdobení</span></li>
+                  </ul>
+              </div>
+
+              <div class="instructions-box">
+                  <h2 data-text="Postup|Instructions">Postup</h2>
+                  <ol>
+                      <li data-text="V hrnci přiveďte k varu vývar, sójovou omáčku, mirin a česnek. Snižte teplotu a nechte mírně povařit 5 minut.|In a pot, bring the stock, soy sauce, mirin, and garlic to a boil. Reduce heat and let simmer gently for 5 minutes.">V hrnci přiveďte k varu vývar, sójovou omáčku, mirin a česnek. Snižte teplotu a nechte mírně povařit 5 minut.</li>
+                      <li data-text="Přidejte nudle, cibuli, mrkev a žampiony. Vařte dalších 5-7 minut, dokud nebudou nudle a zelenina měkké, ale stále křupavé.|Add the noodles, onion, carrot, and mushrooms. Cook for 5-7 more minutes until the noodles and veggies are tender but still crisp.">Přidejte nudle, cibuli, mrkev a žampiony. Vařte dalších 5-7 minut, dokud nebudou nudle a zelenina měkké, ale stále křupavé.</li>
+                      <li data-text="Vyjměte ze zdroje tepla a vložte do každé mísy polovinu uvařeného vajíčka.|Remove from heat and place a half hard-boiled egg into each serving bowl.">Vyjměte ze zdroje tepla a vložte do každé mísy polovinu uvařeného vajíčka.</li>
+                      <li data-text="Nalijte nad vajíčko vývar s nudlemi a zeleninou.|Ladle the noodle and vegetable broth over the egg.">Nalijte nad vajíčko vývar s nudlemi a zeleninou.</li>
+                      <li data-text="Ozdobte čerstvou jarní cibulkou nebo petrželkou a ihned podávejte horké.|Garnish with fresh spring onions or parsley and serve immediately while hot.">Ozdobte čerstvou jarní cibulkou nebo petrželkou a ihned podávejte horké.</li>
+                  </ol>
+              </div>
+          </div>
+      </section>
+  </main>
+
+  <footer>
+      <p data-text="&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.|&copy; 2024 Štěpán Uruba. All rights reserved.">&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.</p>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+
+</html>

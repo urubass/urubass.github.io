@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Štěpán Uruba - Maďarský guláš</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" type="image/png" href="../obrazky/favicon.png">
+
+  <script>
+      // Uložení vybraného jazyka do localStorage
+      function saveLanguage(lang) {
+          localStorage.setItem('selectedLanguage', lang);
+      }
+
+      // Načtení vybraného jazyka z localStorage
+      function loadLanguage() {
+          const selectedLanguage = localStorage.getItem('selectedLanguage');
+          if (selectedLanguage) {
+              const flags = document.querySelectorAll('.flag');
+              flags.forEach(flag => {
+                  if (flag.dataset.lang === selectedLanguage) {
+                      flag.classList.add('active');
+                      flag.classList.remove('hidden');
+                  } else {
+                      flag.classList.add('hidden');
+                      flag.classList.remove('active');
+                  }
+              });
+
+              const translatableElements = document.querySelectorAll('[data-text]');
+              translatableElements.forEach(element => {
+                  const [czechText, englishText] = element.dataset.text.split('|');
+                  element.textContent = selectedLanguage === 'cs' ? czechText : englishText;
+              });
+          }
+      }
+
+      // Načtení vybraného jazyka při načtení stránky
+      document.addEventListener('DOMContentLoaded', loadLanguage);
+  </script>
+</head>
+
+<body>
+  <header>
+      <nav>
+          <div class="language-switch">
+              <img src="../vlajky/czech-flag.png" alt="Česká vlajka" class="flag active" data-lang="cs">
+              <img src="../vlajky/english-flag.png" alt="Anglická vlajka" class="flag hidden" data-lang="en">
+          </div>
+          <div class="theme-switch">
+              <img src="../obrazky/sun.png" alt="Světlý motiv" class="theme-icon active" data-theme="light">
+              <img src="../obrazky/moon.png" alt="Tmavý motiv" class="theme-icon hidden" data-theme="dark">
+          </div>
+          <ul>
+              <li><a href="../index.html" data-text="Hlavní menu|Main Menu">Hlavní menu</a></li>
+              <li><a href="../recipes.html" class="active" data-text="Recepty|Recipes">Recepty</a></li>
+          </ul>
+      </nav>
+  </header>
+
+  <main>
+      <section class="recipe-detail">
+          <div class="recipe-hero" style="background-image: url('../obrazky/gulas.jpg');">
+              <div class="recipe-hero-text">
+                  <h1 data-text="Maďarský guláš|Hungarian Goulash">Maďarský guláš</h1>
+                  <p class="recipe-description" data-text="Lahodná huspenina z hovězího masa, zeleniny a koření, hustá a plná chuti.|A hearty beef and vegetable stew, thick and full of flavor.">Lahodná huspenina z hovězího masa, zeleniny a koření, hustá a plná chuti.</p>
+              </div>
+          </div>
+
+          <div class="container">
+              <div class="recipe-info-box">
+                  <h2 data-text="Informace|Information">Informace</h2>
+                  <p><strong data-text="Porce:|Servings:">Porce:</strong> 6</p>
+                  <p><strong data-text="Příprava:|Prep Time:">Příprava:</strong> 30 minut</p>
+                  <p><strong data-text="Vaření:|Cook Time:">Vaření:</strong> 120 minut</p>
+                  <p><strong data-text="Obtížnost:|Difficulty:">Obtížnost:</strong> <span data-text="Střední|Medium">Střední</span></p>
+              </div>
+
+              <div class="ingredients-box">
+                  <h2 data-text="Ingredience|Ingredients">Ingredience</h2>
+                  <ul>
+                      <li><span data-text="1kg hovězího masa na guláš, nakrájeného na kousky|1kg beef for stew, cut into chunks">1kg hovězího masa na guláš, nakrájeného na kousky</span></li>
+                      <li><span data-text="2 velké cibule, nakrájené najemno|2 large onions, finely chopped">2 velké cibule, nakrájené najemno</span></li>
+                      <li><span data-text="4 stroužky česneku, prolisované|4 garlic cloves, minced">4 stroužky česneku, prolisované</span></li>
+                      <li><span data-text="2 lžíce maďarské sladké papriky|2 tablespoons Hungarian sweet paprika">2 lžíce maďarské sladké papriky</span></li>
+                      <li><span data-text="1 lžička mleté pálivé papriky (nebo více dle chuti)|1 teaspoon ground hot paprika (or more to taste)">1 lžička mleté pálivé papriky (nebo více dle chuti)</span></li>
+                      <li><span data-text="1 lžíce sušené majoránky|1 tablespoon dried marjoram">1 lžíce sušené majoránky</span></li>
+                      <li><span data-text="2 bobkové listy|2 bay leaves">2 bobkové listy</span></li>
+                      <li><span data-text="1 konzerva uvařených rajčat|1 can diced tomatoes">1 konzerva uvařených rajčat</span></li>
+                      <li><span data-text="1 litr hovězího vývaru|1 liter beef stock">1 litr hovězího vývaru</span></li>
+                      <li><span data-text="3 velké brambory, nakrájené na kostky|3 large potatoes, diced">3 velké brambory, nakrájené na kostky</span></li>
+                      <li><span data-text="1 mrkev, nakrájená na plátky|1 carrot, sliced">1 mrkev, nakrájená na plátky</span></li>
+                      <li><span data-text="Sůl a pepř podle chuti|Salt and pepper to taste">Sůl a pepř podle chuti</span></li>
+                      <li><span data-text="Čerstvá petrželka na ozdobení|Fresh parsley for garnish">Čerstvá petrželka na ozdobení</span></li>
+                  </ul>
+              </div>
+
+              <div class="instructions-box">
+                  <h2 data-text="Postup|Instructions">Postup</h2>
+                  <ol>
+                      <li data-text="V hrnci rozpalte trochu oleje a opečte cibuli a česnek, dokud nezačnou vonět.|In a pot, heat a little oil and sauté the onions and garlic until fragrant.">V hrnci rozpalte trochu oleje a opečte cibuli a česnek, dokud nezačnou vonět.</li>
+                      <li data-text="Přidejte maso a opékejte, dokud nezíská opečenou barvu ze všech stran.|Add the beef and continue to cook until browned on all sides.">Přidejte maso a opékejte, dokud nezíská opečenou barvu ze všech stran.</li>
+                      <li data-text="Zaprašte paprikami, majoránkou a bobkovým listem, promíchejte a nechte 2 minuty zapéct.|Sprinkle in the paprikas, marjoram, and bay leaves, stir to coat, and let cook for 2 minutes.">Zaprašte paprikami, majoránkou a bobkovým listem, promíchejte a nechte 2 minuty zapéct.</li>
+                      <li data-text="Přidejte rajčata a hovězí vývar, přiklopte a duste na mírném plameni 1,5 hodiny.|Add the tomatoes and beef stock, cover, and simmer gently for 1.5 hours.">Přidejte rajčata a hovězí vývar, přiklopte a duste na mírném plameni 1,5 hodiny.</li>
+                      <li data-text="Přidejte brambory a mrkev, osolte a opepřete podle chuti. Pokračujte ve vaření dalších 30 minut, dokud zelenina nezměkne.|Add the potatoes and carrots, season with salt and pepper to taste. Continue simmering for 30 more minutes until the vegetables are tender.">Přidejte brambory a mrkev, osolte a opepřete podle chuti. Pokračujte ve vaření dalších 30 minut, dokud zelenina nezměkne.</li>
+                      <li data-text="V případě potřeby dochuťte solí a pepřem. Ozdobte čerstvou petrželkou a podávejte.|Adjust seasoning if needed. Garnish with fresh parsley and serve.">V případě potřeby dochuťte solí a pepřem. Ozdobte čerstvou petrželkou a podávejte.</li>
+                  </ol>
+              </div>
+          </div>
+      </section>
+  </main>
+
+  <footer>
+      <p data-text="&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.|&copy; 2024 Štěpán Uruba. All rights reserved.">&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.</p>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+
+</html>

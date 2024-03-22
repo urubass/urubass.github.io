@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Štěpán Uruba - Pad Thai</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" type="image/png" href="../obrazky/favicon.png">
+
+  <script>
+      // Uložení vybraného jazyka do localStorage
+      function saveLanguage(lang) {
+          localStorage.setItem('selectedLanguage', lang);
+      }
+
+      // Načtení vybraného jazyka z localStorage
+      function loadLanguage() {
+          const selectedLanguage = localStorage.getItem('selectedLanguage');
+          if (selectedLanguage) {
+              const flags = document.querySelectorAll('.flag');
+              flags.forEach(flag => {
+                  if (flag.dataset.lang === selectedLanguage) {
+                      flag.classList.add('active');
+                      flag.classList.remove('hidden');
+                  } else {
+                      flag.classList.add('hidden');
+                      flag.classList.remove('active');
+                  }
+              });
+
+              const translatableElements = document.querySelectorAll('[data-text]');
+              translatableElements.forEach(element => {
+                  const [czechText, englishText] = element.dataset.text.split('|');
+                  element.textContent = selectedLanguage === 'cs' ? czechText : englishText;
+              });
+          }
+      }
+
+      // Načtení vybraného jazyka při načtení stránky
+      document.addEventListener('DOMContentLoaded', loadLanguage);
+  </script>
+</head>
+
+<body>
+  <header>
+      <nav>
+          <div class="language-switch">
+              <img src="../vlajky/czech-flag.png" alt="Česká vlajka" class="flag active" data-lang="cs">
+              <img src="../vlajky/english-flag.png" alt="Anglická vlajka" class="flag hidden" data-lang="en">
+          </div>
+          <div class="theme-switch">
+              <img src="../obrazky/sun.png" alt="Světlý motiv" class="theme-icon active" data-theme="light">
+              <img src="../obrazky/moon.png" alt="Tmavý motiv" class="theme-icon hidden" data-theme="dark">
+          </div>
+          <ul>
+              <li><a href="../index.html" data-text="Hlavní menu|Main Menu">Hlavní menu</a></li>
+              <li><a href="../recipes.html" class="active" data-text="Recepty|Recipes">Recepty</a></li>
+          </ul>
+      </nav>
+  </header>
+
+  <main>
+      <section class="recipe-detail">
+          <div class="recipe-hero" style="background-image: url('../obrazky/padthai.jpg');">
+              <div class="recipe-hero-text">
+                  <h1 data-text="Pad Thai|Pad Thai">Pad Thai</h1>
+                  <p class="recipe-description" data-text="Populární thajské jídlo, směs nudlí, zeleniny, vejce a koření s arašídovou omáčkou.|A popular Thai dish, a mix of noodles, vegetables, eggs, and spices with a peanut sauce.">Populární thajské jídlo, směs nudlí, zeleniny, vejce a koření s arašídovou omáčkou.</p>
+              </div>
+          </div>
+
+          <div class="container">
+              <div class="recipe-info-box">
+                  <h2 data-text="Informace|Information">Informace</h2>
+                  <p><strong data-text="Porce:|Servings:">Porce:</strong> 4</p>
+                  <p><strong data-text="Příprava:|Prep Time:">Příprava:</strong> 20 minut</p>
+                  <p><strong data-text="Vaření:|Cook Time:">Vaření:</strong> 15 minut</p>
+                  <p><strong data-text="Obtížnost:|Difficulty:">Obtížnost:</strong> <span data-text="Střední|Medium">Střední</span></p>
+              </div>
+
+              <div class="ingredients-box">
+                  <h2 data-text="Ingredience|Ingredients">Ingredience</h2>
+                  <h3 data-text="Pro Pad Thai:|For Pad Thai:">Pro Pad Thai:</h3>
+                  <ul>
+                      <li><span data-text="250g rýžových nudlí|250g rice noodles">250g rýžových nudlí</span></li>
+                      <li><span data-text="300g kuřecího masa, nakrájeného na proužky|300g chicken, sliced into strips">300g kuřecího masa, nakrájeného na proužky</span></li>
+                      <li><span data-text="1 mrkev, nakrájená na tenké proužky|1 carrot, julienned">1 mrkev, nakrájená na tenké proužky</span></li>
+                      <li><span data-text="1⁄2 hlávky čínského zelí, nakrájené na proužky|1⁄2 head Chinese cabbage, shredded">1⁄2 hlávky čínského zelí, nakrájené na proužky</span></li>
+                      <li><span data-text="2 vejce|2 eggs">2 vejce</span></li>
+                      <li><span data-text="4 stroužky česneku, prolisované|4 garlic cloves, minced">4 stroužky česneku, prolisované</span></li>
+                      <li><span data-text="2 lžíce sójové omáčky|2 tablespoons soy sauce">2 lžíce sójové omáčky</span></li>
+                      <li><span data-text="2 lžíce rybí omáčky|2 tablespoons fish sauce">2 lžíce rybí omáčky</span></li>
+                      <li><span data-text="1 lžíce palmového cukru nebo medu|1 tablespoon palm sugar or honey">1 lžíce palmového cukru nebo medu</span></li>
+                      <li><span data-text="1⁄4 lžičky mleté pálivé papriky|1⁄4 teaspoon ground chili pepper">1⁄4 lžičky mleté pálivé papriky</span></li>
+                      <li><span data-text="2 lžíce arašídového másla, rozředěného v 2 lžících vody|2 tablespoons peanut butter, thinned with 2 tablespoons water">2 lžíce arašídového másla, rozředěného v 2 lžících vody</span></li>
+                      <li><span data-text="Limetka, klíčky mungo, čerstvá koriandra, arašídy na ozdobení|Lime wedges, bean sprouts, fresh cilantro, peanuts for garnish">Limetka, klíčky mungo, čerstvá koriandra, arašídy na ozdobení</span></li>
+                  </ul>
+              </div>
+
+              <div class="instructions-box">
+                  <h2 data-text="Postup|Instructions">Postup</h2>
+                  <ol>
+                      <li data-text="Namočte rýžové nudle na 30 minut do vody, poté je okapejte a nechte odkapat.|Soak the rice noodles in water for 30 minutes, then drain and set aside.">Namočte rýžové nudle na 30 minut do vody, poté je okapejte a nechte odkapat.</li>
+                      <li data-text="Na pánvi opečte kuřecí maso na troše oleje, dokud nezíská lehce opečenou barvu. Odložte stranou.|In a pan, stir-fry the chicken in a little oil until lightly browned. Set aside.">Na pánvi opečte kuřecí maso na troše oleje, dokud nezíská lehce opečenou barvu. Odložte stranou.</li>
+                      <li data-text="Na téže pánvi osmažte česnek, poté přidejte mrkev, zelí a nudle. Opékejte za občasného míchání po dobu 2-3 minut.|In the same pan, sauté the garlic, then add the carrot, cabbage, and noodles. Stir-fry for 2-3 minutes, stirring occasionally.">Na téže pánvi osmažte česnek, poté přidejte mrkev, zelí a nudle. Opékejte za občasného míchání po dobu 2-3 minut.</li>
+                      <li data-text="Posuňte nudle na stranu pánve a na volné místo vlijte vejce, jemně jej promíchejte a nechte mírně ztuhnout.|Push the noodles to the side of the pan and pour the eggs into the open space, gently scrambling them.">Posuňte nudle na stranu pánve a na volné místo vlijte vejce, jemně jej promíchejte a nechte mírně ztuhnout.</li>
+                      <li data-text="Přidejte zpět opečené kuřecí maso, sójovou omáčku, rybí omáčku, palmový cukr/med a pálivou papriku, důkladně promíchejte.|Add the stir-fried chicken back in, along with the soy sauce, fish sauce, palm sugar/honey, and chili pepper. Mix well.">Přidejte zpět opečené kuřecí maso, sójovou omáčku, rybí omáčku, palmový cukr/med a pálivou papriku, důkladně promíchejte.</li>
+                      <li data-text="Nakonec vmíchejte arašídovou omáčku a za stálého míchání opékejte 1-2 minuty, dokud se všechny ingredience nepropojí.|Finally, stir in the peanut sauce and continue stir-frying for 1-2 minutes, until all the ingredients are well combined.">Nakonec vmíchejte arašídovou omáčku a za stálého míchání opékejte 1-2 minuty, dokud se všechny ingredience nepropojí.</li>
+                      <li data-text="Podávejte ozdobené klíčky mungo, koriandrem, arašídy a limetkou.|Serve garnished with bean sprouts, cilantro, peanuts, and lime wedges.">Podávejte ozdobené klíčky mungo, koriandrem, arašídy a limetkou.</li>
+                  </ol>
+              </div>
+          </div>
+      </section>
+  </main>
+
+  <footer>
+      <p data-text="&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.|&copy; 2024 Štěpán Uruba. All rights reserved.">&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.</p>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+
+</html>

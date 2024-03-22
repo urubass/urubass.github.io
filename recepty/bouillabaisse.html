@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Štěpán Uruba - Bouillabaisse</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" type="image/png" href="../obrazky/favicon.png">
+
+  <script>
+      // Uložení vybraného jazyka do localStorage
+      function saveLanguage(lang) {
+          localStorage.setItem('selectedLanguage', lang);
+      }
+
+      // Načtení vybraného jazyka z localStorage
+      function loadLanguage() {
+          const selectedLanguage = localStorage.getItem('selectedLanguage');
+          if (selectedLanguage) {
+              const flags = document.querySelectorAll('.flag');
+              flags.forEach(flag => {
+                  if (flag.dataset.lang === selectedLanguage) {
+                      flag.classList.add('active');
+                      flag.classList.remove('hidden');
+                  } else {
+                      flag.classList.add('hidden');
+                      flag.classList.remove('active');
+                  }
+              });
+
+              const translatableElements = document.querySelectorAll('[data-text]');
+              translatableElements.forEach(element => {
+                  const [czechText, englishText] = element.dataset.text.split('|');
+                  element.textContent = selectedLanguage === 'cs' ? czechText : englishText;
+              });
+          }
+      }
+
+      // Načtení vybraného jazyka při načtení stránky
+      document.addEventListener('DOMContentLoaded', loadLanguage);
+  </script>
+</head>
+
+<body>
+  <header>
+      <nav>
+          <div class="language-switch">
+              <img src="../vlajky/czech-flag.png" alt="Česká vlajka" class="flag active" data-lang="cs">
+              <img src="../vlajky/english-flag.png" alt="Anglická vlajka" class="flag hidden" data-lang="en">
+          </div>
+          <div class="theme-switch">
+              <img src="../obrazky/sun.png" alt="Světlý motiv" class="theme-icon active" data-theme="light">
+              <img src="../obrazky/moon.png" alt="Tmavý motiv" class="theme-icon hidden" data-theme="dark">
+          </div>
+          <ul>
+              <li><a href="../index.html" data-text="Hlavní menu|Main Menu">Hlavní menu</a></li>
+              <li><a href="../recipes.html" class="active" data-text="Recepty|Recipes">Recepty</a></li>
+          </ul>
+      </nav>
+  </header>
+
+  <main>
+      <section class="recipe-detail">
+          <div class="recipe-hero" style="background-image: url('../obrazky/bouillabaisse.jpg');">
+              <div class="recipe-hero-text">
+                  <h1 data-text="Bouillabaisse|Bouillabaisse">Bouillabaisse</h1>
+                  <p class="recipe-description" data-text="Slavná marseillská rybí polévka, lahodná směs mořských plodů a koření v zářivě zbarveném vývaru.|The famous Marseille seafood stew, a delicious mix of seafood and aromatics in a richly flavored broth.">Slavná marseillská rybí polévka, lahodná směs mořských plodů a koření v zářivě zbarveném vývaru.</p>
+              </div>
+          </div>
+
+          <div class="container">
+              <div class="recipe-info-box">
+                  <h2 data-text="Informace|Information">Informace</h2>
+                  <p><strong data-text="Porce:|Servings:">Porce:</strong> 6</p>
+                  <p><strong data-text="Příprava:|Prep Time:">Příprava:</strong> 30 minut</p>
+                  <p><strong data-text="Vaření:|Cook Time:">Vaření:</strong> 60 minut</p>
+                  <p><strong data-text="Obtížnost:|Difficulty:">Obtížnost:</strong> <span data-text="Náročná|Difficult">Náročná</span></p>
+              </div>
+
+              <div class="ingredients-box">
+                  <h2 data-text="Ingredience|Ingredients">Ingredience</h2>
+                  <ul>
+                      <li><span data-text="500g mořských plodů (např. krevety, mušle, kalmáry)|500g assorted seafood (e.g. shrimp, mussels, squid)">500g mořských plodů (např. krevety, mušle, kalmáry)</span></li>
+                      <li><span data-text="1 cibule, nakrájená najemno|1 onion, finely chopped">1 cibule, nakrájená najemno</span></li>
+                      <li><span data-text="4 stroužky česneku, prolisované|4 garlic cloves, minced">4 stroužky česneku, prolisované</span></li>
+                      <li><span data-text="1 lžička sušené řeřichy|1 teaspoon dried fennel seeds">1 lžička sušené řeřichy</span></li>
+                      <li><span data-text="1 lžička sušeného čerstvého tymiánu|1 teaspoon dried thyme">1 lžička sušeného čerstvého tymiánu</span></li>
+                      <li><span data-text="1⁄2 lžičky mletého zázvoru|1⁄2 teaspoon ground ginger">1⁄2 lžičky mletého zázvoru</span></li>
+                      <li><span data-text="1⁄2 lžičky mletého muškátového oříšku|1⁄2 teaspoon ground nutmeg">1⁄2 lžičky mletého muškátového oříšku</span></li>
+                      <li><span data-text="1 šálek bílého vína|1 cup white wine">1 šálek bílého vína</span></li>
+                      <li><span data-text="800ml zeleninového nebo rybího vývaru|800ml vegetable or fish stock">800ml zeleninového nebo rybího vývaru</span></li>
+                      <li><span data-text="400g uvařených rajčat z konzervy|400g canned diced tomatoes">400g uvařených rajčat z konzervy</span></li>
+                      <li><span data-text="2 lžíce čerstvého nasekaného estragonového nebo fenyklového zelení|2 tablespoons fresh chopped tarragon or fennel fronds">2 lžíce čerstvého nasekaného estragonového nebo fenyklového zelení</span></li>
+                      <li><span data-text="Olivový olej nebo máslo na opečení|Olive oil or butter for sautéing">Olivový olej nebo máslo na opečení</span></li>
+                      <li><span data-text="Čerstvě opečená bagetka na podávání|Fresh baguette for serving">Čerstvě opečená bagetka na podávání</span></li>
+                  </ul>
+              </div>
+
+              <div class="instructions-box">
+                  <h2 data-text="Postup|Instructions">Postup</h2>
+                  <ol>
+                      <li data-text="V hrnci rozpalte na středním stupni trochu oleje nebo másla a opečte cibuli, česnek a koření asi 2 minuty, dokud nezačnou vonět.|In a pot over medium heat, sauté the onion, garlic, and herbs in a little oil or butter for about 2 minutes until fragrant.">V hrnci rozpalte na středním stupni trochu oleje nebo másla a opečte cibuli, česnek a koření asi 2 minuty, dokud nezačnou vonět.</li>
+                      <li data-text="Přidejte bílé víno a nechte 2 minuty odvařit.|Add the white wine and simmer for 2 minutes.">Přidejte bílé víno a nechte 2 minuty odvařit.</li>
+                      <li data-text="Přilijte zeleninový nebo rybí vývar, přidejte uvařená rajčata a vařte dalších 15 minut.|Pour in the vegetable or fish stock, add the canned tomatoes, and simmer for 15 more minutes.">Přilijte zeleninový nebo rybí vývar, přidejte uvařená rajčata a vařte dalších 15 minut.</li>
+                      <li data-text="Přidejte mořské plody a vařte dalších 5-7 minut, dokud nebudou doměkka.|Add the seafood and cook for another 5-7 minutes until just cooked through.">Přidejte mořské plody a vařte dalších 5-7 minut, dokud nebudou doměkka.</li>
+                      <li data-text="Vmíchejte nasekanou zelenou nať a okořeňte solí a pepřem podle chuti.|Stir in the chopped herbs and season with salt and pepper to taste.">Vmíchejte nasekanou zelenou nať a okořeňte solí a pepřem podle chuti.</li>
+                      <li data-text="Podávejte bouillabaisse naředěnou vývarem s čerstvě opečenou bagetkou na namáčení.|Serve the bouillabaisse moistened with broth and fresh baguette for dipping.">Podávejte bouillabaisse naředěnou vývarem s čerstvě opečenou bagetkou na namáčení.</li>
+                  </ol>
+              </div>
+          </div>
+      </section>
+  </main>
+
+  <footer>
+      <p data-text="&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.|&copy; 2024 Štěpán Uruba. All rights reserved.">&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.</p>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+
+</html>

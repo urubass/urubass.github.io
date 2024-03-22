@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Štěpán Uruba - Neapolská pizza</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" type="image/png" href="../obrazky/favicon.png">
+
+  <script>
+      // Uložení vybraného jazyka do localStorage
+      function saveLanguage(lang) {
+          localStorage.setItem('selectedLanguage', lang);
+      }
+
+      // Načtení vybraného jazyka z localStorage
+      function loadLanguage() {
+          const selectedLanguage = localStorage.getItem('selectedLanguage');
+          if (selectedLanguage) {
+              const flags = document.querySelectorAll('.flag');
+              flags.forEach(flag => {
+                  if (flag.dataset.lang === selectedLanguage) {
+                      flag.classList.add('active');
+                      flag.classList.remove('hidden');
+                  } else {
+                      flag.classList.add('hidden');
+                      flag.classList.remove('active');
+                  }
+              });
+
+              const translatableElements = document.querySelectorAll('[data-text]');
+              translatableElements.forEach(element => {
+                  const [czechText, englishText] = element.dataset.text.split('|');
+                  element.textContent = selectedLanguage === 'cs' ? czechText : englishText;
+              });
+          }
+      }
+
+      // Načtení vybraného jazyka při načtení stránky
+      document.addEventListener('DOMContentLoaded', loadLanguage);
+  </script>
+</head>
+
+<body>
+  <header>
+      <nav>
+          <div class="language-switch">
+              <img src="../vlajky/czech-flag.png" alt="Česká vlajka" class="flag active" data-lang="cs">
+              <img src="../vlajky/english-flag.png" alt="Anglická vlajka" class="flag hidden" data-lang="en">
+          </div>
+          <div class="theme-switch">
+              <img src="../obrazky/sun.png" alt="Světlý motiv" class="theme-icon active" data-theme="light">
+              <img src="../obrazky/moon.png" alt="Tmavý motiv" class="theme-icon hidden" data-theme="dark">
+          </div>
+          <ul>
+              <li><a href="../index.html" data-text="Hlavní menu|Main Menu">Hlavní menu</a></li>
+              <li><a href="../recipes.html" class="active" data-text="Recepty|Recipes">Recepty</a></li>
+          </ul>
+      </nav>
+  </header>
+
+  <main>
+      <section class="recipe-detail">
+          <div class="recipe-hero" style="background-image: url('../obrazky/pizza.jpg');">
+              <div class="recipe-hero-text">
+                  <h1 data-text="Neapolská pizza|Neapolitan Pizza">Neapolská pizza</h1>
+                  <p class="recipe-description" data-text="Autentická italská pizza podle neapolské tradice - kyprá a křupavá s jednoduchými přísadami.|Authentic Italian pizza in the Neapolitan tradition - soft and crispy with simple, fresh toppings.">Autentická italská pizza podle neapolské tradice - kyprá a křupavá s jednoduchými přísadami.</p>
+              </div>
+          </div>
+
+          <div class="container">
+              <div class="recipe-info-box">
+                  <h2 data-text="Informace|Information">Informace</h2>
+                  <p><strong data-text="Porce:|Servings:">Porce:</strong> 4 pizzy</p>
+                  <p><strong data-text="Příprava:|Prep Time:">Příprava:</strong> 120 minut</p>
+                  <p><strong data-text="Vaření:|Cook Time:">Vaření:</strong> 15 minut</p>
+                  <p><strong data-text="Obtížnost:|Difficulty:">Obtížnost:</strong> <span data-text="Střední|Medium">Střední</span></p>
+              </div>
+
+              <div class="ingredients-box">
+                  <h2 data-text="Ingredience|Ingredients">Ingredience</h2>
+                  <h3 data-text="Pro těsto:|For the Dough:">Pro těsto:</h3>
+                  <ul>
+                      <li><span data-text="500g polohrubé mouky (00)|500g '00' flour or bread flour">500g polohrubé mouky (00)</span></li>
+                      <li><span data-text="1 lžička soli|1 teaspoon salt">1 lžička soli</span></li>
+                      <li><span data-text="1⁄4 lžičky sušeného droždí|1⁄4 teaspoon active dry yeast">1⁄4 lžičky sušeného droždí</span></li>
+                      <li><span data-text="320ml vlažné vody|320ml lukewarm water">320ml vlažné vody</span></li>
+                  </ul>
+                  <h3 data-text="Pro přísady:|For the Toppings:">Pro přísady:</h3>
+                  <ul>
+                      <li><span data-text="400g konzervovaných celých rajčat nebo čerstvé rajčatové pyré|400g canned whole tomatoes or fresh tomato puree">400g konzervovaných celých rajčat nebo čerstvé rajčatové pyré</span></li>
+                      <li><span data-text="Čerstvé byliny (bazalka, oregano)|Fresh herbs (basil, oregano)">Čerstvé byliny (bazalka, oregano)</span></li>
+                      <li><span data-text="Olivový olej|Olive oil">Olivový olej</span></li>
+                      <li><span data-text="Mozzarella (čerstvá nebo sušená)|Mozzarella (fresh or dried)">Mozzarella (čerstvá nebo sušená)</span></li>
+                  </ul>
+              </div>
+
+              <div class="instructions-box">
+                  <h2 data-text="Postup|Instructions">Postup</h2>
+                  <h3 data-text="Pro těsto:|For the Dough:">Pro těsto:</h3>
+                  <ol>
+                      <li data-text="Ve velké míse smíchejte mouku, sůl a droždí. Přidejte vlažnou vodu a rukama promíchejte, dokud se všechny přísady nespojí v lepivé těsto.|In a large bowl, mix together the flour, salt, and yeast. Add the lukewarm water and mix with your hands until all the ingredients come together into a sticky dough.">Ve velké míse smíchejte mouku, sůl a droždí. Přidejte vlažnou vodu a rukama promíchejte, dokud se všechny přísady nespojí v lepivé těsto.</li>
+                      <li data-text="Těsto vymíchávejte přibližně 10 minut na lehce pomoučeném povrchu, dokud nebude hladké a elastické.|Knead the dough on a lightly floured surface for about 10 minutes until smooth and elastic.">Těsto vymíchávejte přibližně 10 minut na lehce pomoučeném povrchu, dokud nebude hladké a elastické.</li>
+                      <li data-text="Zabalte těsto do potravinové fólie a nechte odpočinout 1 hodinu při pokojové teplotě.|Wrap the dough in plastic wrap and let rest at room temperature for 1 hour.">Zabalte těsto do potravinové fólie a nechte odpočinout 1 hodinu při pokojové teplotě.</li>
+                  </ol>
+                  <h3 data-text="Pro přípravu:|For Assembly:">Pro přípravu:</h3>
+                  <ol start="4">
+                      <li data-text="Těsto rozdělte na 4 stejné díly a vytvarujte kulaté bochánky.|Divide the dough into 4 equal pieces and shape each into a round ball.">Těsto rozdělte na 4 stejné díly a vytvarujte kulaté bochánky.</li>  
+                      <li data-text="Na pomoučeném povrchu každý bochník rozválejte na tenkou placku o průměru přibližně 25 cm.|On a lightly floured surface, use your hands or a rolling pin to stretch each ball into a thin round disc about 25 cm wide.">Na pomoučeném povrchu každý bochník rozválejte na tenkou placku o průměru přibližně 25 cm.</li>
+                      <li data-text="Rozprostřete na placku rajčatový základ, ozdobte čerstvými bylinkami a sýrem dle chuti. Nešetřete olivovým olejem.|Spread the tomato base over the disc, top with fresh herbs and cheese as desired. Don't be shy with the olive oil.">Rozprostřete na placku rajčatový základ, ozdobte čerstvými bylinkami a sýrem dle chuti. Nešetřete olivovým olejem.</li>
+                      <li data-text="Pizzu opečte na velmi horké kamenné peci nebo v rozpálené troubě při nejvyšší teplotě asi 10-15 minut.|Bake the pizza in a very hot stone oven or a blazing hot conventional oven at the highest temperature for about 10-15 minutes.">Pizzu opečte na velmi horké kamenné peci nebo v rozpálené troubě při nejvyšší teplotě asi 10-15 minut.</li>
+                      <li data-text="Podávejte hned po dopečení.|Serve immediately after baking.">Podávejte hned po dopečení.</li>
+                  </ol>
+              </div>
+          </div>
+      </section>
+  </main>
+
+  <footer>
+      <p data-text="&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.|&copy; 2024 Štěpán Uruba. All rights reserved.">&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.</p>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+
+</html>

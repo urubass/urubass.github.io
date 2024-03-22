@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Štěpán Uruba - Tacos</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" type="image/png" href="../obrazky/favicon.png">
+
+  <script>
+      // Uložení vybraného jazyka do localStorage
+      function saveLanguage(lang) {
+          localStorage.setItem('selectedLanguage', lang);
+      }
+
+      // Načtení vybraného jazyka z localStorage
+      function loadLanguage() {
+          const selectedLanguage = localStorage.getItem('selectedLanguage');
+          if (selectedLanguage) {
+              const flags = document.querySelectorAll('.flag');
+              flags.forEach(flag => {
+                  if (flag.dataset.lang === selectedLanguage) {
+                      flag.classList.add('active');
+                      flag.classList.remove('hidden');
+                  } else {
+                      flag.classList.add('hidden');
+                      flag.classList.remove('active');
+                  }
+              });
+
+              const translatableElements = document.querySelectorAll('[data-text]');
+              translatableElements.forEach(element => {
+                  const [czechText, englishText] = element.dataset.text.split('|');
+                  element.textContent = selectedLanguage === 'cs' ? czechText : englishText;
+              });
+          }
+      }
+
+      // Načtení vybraného jazyka při načtení stránky
+      document.addEventListener('DOMContentLoaded', loadLanguage);
+  </script>
+</head>
+
+<body>
+  <header>
+      <nav>
+          <div class="language-switch">
+              <img src="../vlajky/czech-flag.png" alt="Česká vlajka" class="flag active" data-lang="cs">
+              <img src="../vlajky/english-flag.png" alt="Anglická vlajka" class="flag hidden" data-lang="en">
+          </div>
+          <div class="theme-switch">
+              <img src="../obrazky/sun.png" alt="Světlý motiv" class="theme-icon active" data-theme="light">
+              <img src="../obrazky/moon.png" alt="Tmavý motiv" class="theme-icon hidden" data-theme="dark">
+          </div>
+          <ul>
+              <li><a href="../index.html" data-text="Hlavní menu|Main Menu">Hlavní menu</a></li>
+              <li><a href="../recipes.html" class="active" data-text="Recepty|Recipes">Recepty</a></li>
+          </ul>
+      </nav>
+  </header>
+
+  <main>
+      <section class="recipe-detail">
+          <div class="recipe-hero" style="background-image: url('../obrazky/tacos.jpg');">
+              <div class="recipe-hero-text">
+                  <h1 data-text="Tacos|Tacos">Tacos</h1>
+                  <p class="recipe-description" data-text="Autentická mexická pochoutka s pikantním masem, čerstvou zeleninou a jinými lahodnými přísadami.|Authentic Mexican delight with spicy meat, fresh vegetables, and other delicious toppings.">Autentická mexická pochoutka s pikantním masem, čerstvou zeleninou a jinými lahodnými přísadami.</p>
+              </div>
+          </div>
+
+          <div class="container">
+              <div class="recipe-info-box">
+                  <h2 data-text="Informace|Information">Informace</h2>
+                  <p><strong data-text="Porce:|Servings:">Porce:</strong> 4</p>
+                  <p><strong data-text="Příprava:|Prep Time:">Příprava:</strong> 20 minut</p>
+                  <p><strong data-text="Vaření:|Cook Time:">Vaření:</strong> 15 minut</p>
+                  <p><strong data-text="Obtížnost:|Difficulty:">Obtížnost:</strong> <span data-text="Střední|Medium">Střední</span></p>
+              </div>
+
+              <div class="ingredients-box">
+                  <h2 data-text="Ingredience|Ingredients">Ingredience</h2>
+                  <h3 data-text="Pro náplň:|For the Filling:">Pro náplň:</h3>
+                  <ul>
+                      <li><span data-text="500g mletého hovězího masa|500g ground beef">500g mletého hovězího masa</span></li>
+                      <li><span data-text="1 cibule, nakrájená najemno|1 onion, finely chopped">1 cibule, nakrájená najemno</span></li>
+                      <li><span data-text="3 stroužky česneku, prolisované|3 garlic cloves, minced">3 stroužky česneku, prolisované</span></li>
+                      <li><span data-text="1 lžička mletého kmínu|1 teaspoon ground cumin">1 lžička mletého kmínu</span></li>
+                      <li><span data-text="1 lžička mleté papriky|1 teaspoon paprika">1 lžička mleté papriky</span></li>
+                      <li><span data-text="1⁄2 lžičky soli|1⁄2 teaspoon salt">1⁄2 lžičky soli</span></li>
+                  </ul>
+                  <h3 data-text="Další ingredience:|Additional Ingredients:">Další ingredience:</h3>
+                  <ul>
+                      <li><span data-text="12 měkkých tortill|12 soft taco shells">12 měkkých tortill</span></li>
+                      <li><span data-text="Ledový salát, rajčata, cibule, jalapeños, avokádo, limetka, sýr a další oblíbené přísady|Shredded lettuce, tomatoes, onions, jalapeños, avocado, lime wedges, cheese, and any other desired toppings">Ledový salát, rajčata, cibule, jalapeños, avokádo, limetka, sýr a další oblíbené přísady</span></li>
+                  </ul>
+              </div>
+
+              <div class="instructions-box">
+                  <h2 data-text="Postup|Instructions">Postup</h2>
+                  <ol>
+                      <li data-text="Na pánvi opečte cibuli a česnek na troše oleje, dokud nezměknou.|In a pan, sauté the onion and garlic in a little oil until softened.">Na pánvi opečte cibuli a česnek na troše oleje, dokud nezměknou.</li>
+                      <li data-text="Přidejte mleté maso, kmín, papriku a sůl. Opékejte za občasného míchání, dokud nebude maso pečené.|Add the ground beef, cumin, paprika, and salt. Cook while stirring occasionally until the meat is browned.">Přidejte mleté maso, kmín, papriku a sůl. Opékejte za občasného míchání, dokud nebude maso pečené.</li>
+                      <li data-text="Ohřejte tortilly dle návodu na obalu.|Warm the taco shells according to package instructions.">Ohřejte tortilly dle návodu na obalu.</li>
+                      <li data-text="Naplňte každou tortillu porcí masové směsi a přidejte oblíbené přísady, jako je ledový salát, rajčata, cibule, jalapeños, avokádo, limetka a sýr.|Fill each taco shell with a portion of the meat mixture and desired toppings like shredded lettuce, tomatoes, onions, jalapeños, avocado, lime wedges, and cheese.">Naplňte každou tortillu porcí masové směsi a přidejte oblíbené přísady, jako je ledový salát, rajčata, cibule, jalapeños, avokádo, limetka a sýr.</li>
+                      <li data-text="Podávejte tacos s případnou extra přílohou, jako jsou smažené fazolky nebo rýže.|Serve the tacos with desired sides like refried beans or rice.">Podávejte tacos s případnou extra přílohou, jako jsou smažené fazolky nebo rýže.</li>
+                  </ol>
+              </div>
+          </div>
+      </section>
+  </main>
+
+  <footer>
+      <p data-text="&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.|&copy; 2024 Štěpán Uruba. All rights reserved.">&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.</p>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Štěpán Uruba - Smažený sýr</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" type="image/png" href="../obrazky/favicon.png">
+
+  <script>
+      // Uložení vybraného jazyka do localStorage
+      function saveLanguage(lang) {
+          localStorage.setItem('selectedLanguage', lang);
+      }
+
+      // Načtení vybraného jazyka z localStorage
+      function loadLanguage() {
+          const selectedLanguage = localStorage.getItem('selectedLanguage');
+          if (selectedLanguage) {
+              const flags = document.querySelectorAll('.flag');
+              flags.forEach(flag => {
+                  if (flag.dataset.lang === selectedLanguage) {
+                      flag.classList.add('active');
+                      flag.classList.remove('hidden');
+                  } else {
+                      flag.classList.add('hidden');
+                      flag.classList.remove('active');
+                  }
+              });
+
+              const translatableElements = document.querySelectorAll('[data-text]');
+              translatableElements.forEach(element => {
+                  const [czechText, englishText] = element.dataset.text.split('|');
+                  element.textContent = selectedLanguage === 'cs' ? czechText : englishText;
+              });
+          }
+      }
+
+      // Načtení vybraného jazyka při načtení stránky
+      document.addEventListener('DOMContentLoaded', loadLanguage);
+  </script>
+</head>
+
+<body>
+  <header>
+      <nav>
+          <div class="language-switch">
+              <img src="../vlajky/czech-flag.png" alt="Česká vlajka" class="flag active" data-lang="cs">
+              <img src="../vlajky/english-flag.png" alt="Anglická vlajka" class="flag hidden" data-lang="en">
+          </div>
+          <div class="theme-switch">
+              <img src="../obrazky/sun.png" alt="Světlý motiv" class="theme-icon active" data-theme="light">
+              <img src="../obrazky/moon.png" alt="Tmavý motiv" class="theme-icon hidden" data-theme="dark">
+          </div>
+          <ul>
+              <li><a href="../index.html" data-text="Hlavní menu|Main Menu">Hlavní menu</a></li>
+              <li><a href="../recipes.html" class="active" data-text="Recepty|Recipes">Recepty</a></li>
+          </ul>
+      </nav>
+  </header>
+
+  <main>
+      <section class="recipe-detail">
+          <div class="recipe-hero" style="background-image: url('../obrazky/smazak.jpg');">
+              <div class="recipe-hero-text">
+                  <h1 data-text="Smažený sýr|Fried Cheese">Smažený sýr</h1>
+                  <p class="recipe-description" data-text="Tradiční česká pochoutka - sýr smažený v křupavé strouhance.|A traditional Czech delicacy - cheese fried in a crispy breadcrumb coating.">Tradiční česká pochoutka - sýr smažený v křupavé strouhance.</p>
+              </div>
+          </div>
+
+          <div class="container">
+              <div class="recipe-info-box">
+                  <h2 data-text="Informace|Information">Informace</h2>
+                  <p><strong data-text="Porce:|Servings:">Porce:</strong> 4</p>
+                  <p><strong data-text="Příprava:|Prep Time:">Příprava:</strong> 15 minut</p>
+                  <p><strong data-text="Vaření:|Cook Time:">Vaření:</strong> 10 minut</p>
+                  <p><strong data-text="Obtížnost:|Difficulty:">Obtížnost:</strong> <span data-text="Snadná|Easy">Snadná</span></p>
+              </div>
+
+              <div class="ingredients-box">
+                  <h2 data-text="Ingredience|Ingredients">Ingredience</h2>
+                  <ul>
+                      <li><span data-text="400g měkkého sýra (např. Hermelín nebo Romadúr)|400g soft cheese (e.g. Camembert or Brie)">400g měkkého sýra (např. Hermelín nebo Romadúr)</span></li>
+                      <li><span data-text="2 vejce|2 eggs">2 vejce</span></li>
+                      <li><span data-text="100g hladké mouky|100g all-purpose flour">100g hladké mouky</span></li>
+                      <li><span data-text="200g strouhanky|200g breadcrumbs">200g strouhanky</span></li>
+                      <li><span data-text="Sůl a pepř podle chuti|Salt and pepper to taste">Sůl a pepř podle chuti</span></li>
+                      <li><span data-text="Olej na smažení|Oil for frying">Olej na smažení</span></li>
+                  </ul>
+              </div>
+
+              <div class="instructions-box">
+                  <h2 data-text="Postup|Instructions">Postup</h2>
+                  <ol>
+                      <li data-text="Nakrájejte sýr na plátky o tloušťce přibližně 1 cm.|Cut the cheese into slices about 1 cm thick.">Nakrájejte sýr na plátky o tloušťce přibližně 1 cm.</li>
+                      <li data-text="Připravte si 3 misky - jednu s moukou, druhou s rozšlehanými vejci a třetí se strouhankou. Osolte a opepřete vejce i strouhankovou směs.|Prepare 3 shallow bowls - one with flour, one with beaten eggs, and one with breadcrumbs. Season the eggs and breadcrumbs with salt and pepper.">Připravte si 3 misky - jednu s moukou, druhou s rozšlehanými vejci a třetí se strouhankou. Osolte a opepřete vejce i strouhankovou směs.</li>
+                      <li data-text="Obalte každý plátek sýra nejprve v mouce, poté ve vejci a nakonec v strouhance.|Coat each cheese slice first in flour, then in egg, and finally in breadcrumbs.">Obalte každý plátek sýra nejprve v mouce, poté ve vejci a nakonec v strouhance.</li>
+                      <li data-text="Rozpalte olej na smažení na středním plameni.|Heat oil for frying over medium heat.">Rozpalte olej na smažení na středním plameni.</li>
+                      <li data-text="Smažte obalenou sýrovou pochoutku z obou stran, dokud nezíská zlatavou barvu.|Fry the breaded cheese on both sides until golden brown.">Smažte obalenou sýrovou pochoutku z obou stran, dokud nezíská zlatavou barvu.</li>
+                      <li data-text="Pokračujte, dokud nebudou všechny plátky sýra usmažené.|Continue until all the cheese slices are fried.">Pokračujte, dokud nebudou všechny plátky sýra usmažené.</li>
+                      <li data-text="Podávejte smažený sýr s případnou oblohou, jako je tatarská omáčka nebo okurka.|Serve the fried cheese with desired accompaniments, such as tartar sauce or sliced pickles.">Podávejte smažený sýr s případnou oblohou, jako je tatarská omáčka nebo okurka.</li>
+                  </ol>
+              </div>
+          </div>
+      </section>
+  </main>
+
+  <footer>
+      <p data-text="&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.|&copy; 2024 Štěpán Uruba. All rights reserved.">&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.</p>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+
+</html>

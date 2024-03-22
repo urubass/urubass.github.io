@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Štěpán Uruba - Sushi</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" type="image/png" href="../obrazky/favicon.png">
+
+  <script>
+      // Uložení vybraného jazyka do localStorage
+      function saveLanguage(lang) {
+          localStorage.setItem('selectedLanguage', lang);
+      }
+
+      // Načtení vybraného jazyka z localStorage
+      function loadLanguage() {
+          const selectedLanguage = localStorage.getItem('selectedLanguage');
+          if (selectedLanguage) {
+              const flags = document.querySelectorAll('.flag');
+              flags.forEach(flag => {
+                  if (flag.dataset.lang === selectedLanguage) {
+                      flag.classList.add('active');
+                      flag.classList.remove('hidden');
+                  } else {
+                      flag.classList.add('hidden');
+                      flag.classList.remove('active');
+                  }
+              });
+
+              const translatableElements = document.querySelectorAll('[data-text]');
+              translatableElements.forEach(element => {
+                  const [czechText, englishText] = element.dataset.text.split('|');
+                  element.textContent = selectedLanguage === 'cs' ? czechText : englishText;
+              });
+          }
+      }
+
+      // Načtení vybraného jazyka při načtení stránky
+      document.addEventListener('DOMContentLoaded', loadLanguage);
+  </script>
+</head>
+
+<body>
+  <header>
+      <nav>
+          <div class="language-switch">
+              <img src="../vlajky/czech-flag.png" alt="Česká vlajka" class="flag active" data-lang="cs">
+              <img src="../vlajky/english-flag.png" alt="Anglická vlajka" class="flag hidden" data-lang="en">
+          </div>
+          <div class="theme-switch">
+              <img src="../obrazky/sun.png" alt="Světlý motiv" class="theme-icon active" data-theme="light">
+              <img src="../obrazky/moon.png" alt="Tmavý motiv" class="theme-icon hidden" data-theme="dark">
+          </div>
+          <ul>
+              <li><a href="../index.html" data-text="Hlavní menu|Main Menu">Hlavní menu</a></li>
+              <li><a href="../recipes.html" class="active" data-text="Recepty|Recipes">Recepty</a></li>
+          </ul>
+      </nav>
+  </header>
+
+  <main>
+      <section class="recipe-detail">
+          <div class="recipe-hero" style="background-image: url('../obrazky/sushi.jpg');">
+              <div class="recipe-hero-text">
+                  <h1 data-text="Sushi|Sushi">Sushi</h1>
+                  <p class="recipe-description" data-text="Tradiční japonské jídlo složené z čerstvých surovin jako je rýže, ryby a mořské plody.|A traditional Japanese dish made with fresh ingredients like rice, fish, and seafood.">Tradiční japonské jídlo složené z čerstvých surovin jako je rýže, ryby a mořské plody.</p>
+              </div>
+          </div>
+
+          <div class="container">
+              <div class="recipe-info-box">
+                  <h2 data-text="Informace|Information">Informace</h2>
+                  <p><strong data-text="Porce:|Servings:">Porce:</strong> 4</p>
+                  <p><strong data-text="Příprava:|Prep Time:">Příprava:</strong> 60 minut</p>
+                  <p><strong data-text="Obtížnost:|Difficulty:">Obtížnost:</strong> <span data-text="Náročná|Difficult">Náročná</span></p>
+              </div>
+
+              <div class="ingredients-box">
+                  <h2 data-text="Ingredience|Ingredients">Ingredience</h2>
+                  <h3 data-text="Pro rýži:|For the Rice:">Pro rýži:</h3>
+                  <ul>
+                      <li><span data-text="2 šálky krátkozrnné rýže na sushi|2 cups short-grain sushi rice">2 šálky krátkozrnné rýže na sushi</span></li>
+                      <li><span data-text="2 1⁄4 šálku vody|2 1⁄4 cups water">2 1⁄4 šálku vody</span></li>
+                      <li><span data-text="2 lžíce rýžového octa|2 tablespoons rice vinegar">2 lžíce rýžového octa</span></li>
+                      <li><span data-text="1 lžička cukru|1 teaspoon sugar">1 lžička cukru</span></li>
+                      <li><span data-text="1⁄2 lžičky soli|1⁄2 teaspoon salt">1⁄2 lžičky soli</span></li>
+                  </ul>
+                  <h3 data-text="Pro plnění:|For the Fillings:">Pro plnění:</h3>
+                  <ul>
+                      <li><span data-text="8 plátků čerstvého tuňáka|8 slices fresh tuna">8 plátků čerstvého tuňáka</span></li>
+                      <li><span data-text="4 listy nori (sušené mořské řasy)|4 sheets nori (dried seaweed sheets)">4 listy nori (sušené mořské řasy)</span></li>
+                      <li><span data-text="1⁄2 okurky, nakrájené na tenké nudličky|1⁄2 cucumber, julienned">1⁄2 okurky, nakrájené na tenké nudličky</span></li>
+                      <li><span data-text="4 plátky avokáda|4 slices avocado">4 plátky avokáda</span></li>
+                      <li><span data-text="Zázvor, wasabi, sójová omáčka na podávání|Pickled ginger, wasabi, soy sauce for serving">Zázvor, wasabi, sójová omáčka na podávání</span></li>
+                  </ul>
+              </div>
+
+              <div class="instructions-box">
+                  <h2 data-text="Postup|Instructions">Postup</h2>
+                  <h3 data-text="Pro rýži:|For the Rice:">Pro rýži:</h3>
+                  <ol>
+                      <li data-text="Vsypte rýži do mísy a několikrát ji opláchněte, dokud nebude voda čirá. Nechte rýži odkapat.|Rinse the rice in a bowl several times until the water runs clear. Let the rice drain.">Vsypte rýži do mísy a několikrát ji opláchněte, dokud nebude voda čirá. Nechte rýži odkapat.</li>
+                      <li data-text="Přeneste rýži do rýžovaru nebo hrnce, přidejte vodu a nechte vařit dle návodu na obalu.|Transfer the rice to a rice cooker or pot, add the water, and cook according to package instructions.">Přeneste rýži do rýžovaru nebo hrnce, přidejte vodu a nechte vařit dle návodu na obalu.</li>
+                      <li data-text="V misce smíchejte rýžový ocet, cukr a sůl. Jakmile je rýže hotová, promíchejte ji s tímto octovým roztokem.|In a small bowl, mix together the rice vinegar, sugar, and salt. Once the rice is cooked, gently stir in the vinegar mixture.">V misce smíchejte rýžový ocet, cukr a sůl. Jakmile je rýže hotová, promíchejte ji s tímto octovým roztokem.</li>
+                  </ol>
+                  <h3 data-text="Pro plnění:|For the Fillings:">Pro plnění:</h3>
+                  <ol start="4">
+                      <li data-text="Položte na sushi rohožku list nori a nahoru rovnoměrně rozprostřete vrstvu rýže (neudělá se ale příliš tlustá).|Place a nori sheet on a sushi mat and spread a thin even layer of rice over the top (not too thick).">Položte na sushi rohožku list nori a nahoru rovnoměrně rozprostřete vrstvu rýže (neudělá se ale příliš tlustá).</li>
+                      <li data-text="Na rýži rovnoměrně rozložte pruhy tuňáka, okurky, avokáda a další přísady dle chuti.|Evenly arrange strips of tuna, cucumber, avocado, and any other desired fillings over the rice.">Na rýži rovnoměrně rozložte pruhy tuňáka, okurky, avokáda a další přísady dle chuti.</li>
+                      <li data-text="Pomocí rohožky srolujte sushi těsně dohromady a lehce zatlačte pro lepší sevření.|Using the mat, tightly roll up the sushi, pressing gently to seal.">Pomocí rohožky srolujte sushi těsně dohromady a lehce zatlačte pro lepší sevření.</li>
+                      <li data-text="Srolované sushi nakrájejte na porce a podávejte se zázvorem, wasabi a sójovou omáčkou.|Slice the rolled sushi into pieces and serve with pickled ginger, wasabi, and soy sauce.">Srolované sushi nakrájejte na porce a podávejte se zázvorem, wasabi a sójovou omáčkou.</li>
+                  </ol>
+              </div>
+          </div>
+      </section>
+  </main>
+
+  <footer>
+      <p data-text="&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.|&copy; 2024 Štěpán Uruba. All rights reserved.">&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.</p>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+
+</html>

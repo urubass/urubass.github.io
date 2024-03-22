@@ -43,6 +43,7 @@
 </head>
 
 <body>
+    <div id="success-message" class="success-message">Přihlášení úspěšné</div>
     <header>
         <nav>
             <div class="language-switch">
@@ -89,6 +90,15 @@
                             <div class="recipe-overlay">
                                 <h3 data-text="Penne all'arrabbiata|Penne all'arrabbiata">Penne all'arrabbiata</h3>
                             </div>
+                            <div class="recipe-rating">
+                                <div class="stars">
+                                    <span class="star">&#9733;</span>
+                                    <span class="star">&#9733;</span>
+                                    <span class="star">&#9733;</span>
+                                    <span class="star">&#9733;</span>
+                                    <span class="star">&#9733;</span>
+                                </div>
+                            </div>
                         </a>
                     </div>
                     <div class="recipe-item" data-category="indicke">
@@ -131,7 +141,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="recipe-item" data-category="thajske">
+                    <div class="recipe-item" data-category="cinske">
                         <a href="recepty/zavitky.html">
                             <img src="obrazky/zavitky.jpg" alt="Jarní závitky s kuřecím masem">
                             <div class="recipe-overlay">
@@ -163,6 +173,86 @@
                             </div>
                         </a>
                     </div>
+                    <div class="recipe-item" data-category="recke">
+                        <a href="recepty/gyros.html">
+                            <img src="obrazky/gyros.jpg" alt="Řecký gyros s tzatziky">
+                            <div class="recipe-overlay">
+                                <h3 data-text="Řecký gyros s tzatziky|Greek Gyros with Tzatziki">Řecký gyros s tzatziky</h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="recipe-item" data-category="ceske">
+                        <a href="recepty/smazak.html">
+                            <img src="obrazky/smazak.jpg" alt="Smažený sýr">
+                            <div class="recipe-overlay">
+                                <h3 data-text="Smažený sýr|Fried Cheese">Smažený sýr</h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="recipe-item" data-category="americke">
+                        <a href="recepty/burger.html">
+                            <img src="obrazky/burger.jpg" alt="Burger">
+                            <div class="recipe-overlay">
+                                <h3 data-text="Burger|Burger">Burger</h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="recipe-item" data-category="mexicke">
+                        <a href="recepty/tacos.html">
+                            <img src="obrazky/tacos.jpg" alt="Tacos">
+                            <div class="recipe-overlay">
+                                <h3 data-text="Tacos|Tacos">Tacos</h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="recipe-item" data-category="thajske">
+                        <a href="recepty/padthai.html">
+                            <img src="obrazky/padthai.jpg" alt="Pad Thai">
+                            <div class="recipe-overlay">
+                                <h3 data-text="Pad Thai|Pad Thai">Pad Thai</h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="recipe-item" data-category="japonske">
+                        <a href="recepty/sushi.html">
+                            <img src="obrazky/sushi.jpg" alt="Sushi">
+                            <div class="recipe-overlay">
+                                <h3 data-text="Sushi|Sushi">Sushi</h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="recipe-item" data-category="francouzske">
+                        <a href="recepty/bouillabaisse.html">
+                            <img src="obrazky/bouillabaisse.jpg" alt="Bouillabaisse">
+                            <div class="recipe-overlay">
+                                <h3 data-text="Bouillabaisse|Bouillabaisse">Bouillabaisse</h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="recipe-item" data-category="madarske">
+                        <a href="recepty/gulas.html">
+                            <img src="obrazky/gulas.jpg" alt="Maďarský guláš">
+                            <div class="recipe-overlay">
+                                <h3 data-text="Maďarský guláš|Hungarian Goulash">Maďarský guláš</h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="recipe-item" data-category="japonske">
+                        <a href="recepty/udon.html">
+                            <img src="obrazky/udon.jpg" alt="Udon">
+                            <div class="recipe-overlay">
+                                <h3 data-text="Udon|Udon">Udon</h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="recipe-item" data-category="italske">
+                        <a href="recepty/pizza.html">
+                            <img src="obrazky/pizza.jpg" alt="Neapolská pizza">
+                            <div class="recipe-overlay">
+                                <h3 data-text="Neapolská pizza|Neapolitan Pizza">Neapolská pizza</h3>
+                            </div>
+                        </a>
+                    </div>
                 </div>
                 <div class="load-more">
                     <button data-text="Další|Next" id="load-more-btn">Další</button>
@@ -173,9 +263,51 @@
 
     <footer>
         <p data-text="&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.|&copy; 2024 Štěpán Uruba. All rights reserved.">&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.</p>
+        <div class="user-actions"></div>
     </footer>
 
-    <script src="script.js"></script>
+    <div class="modal" id="register-modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Registrace</h2>
+            <form id="register-form">
+                <label for="username">Uživatelské jméno:</label>
+                <input type="text" id="username" name="username" required>
+    
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+    
+                <div class="password-input">
+                    <label for="password">Heslo:</label>
+                    <input type="password" id="password" name="password" required>
+                    <button type="button" class="toggle-password">👁️</button>
+                </div>
+    
+                <button type="submit">Registrovat</button>
+            </form>
+        </div>
+    </div>
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Přihlášení</h2>
+            <form id="login-form">
+                <label for="login-username">Uživatelské jméno:</label>
+                <input type="text" id="login-username" name="username" required>
+    
+                <div class="password-input">
+                    <label for="login-password">Heslo:</label>
+                    <input type="password" id="login-password" name="password" required>
+                    <button type="button" class="toggle-password">👁️</button>
+                </div>
+    
+                <button type="submit">Přihlásit se</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="skripty/main.js"></script>
+    <script src="skripty/recipes.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Štěpán Uruba - Burger</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" type="image/png" href="../obrazky/favicon.png">
+
+  <script>
+      // Uložení vybraného jazyka do localStorage
+      function saveLanguage(lang) {
+          localStorage.setItem('selectedLanguage', lang);
+      }
+
+      // Načtení vybraného jazyka z localStorage
+      function loadLanguage() {
+          const selectedLanguage = localStorage.getItem('selectedLanguage');
+          if (selectedLanguage) {
+              const flags = document.querySelectorAll('.flag');
+              flags.forEach(flag => {
+                  if (flag.dataset.lang === selectedLanguage) {
+                      flag.classList.add('active');
+                      flag.classList.remove('hidden');
+                  } else {
+                      flag.classList.add('hidden');
+                      flag.classList.remove('active');
+                  }
+              });
+
+              const translatableElements = document.querySelectorAll('[data-text]');
+              translatableElements.forEach(element => {
+                  const [czechText, englishText] = element.dataset.text.split('|');
+                  element.textContent = selectedLanguage === 'cs' ? czechText : englishText;
+              });
+          }
+      }
+
+      // Načtení vybraného jazyka při načtení stránky
+      document.addEventListener('DOMContentLoaded', loadLanguage);
+  </script>
+</head>
+
+<body>
+  <header>
+      <nav>
+          <div class="language-switch">
+              <img src="../vlajky/czech-flag.png" alt="Česká vlajka" class="flag active" data-lang="cs">
+              <img src="../vlajky/english-flag.png" alt="Anglická vlajka" class="flag hidden" data-lang="en">
+          </div>
+          <div class="theme-switch">
+              <img src="../obrazky/sun.png" alt="Světlý motiv" class="theme-icon active" data-theme="light">
+              <img src="../obrazky/moon.png" alt="Tmavý motiv" class="theme-icon hidden" data-theme="dark">
+          </div>
+          <ul>
+              <li><a href="../index.html" data-text="Hlavní menu|Main Menu">Hlavní menu</a></li>
+              <li><a href="../recipes.html" class="active" data-text="Recepty|Recipes">Recepty</a></li>
+          </ul>
+      </nav>
+  </header>
+
+  <main>
+      <section class="recipe-detail">
+          <div class="recipe-hero" style="background-image: url('../obrazky/burger.jpg');">
+              <div class="recipe-hero-text">
+                  <h1 data-text="Burger|Burger">Burger</h1>
+                  <p class="recipe-description" data-text="Šťavnatý hovězí burger s křupavou slaninou a všemi tradičními přísadami.|A juicy beef burger with crispy bacon and all the traditional toppings.">Šťavnatý hovězí burger s křupavou slaninou a všemi tradičními přísadami.</p>
+              </div>
+          </div>
+
+          <div class="container">
+              <div class="recipe-info-box">
+                  <h2 data-text="Informace|Information">Informace</h2>
+                  <p><strong data-text="Porce:|Servings:">Porce:</strong> 4</p>
+                  <p><strong data-text="Příprava:|Prep Time:">Příprava:</strong> 15 minut</p>
+                  <p><strong data-text="Vaření:|Cook Time:">Vaření:</strong> 10 minut</p>
+                  <p><strong data-text="Obtížnost:|Difficulty:">Obtížnost:</strong> <span data-text="Snadná|Easy">Snadná</span></p>
+              </div>
+
+              <div class="ingredients-box">
+                  <h2 data-text="Ingredience|Ingredients">Ingredience</h2>
+                  <h3 data-text="Pro hovězí burgery:|For the Beef Patties:">Pro hovězí burgery:</h3>
+                  <ul>
+                      <li><span data-text="500g mletého hovězího masa|500g ground beef">500g mletého hovězího masa</span></li>
+                      <li><span data-text="1 vejce|1 egg">1 vejce</span></li>
+                      <li><span data-text="1 lžíce Worcester omáčky|1 tablespoon Worcestershire sauce">1 lžíce Worcester omáčky</span></li>
+                      <li><span data-text="Sůl a pepř podle chuti|Salt and pepper to taste">Sůl a pepř podle chuti</span></li>
+                  </ul>
+                  <h3 data-text="Další ingredience:|Additional Ingredients:">Další ingredience:</h3>
+                  <ul>
+                      <li><span data-text="4 housky na burgery|4 burger buns">4 housky na burgery</span></li>
+                      <li><span data-text="4 plátky sýra (např. cheddar)|4 slices of cheese (e.g. cheddar)">4 plátky sýra (např. cheddar)</span></li>
+                      <li><span data-text="8 plátků slaniny|8 slices of bacon">8 plátků slaniny</span></li>
+                      <li><span data-text="Rajčata, okurky, cibule, listy salátu, hořčice a kečup podle chuti|Tomatoes, pickles, onions, lettuce leaves, mustard, and ketchup as desired">Rajčata, okurky, cibule, listy salátu, hořčice a kečup podle chuti</span></li>
+                  </ul>
+              </div>
+
+              <div class="instructions-box">
+                  <h2 data-text="Postup|Instructions">Postup</h2>
+                  <ol>
+                      <li data-text="Smíchejte mleté maso, vejce, Worcester omáčku, sůl a pepř. Utvořte 4 stejně velké burgery.|Mix together the ground beef, egg, Worcestershire sauce, salt, and pepper. Form into 4 equal patties.">Smíchejte mleté maso, vejce, Worcester omáčku, sůl a pepř. Utvořte 4 stejně velké burgery.</li>
+                      <li data-text="Opečte slaninu na pánvi do křupava a odložte stranou.|Cook the bacon in a pan until crispy, and set aside.">Opečte slaninu na pánvi do křupava a odložte stranou.</li>
+                      <li data-text="Na té samé pánvi opečte burgery z obou stran, dokud nebudou propečené podle vašich představ.|On the same pan, cook the patties on both sides until done to your desired doneness.">Na té samé pánvi opečte burgery z obou stran, dokud nebudou propečené podle vašich představ.</li>
+                      <li data-text="V poslední minutě přidejte na každý burger plátek sýra, aby se mohl rozpustit.|In the last minute, place a slice of cheese on each patty to melt.">V poslední minutě přidejte na každý burger plátek sýra, aby se mohl rozpustit.</li>
+                      <li data-text="Rozřízněte housky a krátce je opečte nebo ogriluujte.|Split the buns and lightly toast or grill them.">Rozřízněte housky a krátce je opečte nebo ogriluujte.</li>
+                      <li data-text="Sestavte burgery přidáním všech požadovaných příloh (rajčata, okurky, cibule, salát, hořčice, kečup) na spodní část housky, následně přidejte burger a navrch položte plátek slaniny.|Assemble the burgers by placing desired toppings (tomatoes, pickles, onions, lettuce, mustard, ketchup) on the bottom bun, then the patty, and top with bacon slices.">Sestavte burgery přidáním všech požadovaných příloh (rajčata, okurky, cibule, salát, hořčice, kečup) na spodní část housky, následně přidejte burger a navrch položte plátek slaniny.</li>
+                      <li data-text="Přiklopte horní části housek a podávejte s oblíbenou přílohou, jako jsou smažené hranolky nebo zeleninový salát.|Top with the upper bun halves and serve with desired sides, such as french fries or a side salad.">Přiklopte horní části housek a podávejte s oblíbenou přílohou, jako jsou smažené hranolky nebo zeleninový salát.</li>
+                  </ol>
+              </div>
+          </div>
+      </section>
+  </main>
+
+  <footer>
+      <p data-text="&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.|&copy; 2024 Štěpán Uruba. All rights reserved.">&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.</p>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+
+</html>
