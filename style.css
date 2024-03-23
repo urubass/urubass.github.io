@@ -743,16 +743,9 @@ footer {
     cursor: pointer;
 }
 
-comment {
-    margin-bottom: 20px;
-    padding: 20px;
-    background-color: #e9ecef;
-    border-radius: 5px;
-    width: 100%;
-    margin-left: auto; 
-    margin-right: auto; 
-    max-width: 600px; 
-}
+.comment-text {
+    margin-top: 0px;
+  }
 
 .dark-theme .comment {
     background-color: #444;
@@ -791,13 +784,29 @@ comment {
 }
 
 .modal-content {
-    background-color: #f8f9fa;
+    background-color: #f8f8f8;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 30%;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content input {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+  
+.modal-content button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .dark-theme .modal-content {
@@ -848,6 +857,7 @@ comment {
     cursor: pointer;
     transition: background-color 0.3s;
 }
+
 
 .modal button:hover {
     background-color: #0056b3;

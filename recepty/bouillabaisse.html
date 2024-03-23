@@ -108,15 +108,74 @@
                       <li data-text="Podávejte bouillabaisse naředěnou vývarem s čerstvě opečenou bagetkou na namáčení.|Serve the bouillabaisse moistened with broth and fresh baguette for dipping.">Podávejte bouillabaisse naředěnou vývarem s čerstvě opečenou bagetkou na namáčení.</li>
                   </ol>
               </div>
+              <div class="comment-section">
+                <h2 data-text="Komentáře|Comments">Komentáře</h2>
+                <div class="comment-form" id="comment-form" style="display: none;">
+                    <div class="comment-input">
+                        <textarea id="comment-text" placeholder="Napište komentář..."></textarea>
+                        <div class="rating">
+                            <span class="star" data-value="1" type="button">&#9733;</span>
+                            <span class="star" data-value="2" type="button">&#9733;</span>
+                            <span class="star" data-value="3" type="button">&#9733;</span>
+                            <span class="star" data-value="4" type="button">&#9733;</span>
+                            <span class="star" data-value="5" type="button">&#9733;</span>
+                          </div>
+                    </div>
+                    <button id="submit-comment" data-text="Odeslat|Submit">Odeslat</button>
+                </div>
+                <div class="comment-list" id="comment-list"></div>
+            </div>
           </div>
       </section>
   </main>
 
   <footer>
-      <p data-text="&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.|&copy; 2024 Štěpán Uruba. All rights reserved.">&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.</p>
-  </footer>
+    <p data-text="&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.|&copy; 2024 Štěpán Uruba. All rights reserved.">&copy; 2024 Štěpán Uruba. Všechna práva vyhrazena.</p>
+    <div class="user-actions"></div>
+    </footer>
 
-  <script src="../script.js"></script>
+    <div class="modal" id="register-modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Registrace</h2>
+            <form id="register-form">
+                <label for="username">Uživatelské jméno:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <div class="password-input">
+                    <label for="password">Heslo:</label>
+                    <input type="password" id="password" name="password" required>
+                    <button type="button" class="toggle-password">👁️</button>
+                </div>
+
+                <button type="submit">Registrovat</button>
+            </form>
+        </div>
+    </div>
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Přihlášení</h2>
+            <form id="login-form">
+                <label for="login-username">Uživatelské jméno:</label>
+                <input type="text" id="login-username" name="username" required>
+
+                <div class="password-input">
+                    <label for="login-password">Heslo:</label>
+                    <input type="password" id="login-password" name="password" required>
+                    <button type="button" class="toggle-password">👁️</button>
+                </div>
+
+                <button type="submit">Přihlásit se</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../skripty/main.js"></script>
+    <script src="../skripty/recipe-detail.js"></script>
 </body>
 
 </html>
