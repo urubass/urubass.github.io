@@ -7,6 +7,7 @@
     <title>Štěpán Uruba - Recepty</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="obrazky/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     <script>
         // Uložení vybraného jazyka do localStorage
@@ -78,6 +79,9 @@
                         <img src="vlajky/thai-flag.png" alt="Thajská vlajka" class="filter-flag" data-category="thajske">
                         <img src="vlajky/usa-flag.png" alt="Americká vlajka" class="filter-flag" data-category="americke">
                     </div>
+                    <div class="bookmark-toggle">
+                        <i class="fas fa-bookmark"></i>
+                      </div>
                     <div class="search-bar">
                         <input type="text" id="search-input" placeholder="Vyhledat recept..." data-text="Vyhledat recept...|Search recipe...">
                         <button id="search-button" data-text="Vyhledat|Search">Vyhledat</button>
@@ -85,6 +89,9 @@
                 </div>
                 <div class="recipe-grid">
                     <div class="recipe-item" data-category="italske" data-recipe-id="1">
+                        <div class="recipe-bookmark">
+                            <i class="fas fa-bookmark bookmark-icon" data-recipe-id="1"></i>
+                        </div>
                         <a href="recepty/penne.html?id=1">
                             <img src="obrazky/penne.jpg" alt="Penne all'arrabbiata">
                             <div class="recipe-overlay">
@@ -96,6 +103,9 @@
                         </a>
                     </div>
                     <div class="recipe-item" data-category="indicke" data-recipe-id="2">
+                        <div class="recipe-bookmark">
+                            <i class="fas fa-bookmark bookmark-icon" data-recipe-id="2"></i>
+                        </div>
                         <a href="recepty/butterchicken.html?id=2">
                             <img src="obrazky/butterchicken.jpg" alt="Butter chicken">
                             <div class="recipe-overlay">
@@ -107,6 +117,9 @@
                         </a>
                     </div>
                     <div class="recipe-item" data-category="cinske" data-recipe-id="3">
+                        <div class="recipe-bookmark">
+                            <i class="fas fa-bookmark bookmark-icon" data-recipe-id="3"></i>
+                        </div>
                         <a href="recepty/smazenenudle.html?id=3">
                             <img src="obrazky/smazenenudle.jpg" alt="Smažené nudle">
                             <div class="recipe-overlay">
@@ -118,6 +131,9 @@
                         </a>
                     </div>
                     <div class="recipe-item" data-category="cinske" data-recipe-id="4">
+                        <div class="recipe-bookmark">
+                            <i class="fas fa-bookmark bookmark-icon" data-recipe-id="4"></i>
+                        </div>
                         <a href="recepty/kungpao.html?id=4">
                             <img src="obrazky/kungpao.jpg" alt="Kung Pao">
                             <div class="recipe-overlay">
@@ -129,6 +145,9 @@
                         </a>
                     </div>
                     <div class="recipe-item" data-category="francouzske" data-recipe-id="5">
+                        <div class="recipe-bookmark">
+                            <i class="fas fa-bookmark bookmark-icon" data-recipe-id="5"></i>
+                        </div>
                         <a href="recepty/palacinky.html?id=5">
                             <img src="obrazky/palacinky.jpg" alt="Palačinky">
                             <div class="recipe-overlay">
@@ -140,6 +159,9 @@
                         </a>
                     </div>
                     <div class="recipe-item" data-category="ceske" data-recipe-id="6">
+                        <div class="recipe-bookmark">
+                            <i class="fas fa-bookmark bookmark-icon" data-recipe-id="6"></i>
+                        </div>
                         <a href="recepty/svickova.html?id=6">
                             <img src="obrazky/svickova.jpg" alt="Svíčková na smetaně">
                             <div class="recipe-overlay">
@@ -151,6 +173,9 @@
                         </a>
                     </div>
                     <div class="recipe-item" data-category="cinske" data-recipe-id="7">
+                        <div class="recipe-bookmark">
+                            <i class="fas fa-bookmark bookmark-icon" data-recipe-id="7"></i>
+                        </div>
                         <a href="recepty/zavitky.html?id=7">
                             <img src="obrazky/zavitky.jpg" alt="Jarní závitky s kuřecím masem">
                             <div class="recipe-overlay">
@@ -162,6 +187,9 @@
                         </a>
                     </div>
                     <div class="recipe-item" data-category="italske" data-recipe-id="8">
+                        <div class="recipe-bookmark">
+                            <i class="fas fa-bookmark bookmark-icon" data-recipe-id="8"></i>
+                        </div>
                         <a href="recepty/spagety.html?id=8">
                             <img src="obrazky/spagety.jpg" alt="Špagety aglio e olio">
                             <div class="recipe-overlay">
@@ -173,6 +201,9 @@
                         </a>
                     </div>
                     <div class="recipe-item" data-category="italske" data-recipe-id="9">
+                        <div class="recipe-bookmark">
+                            <i class="fas fa-bookmark bookmark-icon" data-recipe-id="9"></i>
+                        </div>
                         <a href="recepty/lasagne.html?id=9">
                             <img src="obrazky/lasagne.jpg" alt="Lasagne alla Bolognese">
                             <div class="recipe-overlay">
@@ -184,6 +215,9 @@
                         </a>
                     </div>
                     <div class="recipe-item" data-category="madarske" data-recipe-id="10">
+                        <div class="recipe-bookmark">
+                            <i class="fas fa-bookmark bookmark-icon" data-recipe-id="10"></i>
+                        </div>
                         <a href="recepty/langose.html?id=10">
                             <img src="obrazky/langose.jpg" alt="Langoše">
                             <div class="recipe-overlay">
@@ -195,6 +229,9 @@
                         </a>
                     </div>
                     <div class="recipe-item" data-category="recke" data-recipe-id="11">
+                        <div class="recipe-bookmark">
+                            <i class="fas fa-bookmark bookmark-icon" data-recipe-id="11"></i>
+                        </div>
                         <a href="recepty/gyros.html?id=11">
                             <img src="obrazky/gyros.jpg" alt="Řecký gyros s tzatziky">
                             <div class="recipe-overlay">
@@ -206,6 +243,9 @@
                         </a>
                     </div>
                     <div class="recipe-item" data-category="ceske" data-recipe-id="12">
+                        <div class="recipe-bookmark">
+                            <i class="fas fa-bookmark bookmark-icon" data-recipe-id="12"></i>
+                        </div>
                         <a href="recepty/smazak.html?id=12">
                             <img src="obrazky/smazak.jpg" alt="Smažený sýr">
                             <div class="recipe-overlay">
@@ -217,6 +257,9 @@
                         </a>
                     </div>
                     <div class="recipe-item" data-category="americke" data-recipe-id="13">
+                        <div class="recipe-bookmark">
+                            <i class="fas fa-bookmark bookmark-icon" data-recipe-id="13"></i>
+                        </div>
                         <a href="recepty/burger.html?id=13">
                             <img src="obrazky/burger.jpg" alt="Burger">
                             <div class="recipe-overlay">
@@ -228,6 +271,9 @@
                         </a>
                     </div>
                     <div class="recipe-item" data-category="mexicke" data-recipe-id="14">
+                        <div class="recipe-bookmark">
+                            <i class="fas fa-bookmark bookmark-icon" data-recipe-id="14"></i>
+                        </div>
                         <a href="recepty/tacos.html?id=14">
                             <img src="obrazky/tacos.jpg" alt="Tacos">
                             <div class="recipe-overlay">
@@ -239,6 +285,9 @@
                         </a>
                     </div>
                     <div class="recipe-item" data-category="thajske" data-recipe-id="15">
+                        <div class="recipe-bookmark">
+                            <i class="fas fa-bookmark bookmark-icon" data-recipe-id="15"></i>
+                        </div>
                         <a href="recepty/padthai.html?id=15">
                             <img src="obrazky/padthai.jpg" alt="Pad Thai">
                             <div class="recipe-overlay">
@@ -250,6 +299,9 @@
                         </a>
                     </div>
                     <div class="recipe-item" data-category="japonske" data-recipe-id="16">
+                        <div class="recipe-bookmark">
+                            <i class="fas fa-bookmark bookmark-icon" data-recipe-id="16"></i>
+                        </div>
                         <a href="recepty/sushi.html?id=16">
                             <img src="obrazky/sushi.jpg" alt="Sushi">
                             <div class="recipe-overlay">
@@ -261,6 +313,9 @@
                         </a>
                     </div>
                     <div class="recipe-item" data-category="francouzske" data-recipe-id="17">
+                        <div class="recipe-bookmark">
+                            <i class="fas fa-bookmark bookmark-icon" data-recipe-id="17"></i>
+                        </div>
                         <a href="recepty/bouillabaisse.html?id=17">
                             <img src="obrazky/bouillabaisse.jpg" alt="Bouillabaisse">
                             <div class="recipe-overlay">
@@ -272,6 +327,9 @@
                         </a>
                     </div>
                     <div class="recipe-item" data-category="madarske" data-recipe-id="18">
+                        <div class="recipe-bookmark">
+                            <i class="fas fa-bookmark bookmark-icon" data-recipe-id="18"></i>
+                        </div>
                         <a href="recepty/gulas.html?id=18">
                             <img src="obrazky/gulas.jpg" alt="Maďarský guláš">
                             <div class="recipe-overlay">
@@ -283,6 +341,9 @@
                         </a>
                     </div>
                     <div class="recipe-item" data-category="japonske" data-recipe-id="19">
+                        <div class="recipe-bookmark">
+                            <i class="fas fa-bookmark bookmark-icon" data-recipe-id="19"></i>
+                        </div>
                         <a href="recepty/udon.html?id=19">
                             <img src="obrazky/udon.jpg" alt="Udon">
                             <div class="recipe-overlay">
@@ -294,6 +355,9 @@
                         </a>
                     </div>
                     <div class="recipe-item" data-category="italske" data-recipe-id="20">
+                        <div class="recipe-bookmark">
+                            <i class="fas fa-bookmark bookmark-icon" data-recipe-id="20"></i>
+                        </div>
                         <a href="recepty/pizza.html?id=20">
                             <img src="obrazky/pizza.jpg" alt="Neapolská pizza">
                             <div class="recipe-overlay">
@@ -359,6 +423,7 @@
 
     <script src="skripty/main.js"></script>
     <script src="skripty/recipes.js"></script>
+    <script src="skripty/bookmarks.js"></script>
 </body>
 
 </html>

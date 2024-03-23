@@ -480,6 +480,7 @@ a:hover {
     justify-content: center;
     align-items: center;
     text-align: center;
+    z-index: 1;
 }
 
 .recipe-item:hover .recipe-overlay {
@@ -1003,4 +1004,64 @@ footer {
   
   .rating-message.error {
     background-color: #F44336;
+  }
+
+  /* Záložky */
+  .bookmark-toggle {
+    color: #007bff;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: 20px;
+    font-size: 24px;
+  }
+
+  .dark-theme .bookmark-toggle {
+    color: #fff;
+  }
+
+  .bookmark-toggle.active {
+    color: #ffc107;
+  }
+  
+  .recipe-bookmark {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+    font-size: 32px;
+    z-index: 2;
+  }
+  
+  .bookmark-icon {
+    color: #ccc;
+    transition: color 0.3s;
+  }
+
+  .bookmark-icon::before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .bookmark-icon:hover::before {
+    opacity: 1;
+  }
+  
+  .bookmark-icon.active::before {
+    border-color: #ffd700;
+    opacity: 1;
+  }
+  
+  .bookmark-icon:hover {
+    color: #ffd700;
+  }
+  
+  .bookmark-icon.active {
+    color: #ffd700;
   }
