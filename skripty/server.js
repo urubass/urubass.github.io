@@ -6,7 +6,7 @@ const sqlite3 = require('sqlite3').verbose();
 
 const app = express();
 const port = 3000;
-const db = new sqlite3.Database('database.db');
+const db = new sqlite3.Database('../database.db');
 
 app.get('/', (req, res) => {
   res.send('Server is running');
@@ -41,12 +41,11 @@ db.serialize(() => {
     recipeId INTEGER NOT NULL,
     comment TEXT NOT NULL,
     rating INTEGER,
+    created_at DATE DEFAULT CURRENT_DATE,
     FOREIGN KEY (userId) REFERENCES users(id)
   )`);
 
-  db.run(`DROP TABLE IF EXISTS ratings`);
-
-  db.run(`CREATE TABLE ratings (
+  db.run(`CREATE TABLE IF NOT EXISTS ratings (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     userId INTEGER NOT NULL,
     recipeId INTEGER NOT NULL,
@@ -137,12 +136,12 @@ app.post('/comments', async (req, res) => {
 app.get('/comments', (req, res) => {
   const recipeId = req.query.recipeId;
 
-  db.all(`SELECT c.id, c.comment, u.username 
+  db.all(`SELECT c.id, c.comment, c.rating, DATE(c.created_at) AS created_at, u.username 
           FROM comments c
           JOIN users u ON c.userId = u.id
           WHERE c.recipeId = ?`, [recipeId], (err, rows) => {
     if (err) {
-      console.error(err.message);
+      console.error('Chyba při načítání komentářů:', err);
       return res.status(500).send('Chyba na straně serveru');
     }
     res.json(rows);

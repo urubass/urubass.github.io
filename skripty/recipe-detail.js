@@ -37,10 +37,11 @@ document.addEventListener('DOMContentLoaded', () => {
         body: JSON.stringify({
           recipeId: recipeId,
           userId: userId,
-          comment: commentText
+          comment: commentText,
+          rating: rating
         })
       });
-
+  
       if (response.ok) {
         fetchComments();
       } else {
@@ -59,13 +60,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const comments = await response.json();
         displayComments(comments);
       } else {
-        console.error('Chyba při načítání komentářů');
+        console.error('Chyba při načítání komentářů:', response.status);
       }
     } catch (error) {
       console.error('Chyba při načítání komentářů:', error);
     }
   }
-
+  
   // Funkce pro zobrazení komentářů na stránce
   function displayComments(comments) {
     commentList.innerHTML = '';
@@ -73,7 +74,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const commentElement = document.createElement('div');
       commentElement.classList.add('comment');
       commentElement.innerHTML = `
-        <p class="comment-author">${comment.username}</p>
+        <div class="comment-header">
+          <p class="comment-author">${comment.username}</p>
+          <p class="comment-date">${comment.created_at}</p>
+          ${comment.rating ? `<p class="comment-rating">${'★'.repeat(comment.rating)}</p>` : ''}
+        </div>
         <p class="comment-text">${comment.comment}</p>
       `;
       commentList.appendChild(commentElement);
