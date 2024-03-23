@@ -8,6 +8,14 @@ const app = express();
 const port = 3000;
 const db = new sqlite3.Database('database.db');
 
+app.get('/', (req, res) => {
+  res.send('Server is running');
+});
+
+app.listen(port, () => {
+  console.log(`Server běží na http://localhost:${port}`);
+});
+
 app.use(cors({
   origin: ['http://127.0.0.1:5500', 'http://localhost:5500'],
   credentials: true
@@ -33,8 +41,18 @@ db.serialize(() => {
     recipeId INTEGER NOT NULL,
     comment TEXT NOT NULL,
     rating INTEGER,
+    FOREIGN KEY (userId) REFERENCES users(id)
+  )`);
+
+  db.run(`DROP TABLE IF EXISTS ratings`);
+
+  db.run(`CREATE TABLE ratings (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    userId INTEGER NOT NULL,
+    recipeId INTEGER NOT NULL,
+    rating INTEGER NOT NULL,
     FOREIGN KEY (userId) REFERENCES users(id),
-    FOREIGN KEY (recipeId) REFERENCES recipes(id)
+    UNIQUE(userId, recipeId)
   )`);
 });
 
@@ -103,11 +121,11 @@ app.post('/logout', (req, res) => {
 
 // Přidání komentáře
 app.post('/comments', async (req, res) => {
-  const { userId, recipeId, comment, rating } = req.body;
+  const { userId, recipeId, comment } = req.body;
 
-  db.run(`INSERT INTO comments (userId, recipeId, comment, rating) VALUES (?, ?, ?, ?)`, [userId, recipeId, comment, rating], function(err) {
+  db.run(`INSERT INTO comments (userId, recipeId, comment) VALUES (?, ?, ?)`, [userId, recipeId, comment], function(err) {
     if (err) {
-      console.error(err.message);
+      console.error('Database error:', err);
       return res.status(500).send('Chyba při přidávání komentáře');
     }
     console.log(`Nový komentář přidán s ID: ${this.lastID}`);
@@ -116,10 +134,10 @@ app.post('/comments', async (req, res) => {
 });
 
 // Získání komentářů pro daný recept
-app.get('/comments/:recipeId', (req, res) => {
-  const recipeId = req.params.recipeId;
+app.get('/comments', (req, res) => {
+  const recipeId = req.query.recipeId;
 
-  db.all(`SELECT c.id, c.comment, c.rating, u.username 
+  db.all(`SELECT c.id, c.comment, u.username 
           FROM comments c
           JOIN users u ON c.userId = u.id
           WHERE c.recipeId = ?`, [recipeId], (err, rows) => {
@@ -131,6 +149,84 @@ app.get('/comments/:recipeId', (req, res) => {
   });
 });
 
-app.listen(port, () => {
-  console.log(`Server běží na http://localhost:${port}`);
+app.post('/ratings', async (req, res) => {
+  const { userId, recipeId, rating } = req.body;
+
+  if (!recipeId || !userId) {
+    console.error('Chybějící recipeId nebo userId při ukládání hodnocení');
+    return res.status(400).send('Chybějící recipeId nebo userId');
+  }
+
+  db.run(`
+    INSERT INTO ratings (userId, recipeId, rating)
+    VALUES (?, ?, ?)
+    ON CONFLICT(userId, recipeId) DO UPDATE SET rating = ?
+  `, [userId, recipeId, rating, rating], function(err) {
+    if (err) {
+      console.error('Database error:', err);
+      return res.status(500).send('Chyba při ukládání hodnocení');
+    }
+    res.sendStatus(200);
+  });
+});
+
+// Získání průměrného hodnocení a počtu hodnocení pro každý recept
+app.get('/recipeRatings', (req, res) => {
+  db.all(`
+    SELECT recipeId, AVG(rating) AS averageRating, COUNT(*) AS ratingCount
+    FROM ratings
+    GROUP BY recipeId
+  `, [], (err, rows) => {
+    if (err) {
+      console.error('Database error:', err);
+      return res.status(500).send('Chyba při načítání hodnocení receptů');
+    }
+    res.json(rows);
+  });
+});
+
+// Získání hodnocení uživatele pro daný recept
+app.get('/ratings', (req, res) => {
+  const { recipeId, userId } = req.query;
+
+  db.all(`SELECT * FROM ratings WHERE recipeId = ? AND userId = ?`, [recipeId, userId], (err, rows) => {
+    if (err) {
+      console.error('Database error:', err);
+      return res.status(500).send('Chyba při načítání hodnocení uživatele');
+    }
+    res.json(rows);
+  });
+});  
+
+// Aktualizace průměrného hodnocení receptu
+app.put('/updateRecipeRating', (req, res) => {
+  const { recipeId, newRating } = req.body;
+
+  db.run(`
+    INSERT INTO ratings (recipeId, rating) VALUES (?, ?)
+    ON CONFLICT (recipeId) DO UPDATE SET rating = ?
+  `, [parseInt(recipeId), newRating, newRating], function(err) {
+    if (err) {
+      console.error('Database error:', err);
+      return res.status(500).send('Chyba při aktualizaci hodnocení receptu');
+    }
+    res.sendStatus(200);
+  });
+});
+
+// Získání průměrného hodnocení pro daný recept
+app.get('/recipeAverageRating', (req, res) => {
+  const recipeId = req.query.recipeId;
+
+  db.get(`
+    SELECT AVG(rating) AS averageRating
+    FROM ratings
+    WHERE recipeId = ?
+  `, [recipeId], (err, row) => {
+    if (err) {
+      console.error('Database error:', err);
+      return res.status(500).send('Chyba při načítání průměrného hodnocení receptu');
+    }
+    res.json({ averageRating: row.averageRating || 0 });
+  });
 });

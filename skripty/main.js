@@ -167,6 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (response.ok) {
                 const data = await response.json();
                 localStorage.setItem('userId', data.userId);
+                localStorage.setItem('username', username);
                 updateUI();
                 closeModal(loginModal);
                 loginForm.reset();

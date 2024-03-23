@@ -660,9 +660,10 @@ footer {
 }
 
 .stars {
-    color: #ffc107;
-    font-size: 20px;
-}
+    color: #ccc; /* Barva pro nezaplněné hvězdičky */
+    font-size: 24px; /* Velikost hvězdiček */
+    display: inline-block; /* Zobrazení na stejném řádku */
+  }
 
 .rating-bg {
     background-color: rgba(0, 0, 0, 0.6);
@@ -943,3 +944,37 @@ comment {
 .success-message.show {
     top: 20px;
 }
+
+/* Hvězdičky */
+.rating {
+    cursor: pointer;
+}
+  
+.star {
+    color: #ccc;
+    font-size: 24px;
+}
+  
+.star.active {
+    color: #ffc107; /* Barva pro zaplněné hvězdičky */
+  }
+
+  .rating-message {
+    display: none;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    z-index: 9999;
+  }
+  
+  .rating-message.show {
+    display: block;
+  }
+  
+  .rating-message.error {
+    background-color: #F44336;
+  }

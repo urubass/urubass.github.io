@@ -44,6 +44,7 @@
 
 <body>
     <div id="success-message" class="success-message"></div>
+    <div id="rating-message" class="rating-message"></div>
     <header>
         <nav>
             <div class="language-switch">
@@ -121,29 +122,20 @@
                 </div>
                 <div class="comment-section">
                     <h2 data-text="Komentáře|Comments">Komentáře</h2>
-                    <div class="comment-form">
+                    <div class="comment-form" id="comment-form" style="display: none;">
                         <div class="comment-input">
-                            <textarea placeholder="Napište komentář..."></textarea>
+                            <textarea id="comment-text" placeholder="Napište komentář..."></textarea>
                             <div class="rating">
-                                <span class="star">&#9733;</span>
-                                <span class="star">&#9733;</span>
-                                <span class="star">&#9733;</span>
-                                <span class="star">&#9733;</span>
-                                <span class="star">&#9733;</span>
-                            </div>
+                                <span class="star" data-value="1" type="button">&#9733;</span>
+                                <span class="star" data-value="2" type="button">&#9733;</span>
+                                <span class="star" data-value="3" type="button">&#9733;</span>
+                                <span class="star" data-value="4" type="button">&#9733;</span>
+                                <span class="star" data-value="5" type="button">&#9733;</span>
+                              </div>
                         </div>
-                        <button data-text="Odeslat|Submit">Odeslat</button>
+                        <button id="submit-comment" data-text="Odeslat|Submit">Odeslat</button>
                     </div>
-                    <div class="comment-list">
-                        <div class="comment">
-                            <p class="comment-author">Uživatel1</p>
-                            <p class="comment-text">Skvělý recept, moc nám chutnalo!</p>
-                        </div>
-                        <div class="comment">
-                            <p class="comment-author">Uživatel2</p>
-                            <p class="comment-text">Jednoduché a chutné jídlo, určitě budu opakovat.</p>
-                        </div>
-                    </div>
+                    <div class="comment-list" id="comment-list"></div>
                 </div>
             </div>
         </section>
